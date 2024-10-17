@@ -1,0 +1,48 @@
+-- Tabla de Usuarios
+CREATE TABLE Usuarios (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    foto VARCHAR(255),
+    nombre VARCHAR(100),
+    contrasena VARCHAR(100)
+);
+
+-- Tabla de Temas
+CREATE TABLE Temas (
+    id_tema INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100),
+    caracteristica VARCHAR(50) -- Puedes guardar el color o emoji como texto
+);
+
+-- Tabla de Posts
+CREATE TABLE Posts (
+    id_post INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT,
+    id_tema INT,
+    contenido TEXT,
+    likes INT DEFAULT 0,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
+    FOREIGN KEY (id_tema) REFERENCES Temas(id_tema)
+);
+
+-- Tabla de Respuestas
+CREATE TABLE Respuestas (
+    id_respuesta INT PRIMARY KEY AUTO_INCREMENT,
+    id_post INT,
+    id_usuario INT,
+    contenido TEXT,
+    likes INT DEFAULT 0,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    ruta VARCHAR(255), -- Ruta a fotos o videos
+    FOREIGN KEY (id_post) REFERENCES Posts(id_post),
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+);
+
+-- Tabla de Guardados
+CREATE TABLE Guardado (
+    id_guardado INT PRIMARY KEY AUTO_INCREMENT,
+    id_post INT,
+    id_usuario INT,
+    FOREIGN KEY (id_post) REFERENCES Posts(id_post),
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+);
