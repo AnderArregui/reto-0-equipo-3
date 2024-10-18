@@ -28,22 +28,36 @@
     <div class="general">
         <div class="container">
             <div class="temas">
-                <div class="tema"></div>
-                <div class="tema"></div>
-                <div class="tema"></div>
-                <div class="tema"></div>
+                <h2>Temas</h2>
+                <?php if (!empty($temas)): ?>
+                    <?php foreach ($temas as $tema): ?>
+                        <div class="tema" style="background-color: <?php echo htmlspecialchars($tema['caracteristica']); ?>">
+                            <h3><?php echo htmlspecialchars($tema['nombre']); ?></h3>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No hay temas disponibles.</p>
+                <?php endif; ?>
             </div>
 
             <div class="preguntas">
-                <div class="pregunta"></div>
-                <div class="pregunta"></div>
-                <div class="pregunta"></div>
-                <div class="pregunta"></div>
-                <div class="pregunta"></div>
+                <h2>Preguntas Recientes</h2>
+                <?php if (!empty($preguntas)): ?>
+                    <?php foreach ($preguntas as $pregunta): ?>
+                        <div class="pregunta">
+                            <h3><?php echo htmlspecialchars($pregunta['contenido']); ?></h3>
+                            <p>Por: <?php echo htmlspecialchars($pregunta['nombre_usuario']); ?></p>
+                            <p>Tema: <?php echo htmlspecialchars($pregunta['nombre_tema']); ?></p>
+                            <p>Fecha: <?php echo htmlspecialchars($pregunta['fecha']); ?></p>
+                            <p>Likes: <?php echo htmlspecialchars($pregunta['likes']); ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No hay preguntas disponibles.</p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
     <?php
 session_start(); // Inicia la sesión
@@ -54,10 +68,63 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: ../../../index.php");
     exit();
 }
-
-// Aquí va el resto del código para mostrar la página de inicio
 ?>
 
+
+
+
+
+
+
+
+
+<?php
+session_start();
+
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../../../index.php");
+    exit();
+}
+
+// Carga la configuración de la base de datos
+require_once '../proyecto 1/config/config.php';
+
+function getThemes($conn) {
+    try {
+        $stmt = $conn->query("SELECT * FROM Temas");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+    } catch (PDOException $e) {
+        error_log("Error fetching themes: " . $e->getMessage());
+        return [];
+    }
+}
+
+function getPosts($conn) {
+    try {
+        $stmt = $conn->query("SELECT *
+                              FROM Posts  
+                             ");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Error fetching posts: " . $e->getMessage());
+        return [];
+    }
+}
+
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $temas = getThemes($conn);
+     $preguntas = getPosts($conn);
+} catch (PDOException $e) {
+    error_log("Database connection error: " . $e->getMessage());
+    $temas = [];
+    $preguntas = [];
+}
+?>
 
 </body>
 </html>
