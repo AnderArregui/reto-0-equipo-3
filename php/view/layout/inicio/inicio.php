@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=manage_search,account_circle,search,menu" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <img src="../../../src/logo sin fondo.png" alt="logo">
+        <ul class="nav-links">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Temas</a></li>
+            <li><a href="#">Historial</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text">
+            <span class="material-symbols-outlined">search</span>
+        </div>
+        <div class="burger">
+            <span class="material-symbols-outlined">menu</span>
+        </div>
+    </nav>
+    
+    <div class="general">
+        <div class="container">
+            <div class="temas">
+                <div class="tema"></div>
+                <div class="tema"></div>
+                <div class="tema"></div>
+                <div class="tema"></div>
+            </div>
+
+            <div class="preguntas">
+                <div class="pregunta"></div>
+                <div class="pregunta"></div>
+                <div class="pregunta"></div>
+                <div class="pregunta"></div>
+                <div class="pregunta"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <?php
+session_start(); // Inicia la sesión
+
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION['usuario'])) {
+    // Redirige a la página de inicio de sesión si no está autenticado
+    header("Location: ../../../index.php");
+    exit();
+}
+
+// Aquí va el resto del código para mostrar la página de inicio
+?>
+
+
+</body>
+</html>
