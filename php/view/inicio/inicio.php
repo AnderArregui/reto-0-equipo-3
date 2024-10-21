@@ -3,12 +3,12 @@ session_start();
 
 // Verifica si el usuario está autenticado
 if (!isset($_SESSION['usuario'])) {
-    header("Location: ../../../public/index.php");
+    header("Location: ../../index.php");
     exit();
 }
 
 // Carga la configuración de la base de datos
-require_once '../../../config/config.php';
+require_once '../../config/config.php';
 
 function getThemes($conn) {
     try {
