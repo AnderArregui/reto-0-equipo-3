@@ -1,4 +1,55 @@
+<?php
+session_start();
+
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../../../public/index.php");
+    exit();
+}
+
+// Carga la configuración de la base de datos
+require_once '../../../config/config.php';
+
+function getThemes($conn) {
+    try {
+        $stmt = $conn->query("SELECT * FROM grupo3_2425.Temas");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        
+    } catch (PDOException $e) {
+        error_log("Error fetching themes: " . $e->getMessage());
+        return [];
+    }
+}
+
+function getPosts($conn) {
+    try {
+        $stmt = $conn->query("SELECT *
+                              FROM Posts  
+                             ");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Error fetching posts: " . $e->getMessage());
+        return [];
+    }
+}
+
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $temas = getThemes($conn);
+    
+     $preguntas = getPosts($conn);
+} catch (PDOException $e) {
+    error_log("Database connection error: " . $e->getMessage());
+    $temas = [];
+    $preguntas = [];
+}
+?>
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,8 +97,8 @@
                     <?php foreach ($preguntas as $pregunta): ?>
                         <div class="pregunta">
                             <h3><?php echo htmlspecialchars($pregunta['contenido']); ?></h3>
-                            <p>Por: <?php echo htmlspecialchars($pregunta['nombre_usuario']); ?></p>
-                            <p>Tema: <?php echo htmlspecialchars($pregunta['nombre_tema']); ?></p>
+                            <p>Por: <?php echo htmlspecialchars($pregunta['id_usuario']); ?></p>
+                            <p>Tema: <?php echo htmlspecialchars($pregunta['id_tema']); ?></p>
                             <p>Fecha: <?php echo htmlspecialchars($pregunta['fecha']); ?></p>
                             <p>Likes: <?php echo htmlspecialchars($pregunta['likes']); ?></p>
                         </div>
@@ -65,7 +116,7 @@ session_start(); // Inicia la sesión
 // Verifica si el usuario está autenticado
 if (!isset($_SESSION['usuario'])) {
     // Redirige a la página de inicio de sesión si no está autenticado
-    header("Location: ../../../index.php");
+    header("Location: ../../../public/index.php");
     exit();
 }
 ?>
@@ -78,53 +129,7 @@ if (!isset($_SESSION['usuario'])) {
 
 
 
-<?php
-session_start();
 
-// Verifica si el usuario está autenticado
-if (!isset($_SESSION['usuario'])) {
-    header("Location: ../../../index.php");
-    exit();
-}
-
-// Carga la configuración de la base de datos
-require_once '../proyecto 1/config/config.php';
-
-function getThemes($conn) {
-    try {
-        $stmt = $conn->query("SELECT * FROM Temas");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-    } catch (PDOException $e) {
-        error_log("Error fetching themes: " . $e->getMessage());
-        return [];
-    }
-}
-
-function getPosts($conn) {
-    try {
-        $stmt = $conn->query("SELECT *
-                              FROM Posts  
-                             ");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        error_log("Error fetching posts: " . $e->getMessage());
-        return [];
-    }
-}
-
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $temas = getThemes($conn);
-     $preguntas = getPosts($conn);
-} catch (PDOException $e) {
-    error_log("Database connection error: " . $e->getMessage());
-    $temas = [];
-    $preguntas = [];
-}
-?>
 
 </body>
 </html>
