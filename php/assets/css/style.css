@@ -102,7 +102,7 @@ input:focus {
 
     .logo {
         position: absolute; /* Ajusta la posición del logo */
-        width: 60%; /* Haz el logo más grande en móviles */
+        width: 45%; /* Haz el logo más grande en móviles */
         margin: -30px auto 30px auto; /* Centra el logo horizontalmente y añade espacio inferior */
     }
 
