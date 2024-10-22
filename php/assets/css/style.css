@@ -1,0 +1,295 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica';
+    font-weight: 200;
+}
+
+body {
+    background: url('../images/back.png') no-repeat center center fixed; /* Imagen de fondo */
+    background-size: cover; /* Cubrir todo el fondo */
+    display: flex;
+    justify-content: left; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.logo {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 15%;
+}
+
+.logo img {
+    width: 100%;
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+form {
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:center;
+
+    width: 100%;
+    max-width: 400px; /* Ancho máximo del formulario */
+    backdrop-filter: blur(5px);
+    background-color: rgba(240, 248, 255, 0.171);
+    border-radius: 10px;
+    padding: 3em 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    margin-left:4em;
+}
+.formulario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+}
+#iniSes{
+    font-weight: 100;
+    font-size: 2em;
+}
+
+.apartado{
+    margin-top: 1em;
+    margin-bottom: .4em;
+    font-weight: 200;
+    font-size: 1.3em;
+}
+
+input {
+    font-size: 1em;
+    font-weight: 500;
+    font-style: normal;
+    padding: 10px;
+    border-radius: 7px;
+    border: 0px;
+    background-color: #000000; /* Cambia a un gris más oscuro para mayor contraste */
+    color: white; /* Asegúrate de que el texto sea visible */
+    width: 100%;
+    position: relative; /* Asegúrate de que el elemento tenga un contexto de apilamiento */
+    z-index: 10; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+/* Opcional: Eliminar backdrop-filter si causa problemas */
+input {
+    backdrop-filter: none; /* Elimina el filtro de desenfoque */
+}
+input:focus {
+    outline: none; /* Elimina el contorno de enfoque */
+    box-shadow: none; /* Elimina la sombra si está definida */
+}
+
+
+/* Media queries para pantallas más pequeñas */
+/* Adaptaciones para dispositivos móviles */
+/* Adaptaciones para dispositivos móviles */
+@media (max-width: 600px) {
+    body {
+        background: url('../images/back.png') no-repeat 80%; /* Imagen de fondo */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centra el contenido en la página */
+        align-items: center; /* Centra verticalmente el contenido */
+        padding: 20px; /* Añade algo de padding para espacios en móviles */
+        min-height: 100vh; /* Asegura que cubra toda la pantalla */
+    }
+
+    .logo {
+        position: absolute; /* Ajusta la posición del logo */
+        width: 60%; /* Haz el logo más grande en móviles */
+        margin: -30px auto 30px auto; /* Centra el logo horizontalmente y añade espacio inferior */
+    }
+
+    form {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        max-width: 350px; /* Ajusta el ancho máximo del formulario */
+        margin: 4em auto 0 auto; /* Centra el formulario */
+        padding: 2em 20px; /* Reduce el padding */
+        display: flex; /* Asegura que el formulario siga usando flexbox */
+        flex-direction: column; /* Mantiene la dirección de los elementos en columna */
+        align-items: center; /* Centra los elementos dentro del formulario */
+    }
+
+    #iniSes {
+        font-weight: 300;
+        font-size: 1.5em; /* Reduce ligeramente el tamaño del título */
+    }
+
+    .apartado {
+        font-weight: 300;
+        font-size: 1.2em; /* Reduce el tamaño de las etiquetas */
+    }
+
+    input {
+        font-size: 0.9em; /* Reduce el tamaño de los inputs */
+        padding: 8px; /* Ajusta el padding de los inputs */
+    }
+
+    .botones {
+        flex-direction: column; /* Coloca los botones en columna */
+        gap: 10px; /* Ajusta el espacio entre los botones */
+        margin-top: 1em; /* Reduce el margen superior */
+    }
+
+    .cssbuttons-io span {
+        font-size: 0.9em; /* Reduce el tamaño del texto en los botones */
+    }
+
+    /* Ajustes adicionales */
+    .logo img {
+        width: 100%; /* Asegura que el logo sea completamente visible y ocupe su contenedor */
+        height: auto;
+    }
+}
+
+
+
+.cssbuttons-io {
+    position: relative;
+    
+    border-radius: 7px;
+    cursor: pointer;
+    border: none;
+   background-color: #000;
+    color: ghostwhite;
+    overflow: hidden;
+    transition: 0.75s;
+}
+.cssbuttons-io:hover{
+    background: linear-gradient(to right, #C1ABFF, #9068ff);
+}
+.cssbuttons-io svg {
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.5em;
+}
+
+.cssbuttons-io span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8em 1.2em 0.8em 1.2em;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.1em;
+}
+
+.cssbuttons-io span:hover {
+    color:black;
+}
+
+.cssbuttons-io::before,
+.cssbuttons-io::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.cssbuttons-io::before {
+    content: "";
+    background: #000;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.cssbuttons-io:hover::before {
+    transform: translate3d(100%, 0, 0);
+}
+
+.cssbuttons-io:active {
+    transform: scale(0.95);
+    
+}
+
+.botones {
+    margin-top: 1.5em;
+    display: flex;
+    gap: 20px;
+}
+
+
+/* helvetica */
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueHv.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueIt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueUltraLightv130.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueMedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueThin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueBlack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueHeavy.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueLight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+

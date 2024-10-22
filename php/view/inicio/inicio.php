@@ -1,55 +1,9 @@
+
+
+
 <?php
-session_start();
 
-// Verifica si el usuario está autenticado
-if (!isset($_SESSION['usuario'])) {
-    header("Location: ../../../public/index.php");
-    exit();
-}
-
-// Carga la configuración de la base de datos
-require_once '../../../config/config.php';
-
-function getThemes($conn) {
-    try {
-        $stmt = $conn->query("SELECT * FROM grupo3_2425.Temas");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        
-    } catch (PDOException $e) {
-        error_log("Error fetching themes: " . $e->getMessage());
-        return [];
-    }
-}
-
-function getPosts($conn) {
-    try {
-        $stmt = $conn->query("
-        SELECT p.*, u.nombre AS nombre_usuario, t.nombre AS nombre_tema
-        FROM Posts p
-        JOIN Usuarios u ON p.id_usuario = u.id_usuario
-        JOIN Temas t ON p.id_tema = t.id_tema
-    ");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        error_log("Error fetching posts: " . $e->getMessage());
-        return [];
-    }
-}
-
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $temas = getThemes($conn);
-    
-     $preguntas = getPosts($conn);
-} catch (PDOException $e) {
-    error_log("Database connection error: " . $e->getMessage());
-    $temas = [];
-    $preguntas = [];
-}
-
+require_once '../../controlador/InicioController.php';
 
 ?>
 
@@ -66,7 +20,7 @@ try {
 </head>
 <body>
     <nav>
-        <img src="../../../public/src/logo sin fondo.png" alt="logo">
+        <img src="../../assets/images/logo sin fondo.png" alt="logo">
         <ul class="nav-links">
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Temas</a></li>
@@ -124,6 +78,10 @@ try {
             </div>
         </div>
     </div>
+
+                    <div class="botonMas">
+                        <a href="#">+</a>
+                    </div>
     <script src="./js/menu.js"></script>
     <?php
 session_start(); // Inicia la sesión
@@ -135,15 +93,6 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 ?>
-
-
-
-
-
-
-
-
-
 
 
 </body>
