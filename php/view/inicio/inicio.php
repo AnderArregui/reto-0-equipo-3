@@ -66,7 +66,7 @@ try {
 </head>
 <body>
     <nav>
-        <img src="../../../public/src/logo sin fondo.png" alt="logo">
+        <img src="../../assets/images/logo sin fondo.png" alt="logo">
         <ul class="nav-links">
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Temas</a></li>

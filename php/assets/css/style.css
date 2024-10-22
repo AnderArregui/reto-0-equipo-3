@@ -156,11 +156,14 @@ input:focus {
     border-radius: 7px;
     cursor: pointer;
     border: none;
-    background: linear-gradient(to right, #C1ABFF, #9068ff);
+   background-color: #000;
     color: ghostwhite;
     overflow: hidden;
+    transition: 0.75s;
 }
-
+.cssbuttons-io:hover{
+    background: linear-gradient(to right, #C1ABFF, #9068ff);
+}
 .cssbuttons-io svg {
     width: 1.2em;
     height: 1.2em;
