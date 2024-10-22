@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     color: rgb(255, 255, 255);
+   
 }
 
 body {
@@ -80,7 +81,7 @@ nav img {
     border-radius: 10px;
 }
 .titulo{
-    width: 95vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
