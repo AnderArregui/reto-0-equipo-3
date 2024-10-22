@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: rgb(68, 68, 68);
+    color: rgb(255, 255, 255);
 }
 
 body {
@@ -79,11 +79,24 @@ nav img {
     padding: 20px;
     border-radius: 10px;
 }
+.titulo{
+    width: 95vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .tema {
     aspect-ratio: 1;
     background-color: turquoise;
     border-radius: 10px;
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+
+}
+.tema h3{
+    margin-left: 5px;
 }
 
 .preguntas {
@@ -99,7 +112,9 @@ nav img {
     background-color: lightcoral;
     border-radius: 5px;
     border: 1px solid black;
+    
 }
+
 
 @media screen and (max-width: 768px) {
     nav {
@@ -155,3 +170,4 @@ nav img {
     }
     
 }
+
