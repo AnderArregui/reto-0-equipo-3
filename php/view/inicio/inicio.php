@@ -78,6 +78,10 @@ require_once '../../controlador/InicioController.php';
             </div>
         </div>
     </div>
+
+                    <div class="botonMas">
+                        <a href="#">+</a>
+                    </div>
     <script src="./js/menu.js"></script>
     <?php
 session_start(); // Inicia la sesión
@@ -89,15 +93,6 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 ?>
-
-
-
-
-
-
-
-
-
 
 
 </body>

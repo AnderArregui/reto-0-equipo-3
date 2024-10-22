@@ -35,7 +35,7 @@ function getPosts($conn) {
         error_log("Error fetching posts: " . $e->getMessage());
         return [];
     }
-}
+}   
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
