@@ -3,29 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Login</title>
 </head>
 <body>
     <div class="logo">
-        <img src="./src/logo sin fondo.png" alt="logo">
+        <img src="assets/images/logo sin fondo.png" alt="logo">
     </div>
 
     <!-- Formulario de login -->
     <form id="loginForm" method="post" action="index.php">
-    <h1>Iniciar sesión</h1>
-    <h1>Usuario</h1>
-    <input type="text" name="username" id="username" placeholder="Username" required>
-    <h1>Contraseña</h1>
-    <input type="password" name="password" id="password" placeholder="Password" required>
-    <div class="botones">
-        <button type="submit">Login</button>
-    </div>
+    <h1 id="iniSes">Iniciar sesión</h1>
+    <div class="formulario">
+        <h1 class="apartado">Usuario</h1>
+        <input type="text" name="username" id="username" required autocomplete="off">
+        <h1  class="apartado">Contraseña</h1>
+        <input type="password" name="password" id="password" required autocomplete="off">
+        <div class="botones">
+    <button class="cssbuttons-io" type="submit">
+        <span>Entrar</span>
+    </button>
+</div>
+    
 </form>
 
 <?php
 // Conectar a la base de datos
-require_once '../config/config.php';
+require_once 'config/config.php';
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
@@ -51,7 +55,7 @@ try {
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC); // Obtener datos del usuario
 // Almacena el nombre de usuario en la sesión
 $_SESSION['usuario'] = $usuario['nombre']; // Asegúrate de que 'nombre' es el campo correcto
-    header("Location: ../view/layout/inicio/inicio.php");
+    header("Location: view/inicio/inicio.php");
     exit();
 } else {
     echo "<script>alert('Usuario o contraseña incorrectos');</script>";
@@ -65,7 +69,6 @@ $_SESSION['usuario'] = $usuario['nombre']; // Asegúrate de que 'nombre' es el c
     echo "Error: " . $e->getMessage();
 }
 ?>
-
 
 </body>
 </html>
