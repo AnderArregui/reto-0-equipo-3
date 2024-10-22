@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/style.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/inicio.css">
     <title>Página de Inicio</title>
 </head>
 <body>

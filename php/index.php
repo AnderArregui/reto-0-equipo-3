@@ -4,6 +4,8 @@ session_start();
 // Importar configuraciones y modelos
 require_once "config/config.php";
 require_once "models/Usuario.php";
+require_once "models/Post.php";
+require_once "models/Tema.php";
 
 // Si no se especifica controlador y acción, cargamos los predeterminados
 if (!isset($_GET["controller"])) $_GET["controller"] = "Usuario";
@@ -19,7 +21,7 @@ if (!file_exists($controller_path)) {
 
 require_once $controller_path;
 $controllerName = $_GET["controller"] . "Controller";
-$controller = new $controllerName();
+
 
 // Ejecutar la acción
 $dataToView["data"] = array();

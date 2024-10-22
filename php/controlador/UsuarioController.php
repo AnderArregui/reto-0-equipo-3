@@ -22,7 +22,7 @@ class UsuarioController {
             if ($usuario->validateLogin($username, $password)) {
                 // Iniciar sesión y redirigir
                 $_SESSION['usuario'] = $username;
-                header("Location: index.php?controller=usuario&action=inicio");
+                header("Location: index.php?controller=Inicio&action=inicio");
                 exit();
             } else {
                 echo "<script>alert('Usuario o contraseña incorrectos');</script>";
