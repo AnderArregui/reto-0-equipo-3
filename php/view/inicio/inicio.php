@@ -3,16 +3,16 @@ session_start();
 
 // Verifica si el usuario está autenticado
 if (!isset($_SESSION['usuario'])) {
-    header("Location: ../../../public/index.php");
+    header("Location: ../../index.php");
     exit();
 }
 
 // Carga la configuración de la base de datos
-require_once '../../../config/config.php';
+require_once '../../config/config.php';
 
 function getThemes($conn) {
     try {
-        $stmt = $conn->query("SELECT * FROM grupo3_2425.Temas");
+        $stmt = $conn->query("SELECT * FROM grupo3_2425.temas");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         
@@ -26,9 +26,9 @@ function getPosts($conn) {
     try {
         $stmt = $conn->query("
         SELECT p.*, u.nombre AS nombre_usuario, t.nombre AS nombre_tema
-        FROM Posts p
-        JOIN Usuarios u ON p.id_usuario = u.id_usuario
-        JOIN Temas t ON p.id_tema = t.id_tema
+        FROM posts p
+        JOIN usuarios u ON p.id_usuario = u.id_usuario
+        JOIN temas t ON p.id_tema = t.id_tema
     ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
