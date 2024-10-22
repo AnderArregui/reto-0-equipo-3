@@ -42,7 +42,7 @@ try {
             $password = $_POST['password']; 
 
             // Consultar la base de datos
-            $stmt = $conn->prepare("SELECT * FROM Usuarios WHERE nombre = :username AND contrasena = :password");
+            $stmt = $conn->prepare("SELECT * FROM usuarios WHERE nombre = :username AND contrasena = :password");
             $stmt->bindParam(':username', $username);
             $stmt->bindParam(':password', $password);
             $stmt->execute();
