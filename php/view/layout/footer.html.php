@@ -1,4 +1,3 @@
-</div>
+<script src="./js/menu.js"></script>
 </body>
-<script src="assets/js/bootstrap.min.js" ></script>
 </html>
