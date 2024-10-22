@@ -7,7 +7,7 @@ class Post {
     }
     
     public function crear($id_usuario, $id_tema, $contenido) {
-        $query = "INSERT INTO Posts (id_usuario, id_tema, contenido) VALUES (?, ?, ?)";
+        $query = "INSERT INTO posts (id_usuario, id_tema, contenido) VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($query);
         return $stmt->execute([$id_usuario, $id_tema, $contenido]);
     }
@@ -25,8 +25,8 @@ class Post {
     
     public function obtenerPorTema($id_tema) {
         $query = "SELECT p.*, u.nombre as nombre_usuario 
-                  FROM Posts p 
-                  JOIN Usuarios u ON p.id_usuario = u.id_usuario 
+                  FROM posts p 
+                  JOIN usuarios u ON p.id_usuario = u.id_usuario 
                   WHERE p.id_tema = ? 
                   ORDER BY p.fecha DESC";
         $stmt = $this->db->prepare($query);
