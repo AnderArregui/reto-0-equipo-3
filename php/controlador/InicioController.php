@@ -15,9 +15,9 @@ class InicioController {
             exit();
         }
 
-        // Inicializa los modelos
-        $this->temaModel = new Tema();
-        $this->postModel = new Post();
+        // Inicializa los modelos y pasa la conexión a la base de datos
+        $this->temaModel = new Tema($db);
+        $this->postModel = new Post($db);
     }
 
     // Método para obtener temas
@@ -26,17 +26,20 @@ class InicioController {
     }
 
     // Método para obtener publicaciones
-    public function getPosts() {
-        return $this->postModel->obtenerPorTema($id_tema); // Asegúrate de pasar el ID de tema si es necesario
+    public function getAllPosts() {
+        return $this->postModel->obtenerTodos(); // Asegúrate de tener este método en tu modelo Post
     }
 
-    // Método para inicializar la conexión y obtener datos
-    public function init() {
+    public function init($id_tema) { // Agrega $id_tema como parámetro
         // Obtén los temas y las publicaciones
         $temas = $this->getThemes();
-        $preguntas = $this->postModel->obtenerPorTema($id_tema); // Asume que tienes un ID de tema para obtener las publicaciones
+        $preguntas = $this->getAllPosts(); // Cambia para obtener todas las preguntas
         
-        return [$temas, $preguntas]; // Devuelve temas y preguntas
+        return [
+            'temas' => $temas,   // Asigna los temas a la clave 'temas'
+            'preguntas' => $preguntas // Asigna las preguntas a la clave 'preguntas'
+        ]; // Devuelve temas y preguntas
     }
+    
 }
 ?>

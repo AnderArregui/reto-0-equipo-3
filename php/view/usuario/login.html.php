@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="logo">
-        <img src="assets/images/logo sin fondo.png" alt="logo">
+        <img src="assets/images/logo.png" alt="logo">
     </div>
 
     <!-- Formulario de login -->

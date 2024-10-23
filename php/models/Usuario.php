@@ -2,10 +2,12 @@
 
 class Usuario {
     private $connection;
+    private $db;
 
     public function __construct() {
         // Cargar la conexión
-        $this->connection = new PDO("mysql:host=172.20.227.241;dbname=grupo3_2425", "grupo3_2425", "dqwW2[h1v1x)G)6/");
+        $db = new db();
+        $this->connection = $db->connection;
     }
 
 

@@ -1,36 +1,30 @@
 <div class="general">
     <div class="container">
-        <div class="titulo"><h2>Temas</h2></div>
-        <div class="temas">
-        <table>
-            <?php
-             print_r($dataToView["data"]); 
-            if(count($dataToView["data"])>0){
-                foreach ($dataToView["data"] as $tema){ ?>
-               
-                    <tr class="wine-row">
-                        <td class="wine-cell"><?php echo "vdfvdfv" ?></td>
-                        <td class="wine-cell"><?php echo $tema['caracteristica']; ?></td>
-                    </tr>
-                    <?php
-                }   
-                ?>
-                </table>
-
-                <?php
-            } else {
-                ?>
-                <p>No hay temas disponibles.</p>
-                <?php
-            }
-            
-            ?>
-            <div id="mastemas"><a href="#">Más temas</a></div>
-        </div>
+        <div class="titulo"><h2>Temas</h2> </div> 
+            <div class="temas">
+                <?php 
+                    $contador = 0; // Inicializamos el contador
+                    $temas = $dataToView["data"]['temas'];
+                        if (!empty($temas)): 
+                        while ($contador < 4 && $contador < count($temas)): // Aseguramos que no se pase de 4 iteraciones
+                            $tema = $temas[$contador]; // Accedemos a cada tema por índice
+                            ?>
+                            <div class="tema" style="background-color: <?php echo htmlspecialchars($tema['caracteristica']); ?>">
+                                <h3><?php echo htmlspecialchars($tema['nombre']); ?></h3>
+                            </div>
+                            <?php
+                            $contador++; // Incrementamos el contador
+                        endwhile;
+                        else: ?>
+                    <p>No hay temas disponibles.</p>
+                    <?php endif; ?>
+                    <div id="mastemas"> <a href="#">Más temas</a></div>
+                </div>
 
         <div class="preguntas">
             <h2>Preguntas Recientes</h2>
-            <?php if (!empty($preguntas)): ?>
+            <?php $preguntas = $dataToView["data"]['preguntas']; // Accede a las preguntas
+            if (!empty($preguntas)): ?>
                 <?php foreach ($preguntas as $pregunta): ?>
                     <div class="pregunta">
                         <h3><?php echo htmlspecialchars($pregunta['contenido']); ?></h3>
