@@ -1,53 +1,42 @@
 <?php
-session_start();
+require_once "models/Tema.php";
+require_once "models/Post.php";
 
-// Verifica si el usuario está autenticado
-if (!isset($_SESSION['usuario'])) {
-    header("Location: ../../index.php");
-    exit();
-}
+class InicioController {
+    public $showLayout = true; // Para controlar si se debe mostrar el layout
+    public $view = 'inicio'; // Nombre de la vista a cargar
 
-// Carga la configuración de la base de datos
-require_once '../../config/config.php';
+    private $temaModel;
+    private $postModel;
 
-function getThemes($conn) {
-    try {
-        $stmt = $conn->query("SELECT * FROM grupo3_2425.temas");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public function __construct($db) {
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: ../../index.php");
+            exit();
+        }
+
+        // Inicializa los modelos
+        $this->temaModel = new Tema();
+        $this->postModel = new Post();
+    }
+
+    // Método para obtener temas
+    public function getThemes() {
+        return $this->temaModel->obtenerTodos();
+    }
+
+    // Método para obtener publicaciones
+    public function getPosts() {
+        return $this->postModel->obtenerPorTema($id_tema); // Asegúrate de pasar el ID de tema si es necesario
+    }
+
+    // Método para inicializar la conexión y obtener datos
+    public function init() {
+        // Obtén los temas y las publicaciones
+        $temas = $this->getThemes();
+        $preguntas = $this->postModel->obtenerPorTema($id_tema); // Asume que tienes un ID de tema para obtener las publicaciones
         
-        
-    } catch (PDOException $e) {
-        error_log("Error fetching themes: " . $e->getMessage());
-        return [];
+        return [$temas, $preguntas]; // Devuelve temas y preguntas
     }
 }
-
-function getPosts($conn) {
-    try {
-        $stmt = $conn->query("
-        SELECT p.*, u.nombre AS nombre_usuario, t.nombre AS nombre_tema
-        FROM posts p
-        JOIN usuarios u ON p.id_usuario = u.id_usuario
-        JOIN temas t ON p.id_tema = t.id_tema
-    ");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        error_log("Error fetching posts: " . $e->getMessage());
-        return [];
-    }
-}   
-
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $temas = getThemes($conn);
-    
-     $preguntas = getPosts($conn);
-} catch (PDOException $e) {
-    error_log("Database connection error: " . $e->getMessage());
-    $temas = [];
-    $preguntas = [];
-}
-
 ?>
