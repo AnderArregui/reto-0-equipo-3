@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 // Carga la configuración de la base de datos
-require_once '../../config/config.php';
+    require_once '../../config/config.php';
 
 function getThemes($conn) {
     try {
