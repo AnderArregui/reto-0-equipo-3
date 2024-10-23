@@ -6,21 +6,22 @@ class db {
     private $db;
     private $username;
     private $password;
-    public $conection;
+    public $connection;
 
     public function __construct(){
         $this->host = constant("DB_HOST");
-        $this->db = constant("DB");
+        $this->db = constant("DB_NAME"); // Cambié a 'DB_NAME'
         $this->username = constant("DB_USER");
         $this->password = constant("DB_PASS");
 
         try {
-            $this->conection = new PDO("mysql:host=" .$this->host. 'dbname=' .$this->db, $this->username, $this->password);
-
-        }catch (PDOException $e){
+            $this->connection = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db, $this->username, $this->password);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
             echo $e->getMessage();
             exit;
         }
     }
 }
 ?>
+

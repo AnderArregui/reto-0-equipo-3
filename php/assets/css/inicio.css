@@ -3,17 +3,16 @@
     padding: 0;
     box-sizing: border-box;
     color: rgb(255, 255, 255);
+    font-family: 'Helvetica';
    
 }
 
-body {
-    font-family: Arial, sans-serif;
-}
 
 nav {
+    font-weight: 300;
     width: 100%;
     height: 10vh;
-    background-color: rgb(36, 36, 36);
+    background-color:rgb(23, 23, 23);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,25 +42,51 @@ nav img {
 
 .search-container {
     display: flex;
-    align-items: center;
+    align-items: center; /* Centra el contenido verticalmente */
+    background-color: #f1f1f1;
+    padding: 5px; /* Ajusta el padding para un mejor espaciado */
+    border-radius: 7px;
+    width: 200px; /* Define un ancho fijo para la barra de búsqueda */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .search-container input {
-    margin-right: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: rgb(23, 23, 23);
+    border-radius: 7px;
+    font-size: 1em;
+    width: 100%; 
+    transition: width 0.4s ease;
 }
 
-.material-symbols-outlined {
-    color: white;
+.search-container input:focus {
+    width: 100%; 
 }
+
+.search-icon {
+    margin-left: 8em; 
+    height: 20px;
+}
+
 
 .burger {
     display: none;
     cursor: pointer;
 }
 
+
+
+.profile-icon img {
+    width: 5px; 
+}
+
+
+
 .general {
     width: 100%;
-    min-height: 90vh;
+    min-height: 100vh;
     background-color: rgb(70, 69, 69);
     padding: 20px;
 }
@@ -230,4 +255,75 @@ nav img {
     justify-content: center;
     align-items: center;
     transition: transform 0.5s ease; /* Añadimos la transición para el efecto de rotación */
+}
+
+/* helvetica */
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueHv.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueIt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueUltraLightv130.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueMedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueThin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueBlack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueHeavy.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueLight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
 }
