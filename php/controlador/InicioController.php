@@ -30,6 +30,7 @@ class InicioController {
         return $this->postModel->obtenerTodos(); // Asegúrate de tener este método en tu modelo Post
     }
 
+    // Método para inicializar la conexión y obtener datos
     public function init() {
         // Obtén los temas y las publicaciones
         $temas = $this->getThemes();
@@ -40,6 +41,5 @@ class InicioController {
             'preguntas' => $preguntas // Asigna las preguntas a la clave 'preguntas'
         ]; // Devuelve temas y preguntas
     }
-    
 }
 ?>

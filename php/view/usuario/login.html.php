@@ -11,7 +11,6 @@
         <img src="assets/images/logo.png" alt="logo">
     </div>
 
-    <!-- Formulario de login -->
     <form id="loginForm" method="post" action="index.php">
     <h1 id="iniSes">Iniciar sesión</h1>
     <div class="formulario">

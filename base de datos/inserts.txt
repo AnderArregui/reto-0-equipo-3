@@ -6,11 +6,17 @@ VALUES
 ('admin.png', 'admin_user', 'adminpass', 'Seguridad', 10, 'admin@aergibide.com', 'admin');
 
 INSERT INTO temas (nombre, caracteristica, imagen) 
-VALUES 
-('Propulsión', '#FF3183', 'propulsion.jpg'),
-('Aerodinámica', '#7EC5FF', 'aerodinamica.jpg'),
-('Seguridad', '#FFA3A5', NULL),
-('Materiales', '#00F382', 'materiales.png');
+VALUES ('Propulsión', '#FF3183', '/reto-1-equipo-3/php/assets/images/1.png');
+
+INSERT INTO temas (nombre, caracteristica, imagen) 
+VALUES ('Aerodinámica', '#7EC5FF', '/reto-1-equipo-3/php/assets/images/2.png');
+
+INSERT INTO temas (nombre, caracteristica, imagen) 
+VALUES ('Seguridad', '#FFA3A5', '/reto-1-equipo-3/php/assets/images/3.png');
+
+INSERT INTO temas (nombre, caracteristica, imagen) 
+VALUES ('Materiales', '#00F382', '/reto-1-equipo-3/php/assets/images/4.png');
+
 
 INSERT INTO posts (id_usuario, id_tema, contenido, ruta_media, likes) 
 VALUES
