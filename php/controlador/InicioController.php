@@ -11,7 +11,7 @@ class InicioController {
 
     public function __construct($db) {
         if (!isset($_SESSION['usuario'])) {
-            header("Location: ../../index.php");
+            header("Location: /reto-1-equipo-3/php/index.php");
             exit();
         }
 
