@@ -7,7 +7,7 @@ class TemaController {
     public $view = 'list';
 
     private $temaModel;
-    private $postModel;
+    public $postModel;
 
     public function __construct($db) {
         if (!isset($_SESSION['usuario'])) {
@@ -27,18 +27,43 @@ class TemaController {
 
     // Método para obtener publicaciones
     public function getAllPosts() {
-        return $this->postModel->obtenerTodos(); // Asegúrate de tener este método en tu modelo Post
+        return $this->postModel->obtenerTodos();
     }
 
-    public function init($id_tema) { // Agrega $id_tema como parámetro
-        // Obtén los temas y las publicaciones
+    public function view() {
+        $this->view = "view";
+        $id_tema = $_GET["id_tema"];
+        
+        // Obtén el tema por ID
+        $temaData = $this->temaModel->obtenerPorId($id_tema);
+        
+        // Verifica si se encontró el tema
+        if (!$temaData) {
+            die("Tema no encontrado");
+        }
+
+        // Obtén las publicaciones del tema
+        $preguntas = $this->postModel->obtenerPorTema($id_tema);
+
+        // Prepara los datos para la vista
+        $dataToView = [
+            "tema" => $temaData,
+            "preguntas" => $preguntas
+        ];
+
+        require_once("view/tema/view.html.php");
+    }
+
+
+    public function init($id_tema) {
+        
         $temas = $this->getThemes();
-        $preguntas = $this->getAllPosts(); // Cambia para obtener todas las preguntas
+        $preguntas = $this->getAllPosts();
         
         return [
-            'temas' => $temas,   // Asigna los temas a la clave 'temas'
-            'preguntas' => $preguntas // Asigna las preguntas a la clave 'preguntas'
-        ]; // Devuelve temas y preguntas
+            'temas' => $temas,   
+            'preguntas' => $preguntas
+        ]; 
     }
     
 }
