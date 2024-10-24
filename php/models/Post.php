@@ -32,12 +32,17 @@ class Post {
     }
 
     public function obtenerTodos()
-    {
-        $sql = "SELECT * FROM " . $this->table;
-        $stmt = $this->connection->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+{
+    $sql = "SELECT p.contenido, p.fecha, p.likes, u.nombre AS nombre_usuario, t.nombre AS nombre_tema, t.caracteristica AS color_tema
+            FROM posts p
+            LEFT JOIN usuarios u ON p.id_usuario = u.id_usuario
+            LEFT JOIN temas t ON p.id_tema = t.id_tema";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
     
     
     
