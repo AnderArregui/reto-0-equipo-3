@@ -1,7 +1,7 @@
 .tema-sin-imagen-color {
-    height: 100px; /* Menor altura para los temas sin imagen ni color */
+    height: 100px;
     padding: 10px;
-    background-color: #363636; /* Un color de fondo más claro para diferenciarlos, si quieres */
+    background-color: #363636;
 }
 .tema-sin-imagen-color:hover {
    background-color:white;

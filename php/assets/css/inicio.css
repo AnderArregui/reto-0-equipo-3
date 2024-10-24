@@ -8,16 +8,14 @@
 }
 body{
     background-color: rgb(23, 23, 23);
-    background-image:linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url(../images/background.png);
 }
 
 
-/* Contenedor general */
 .general {
-    
+    background-image:linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.785)), url(../images/background.png);
+
     width: 100%;
     min-height: 100vh;
-    background-color:rgb(23, 23, 23);
     padding: 20px;
 }
 
@@ -32,7 +30,7 @@ body{
     
 }
 
-/* Sección de temas */
+
 .temas {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -43,7 +41,7 @@ body{
     padding: 3em;
 }
 
-/* Títulos */
+
 .titulo {
     font-weight: 200;
     font-size: 2em;
@@ -54,56 +52,7 @@ body{
     align-items: center;
 }
 
-/*Diseño de la pagina de contacto*/
 
-.contacto
-{
-    padding: 20px;
-    width: 400px;
-    margin: 50px auto;
-}
-
-.contacto label
-{
-    display: flex;
-    justify-content: right;
-    font-size: 1.1em;
-    margin-bottom: 5px;
-    color: #bfbfbf;
-}
-
-.contacto input[type="text"],
-.contacto input[type="email"],
-.contacto textarea
-{
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #3b3b3b;
-    border: 1px solid #5f5f5f;
-    border-radius: 5px;
-    color: #f1f1f1;
-    font-size: 1.1em;
-}
-
-.contacto button {
-    background-color: #f1f1f1;
-    color: #2b2b2b;
-    display: flex;
-    justify-content: right;
-    border: none;
-    padding: 10px 15px;
-    font-size: 1em;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.contacto button:hover {
-    background-color: #cccccc;
-}
-
-/* Diseño de cada tema */
 .tema {
     position: relative;
     border-radius: 10px;
@@ -111,7 +60,7 @@ body{
     justify-content: flex-start; 
     align-items: flex-end; 
     overflow: hidden; 
-    background-color: #363636; /* Color de fondo gris completo */
+    background-color: #363636;
     height: 300px; 
     z-index: 3;
     flex-wrap: wrap;
@@ -131,16 +80,15 @@ body{
 
 .tema-img {
     position: absolute;
-    top: -80px; /* Ajusta para que la imagen sobresalga más */
+    top: -80px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%; /* Aumenta el ancho para que sobresalga */
+    width: 100%;
     border-radius: 10px 10px 0 0; 
-    z-index: 5; /* Asegúrate de que la imagen esté detrás del degradado */
+    z-index: 5;
 }
 
-/* Degradado de color */
-/* Degradado por defecto */
+
 .degradado {
     position: absolute;
     top: 0;
@@ -150,14 +98,13 @@ body{
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 96%, var(--color-base, #363636) 100%);
     z-index: 6;
     border-radius: 10px;
-    background-size: 100% 100%; /* Tamaño inicial */
-    background-position: 0 100%; /* Posición inicial */
-    transition: background-position 0.5s ease; /* Transición progresiva */
+    background-size: 100% 100%;
+    background-position: 0 100%;
+    transition: background-position 0.5s ease;
 }
 
-/* Efecto al hacer hover */
 .tema:hover .degradado {
-    background-position: 0 85%; /* Cambia la posición para el degradado */
+    background-position: 0 85%;
 }
 .tema:hover h3{
     color:#363636;
@@ -165,17 +112,17 @@ body{
 .tema:hover #palabraTema{
     color:#363636;
 }
-/* Efecto al hacer hover para que el div crezca un poco */
+
 .tema {
-    transition: 0.5s; /* Transición para el crecimiento */
+    transition: 0.5s;
 }
 
 .tema:hover {
-    transform: scale(1.05); /* Escala el div para que crezca un poco */
+    transform: scale(1.05);
     background-color: var(--color-base);
     cursor: pointer;
 }
-/* Texto dentro del tema */
+
 #palabraTema{
     font-family: 'Helvetica';
     font-weight: 300;
@@ -191,29 +138,29 @@ body{
     font-weight: 600;
     font-size: 1.85em;
     margin-left: .8em;
-    z-index: 3; /* Asegura que el texto esté por encima del degradado */
+    z-index: 3; 
     position: relative; 
     padding-bottom: .8em; 
     color: #ffffff; 
 }
 
-/* Link para más temas */
+
 #mastemas {
     padding: .6em 1.5em;
     text-align: center;
     background-color: #363636;
     border-radius: 10px;
     width: fit-content;
-    text-decoration: none; /* Eliminar subrayado */
+    text-decoration: none; 
     transition: transform 0.5s ease;
 }
 #mastemas a {
     font-family: 'Helvetica';
     font-weight: 600;
-    text-decoration: none; /* Eliminar subrayado del enlace */
+    text-decoration: none; 
 }
 #mastemas:hover {
-    transform: scale(1.05); /* Escala el div para que crezca un poco */
+    transform: scale(1.05); 
     cursor: pointer;
 }
 
@@ -225,10 +172,10 @@ body{
 .preguntas {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espacio entre las preguntas */
+    gap: 10px; 
     width: 100%;
-    max-width: 90%; /* Limitar el ancho */
-    margin: 0 auto; /* Centrar en la página */
+    max-width: 90%; 
+    margin: 0 auto; 
 }
 .preguntas h2{
     margin-left:.5em;
@@ -267,18 +214,18 @@ body{
     margin-bottom: 0;
 }
 
-/* Sin efectos de hover */
+
 .pregunta:hover {
-    background-color: #363636; /* Mantener el mismo color */
-    transform: none; /* Sin zoom */
+    background-color: #363636;
+    transform: none; 
 }
 
 .save-icon {
-    width: 24px; /* Ajusta el tamaño del ícono */
+    width: 24px;
     height: 24px;
-    float: right; /* Para alinearlo a la derecha */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
-    margin-left: 10px; /* Espacio entre el contenido y el ícono */
+    float: right;
+    cursor: pointer;
+    margin-left: 10px;
 }
 
 
@@ -371,8 +318,8 @@ body{
 
 .botonMas:hover {
     background-color: rgb(0, 0, 0);
-    width: 11%; /* Aumentamos el ancho */
-    height: 10%; /* Aumentamos la altura */
+    width: 11%; 
+    height: 10%; 
     border-radius: 20px;
     border-bottom-right-radius: 0;
     justify-content: start;
@@ -394,5 +341,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.5s ease; /* Añadimos la transición para el efecto de rotación */
+    transition: transform 0.5s ease; 
 }
+
+

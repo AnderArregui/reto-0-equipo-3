@@ -2,7 +2,8 @@
 class Post {
     private $db;
     private $table = "posts";
-    
+    private $connection;
+
     public function __construct()
     {
         $this->getConection();
@@ -52,7 +53,7 @@ class Post {
                   JOIN usuarios u ON p.id_usuario = u.id_usuario 
                   WHERE p.id_tema = ? 
                   ORDER BY p.fecha DESC";
-        $stmt = $this->db->prepare($query);
+        $stmt = $this->connection->prepare($query);
         $stmt->execute([$id_tema]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

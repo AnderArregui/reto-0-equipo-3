@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/headerFooter.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/inicio.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/temas.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/contacto.css">
     <title>Página de Inicio</title>
 </head>
 <body>

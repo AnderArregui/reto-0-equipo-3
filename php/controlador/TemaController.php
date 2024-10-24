@@ -9,15 +9,15 @@ class TemaController {
     private $temaModel;
     public $postModel;
 
-    public function __construct($db) {
+    public function __construct() {
         if (!isset($_SESSION['usuario'])) {
             header("Location: ../../index.php");
             exit();
         }
 
         // Inicializa los modelos y pasa la conexión a la base de datos
-        $this->temaModel = new Tema($db);
-        $this->postModel = new Post($db);
+        $this->temaModel = new Tema();
+        $this->postModel = new Post();
     }
 
     // Método para obtener temas
