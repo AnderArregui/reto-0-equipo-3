@@ -55,5 +55,4 @@ require_once "view/" . $_GET["controller"] . "/" . $controller->view . ".html.ph
 if ($controller->showLayout) {
     require_once "view/layout/footer.html.php";
 }
-
 ?>

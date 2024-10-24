@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(70, 69, 69);
+}
+
+nav {
+    width: 100%;
+    height: 10vh;
+    background-color: rgb(36, 36, 36);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+}
+
+nav img {
+    width: 150px;
+    min-width: 100px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    z-index: 2;
+   
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-container input {
+    margin-right: 10px;
+}
+
+.material-symbols-outlined {
+    color: white;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        
+    }
+    .material-symbols-outlined{
+        z-index: 0;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+        background-color: green;
+       
+    }
+
+    .nav-links.active {
+        display: flex;
+        
+    }
+
+    .search-container {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        margin-top: 30px;
+
+    }
+
+    .burger {
+        display: block;
+        top: 0;
+        left: 0;
+        order: 1;
+        visibility: visible;
+
+    }
+    .material-symbols-outlined{
+        display: block;
+    }
+}
+
+
+.general{
+    width: 80%;
+    height: 80vh;
+    background-color: rgb(37, 37, 37);
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row;
+   position: absolute;
+   top: 15%;
+   left: 10%;
+}
+
+
+.informacion {
+    width: 60%;
+    height: 100%;   
+   
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+   
+}
+
+.informacion h1, .informacion h5, .informacion button {
+    margin-left: 50px;
+
+}
+.botones{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+
+}
+
+.informacion button{
+    color: black;
+    padding: 5px 10px 5px 10px;
+}
+.foto{
+    width: 70%;
+    height: 60%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.foto img{
+    width: 50%;
+    height: 100%;
+}

@@ -1,21 +1,46 @@
 <?php
-// Asumiendo que $temas ya está definido y es un array
+
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/CrearPregunta.css">
     <title>Crear Pregunta</title>
+    <script>
+        function toggleTemaCreation() {
+            var checkbox = document.getElementById('crear');
+            var label = document.querySelector('label[for="crear"]');
+            var input = document.getElementById('nuevo_tema');
+            var button = document.getElementById('crear_tema_btn');
+            
+            if (checkbox.checked) {
+                label.style.display = 'none';
+                input.style.display = 'inline-block';
+                button.style.display = 'inline-block';
+            } else {
+                label.style.display = 'inline-block';
+                input.style.display = 'none';
+                button.style.display = 'none';
+            }
+        }
+    </script>
 </head>
 <body>
+    <?php if (isset($_SESSION['mensaje'])): ?>
+        <div class="mensaje"><?php echo $_SESSION['mensaje']; ?></div>
+        <?php unset($_SESSION['mensaje']); ?>
+    <?php endif; ?>
+
     <form action="index.php?controller=Post&action=crearPreguntas" method="POST">
         <div class="generalPregutar">   
             <div class="divDiseno">
                 <div class="CrearPregunta">
                     <h1>Formula la pregunta</h1>
-                    <textarea name="pregunta" id="pregunta" placeholder="Escribe la pregunta aquí" required></textarea> 
+                    <textarea name="pregunta" id="pregunta" placeholder="Escribe la pregunta aquí" ></textarea> 
                 </div>
 
                 <div class="tituloTema">
@@ -25,7 +50,6 @@
                 <div class="temasSelect">
                     <select name="tema" id="tema">
                         <?php
-                        // Verifica si hay temas para mostrar
                         if (!empty($temas)) {
                             foreach ($temas as $tema) {
                                 echo "<option value='" . $tema['id_tema'] . "'>" . htmlspecialchars($tema['nombre']) . "</option>";
@@ -38,14 +62,16 @@
                    
                     <div class="crearTema">
                         <label for="crear">Crear Tema</label>
-                        <input type="checkbox" name="crear_tema" id="crear">
-                        <input type="text" name="nuevo_tema" placeholder="Nombre del nuevo tema">
+                        <input type="checkbox" name="crear_tema" id="crear" onchange="toggleTemaCreation()">
+                        <input type="text" name="nuevo_tema" id="nuevo_tema" placeholder="Nombre del nuevo tema" style="display: none;">
+                        <button type="submit" name="action" value="crearTema" id="crear_tema_btn" style="display: none;">Crear Tema</button>
                     </div>
 
-                    <input type="submit" value="Subir pregunta" class="subir">
+                    <input type="submit" name="action" value="subirPregunta" class="subir">
                 </div>
             </div>
         </div>
     </form>
+    
 </body>
 </html>

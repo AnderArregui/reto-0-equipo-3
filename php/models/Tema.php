@@ -31,10 +31,24 @@ class Tema {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerTemas() {
-        $sql = "SELECT id_tema, nombre FROM " . $this->table;
+   public function obtenerTemas() {
+    try {
+        $sql = "SELECT id_tema, nombre, caracteristica FROM " . $this->table;
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $temas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        if ($temas === false) {
+            // Log the error
+            error_log("Error fetching temas: " . implode(", ", $stmt->errorInfo()));
+            return [];
+        }
+        
+        return $temas;
+    } catch (PDOException $e) {
+        // Log the error
+        error_log("Database error in obtenerTemas: " . $e->getMessage());
+        return [];
     }
+}
 }
