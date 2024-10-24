@@ -3,8 +3,8 @@ require_once "models/Tema.php";
 require_once "models/Post.php";
 
 class InicioController {
-    public $showLayout = true; // Para controlar si se debe mostrar el layout
-    public $view = 'inicio'; // Nombre de la vista a cargar
+    public $showLayout = true;
+    public $view = 'inicio';
 
     private $temaModel;
     private $postModel;
@@ -15,23 +15,21 @@ class InicioController {
             exit();
         }
 
-        // Inicializa los modelos y pasa la conexión a la base de datos
         $this->temaModel = new Tema($db);
         $this->postModel = new Post($db);
     }
 
-    // Método para obtener temas
     public function getThemes() {
+
         return $this->temaModel->obtenerTodos();
     }
 
-    // Método para obtener publicaciones
     public function getAllPosts() {
-        return $this->postModel->obtenerTodos(); // Asegúrate de tener este método en tu modelo Post
+        return $this->postModel->obtenerTodos();
     }
 
-    public function init($id_tema) { // Agrega $id_tema como parámetro
-        // Obtén los temas y las publicaciones
+    public function init($id_tema) {
+       
         $temas = $this->getThemes();
         $preguntas = $this->getAllPosts(); // Cambia para obtener todas las preguntas
         

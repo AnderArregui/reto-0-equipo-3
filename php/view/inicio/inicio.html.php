@@ -28,7 +28,7 @@
         <?php endif; ?>
         </div>
         <script src="/reto-1-equipo-3/php/assets/js/degradado.js"></script>
-        <div id="mastemas"><a href="#">Más temas</a></div>
+        <div id="mastemas"><a href="index.php?controller=Tema&action=list">Más temas</a></div>
     </div>
 </div>
 
