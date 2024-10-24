@@ -8,6 +8,7 @@ class Tema {
     public function __construct($db) {
         $this->connection = $db;
     }
+    
 
     public function crear($nombre, $caracteristica) {
         $query = "INSERT INTO " . $this->table . " (nombre, caracteristica) VALUES (?, ?)";
@@ -33,18 +34,19 @@ class Tema {
 
    public function obtenerTemas() {
     try {
-        $sql = "SELECT id_tema, nombre, caracteristica FROM " . $this->table;
+        $sql = "SELECT  nombre  FROM " . $this->table;
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
-        $temas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //$temas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        if ($temas === false) {
+        if ($stmt === false) {
             // Log the error
             error_log("Error fetching temas: " . implode(", ", $stmt->errorInfo()));
             return [];
         }
         
-        return $temas;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     } catch (PDOException $e) {
         // Log the error
         error_log("Database error in obtenerTemas: " . $e->getMessage());

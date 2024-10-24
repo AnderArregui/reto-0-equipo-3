@@ -14,7 +14,7 @@ body{
 }
 .divDiseno{
     width: 70%;
-    height: 50%;
+    height: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,7 +46,7 @@ body{
 
 .temasSelect{
     width: 80%;
-    height: 50%;
+    height: 80%;
     gap: 20px;
     display: flex;
     justify-content: start;

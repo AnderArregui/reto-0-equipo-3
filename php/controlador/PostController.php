@@ -25,7 +25,7 @@ class PostController {
     }
 
     public function obtenerTemas() {
-        return $this->temaModel->obtenerTodos();
+        return $this->temaModel->obtenerTemas();
     }
 
     public function crearPreguntas() {
@@ -57,4 +57,14 @@ class PostController {
         $this->view = "crearPregunta";
         return $this->obtenerTemas();
     }
+
+    public function init($id_tema) { // Agrega $id_tema como parámetro
+        // Obtén los temas y las publicaciones
+        $temasNombre = $this->obtenerTemas(); // Cambia para obtener todas las preguntas
+        
+        return [
+            'temas' => $temasNombre,
+        ]; // Devuelve temas y preguntas
+    }
+    
 }

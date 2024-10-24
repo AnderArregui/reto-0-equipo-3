@@ -1,11 +1,11 @@
 <?php
+$temas = $dataToView["data"]['temas'];
 
-?>
+?>  
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/CrearPregunta.css">
@@ -38,12 +38,7 @@
     <form action="index.php?controller=Post&action=crearPreguntas" method="POST">
         <div class="generalPregutar">   
             <div class="divDiseno">
-                <div class="CrearPregunta">
-                    <h1>Formula la pregunta</h1>
-                    <textarea name="pregunta" id="pregunta" placeholder="Escribe la pregunta aquí" ></textarea> 
-                </div>
-
-                <div class="tituloTema">
+            <div class="tituloTema">
                     <h1>Elige el tema al que pertenece</h1>
                 </div>
 
@@ -67,6 +62,12 @@
                         <button type="submit" name="action" value="crearTema" id="crear_tema_btn" style="display: none;">Crear Tema</button>
                     </div>
 
+                <div class="CrearPregunta">
+                    <h1>Formula la pregunta</h1>
+                    <textarea name="pregunta" id="pregunta" placeholder="Escribe la pregunta aquí" ></textarea> 
+                </div>
+                        
+               
                     <input type="submit" name="action" value="subirPregunta" class="subir">
                 </div>
             </div>
