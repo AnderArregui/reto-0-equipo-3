@@ -1,4 +1,7 @@
-<script src="./js/menu.js"></script>
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 style="color:black;">esto es el footer</h1>
+    
+    <h1>HOAL</h1>
 </body>
 </html>

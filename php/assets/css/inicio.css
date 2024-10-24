@@ -227,6 +227,7 @@ nav img {
     transition: visibility 0s, opacity 0.45s linear;
     color: aliceblue;
     font-size: 1em;
+    pointer-events: none;
 }
 
 .botonMas:hover {
@@ -243,13 +244,15 @@ nav img {
     visibility: visible;
     opacity: 1;
     right: 15px;
+    pointer-events: auto;
 }
 .botonMas:hover > a{
     transform: rotate(-180deg);
 }
 .botonMas a {
+    background-color: yellowgreen;
     text-decoration: none;
-    font-size: 4em;
+    font-size: 2em;
     color: aliceblue;
     display: flex;
     justify-content: center;

@@ -22,5 +22,12 @@ class Usuario {
         // Retorna true si hay coincidencias
         return $stmt->rowCount() > 0;
     }
+
+    function obtenerPorNombre($nombre) {
+        $query = "SELECT * FROM usuarios WHERE nombre = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$nombre]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>

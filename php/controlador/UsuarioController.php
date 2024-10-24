@@ -42,11 +42,7 @@ class UsuarioController {
         $this->view = "inicio"; // Vista de bienvenida
     }
 
-    public function logout() {
-        // Cierra la sesión
-        session_destroy();
-        header("Location: index.php?controller=usuario&action=login");
-        exit();
-    }
+   
+
 }
-?>
+
