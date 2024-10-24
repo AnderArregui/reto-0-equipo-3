@@ -30,11 +30,17 @@ class InicioController {
         return $this->postModel->obtenerTodos(); // Asegúrate de tener este método en tu modelo Post
     }
 
+    public function contacto()
+    {
+        $this->view = "contacto";
+    }
+
     // Método para inicializar la conexión y obtener datos
     public function init() {
         // Obtén los temas y las publicaciones
         $temas = $this->getThemes();
         $preguntas = $this->getAllPosts(); // Cambia para obtener todas las preguntas
+        $this->view = "inicio"; // Ponemos el inicio por si acaso queremos volver del contacto a la pagina principal
         
         return [
             'temas' => $temas,   // Asigna los temas a la clave 'temas'

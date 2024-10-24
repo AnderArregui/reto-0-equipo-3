@@ -10,11 +10,11 @@
 </head>
 <body>
     <nav>
-        <img src="../../assets/images/logo sin fondo.png" alt="logo">
+        <a href="index.php?controller=Inicio&action=inicio"><img src="/reto-1-equipo-3/php/assets/images/logo.png" alt="logo"></a>
         <ul class="nav-links">
             <li><a href="index.php?controller=Tema&action=list">Temas</a></li>
             <li><a href="#">Historial</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="index.php?controller=Inicio&action=contacto">Contacto</a></li>
         </ul>
         <div class="search-container">
             <input type="text">
