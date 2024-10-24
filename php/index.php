@@ -23,7 +23,7 @@ require_once $controller_path;
 $controllerName = $_GET["controller"] . "Controller";
 
 // Crear una instancia del controlador
-$controller = new $controllerName($db);
+$controller = new $controllerName();
 
 // Verificar si el usuario ha iniciado sesión antes de intentar llamar a init
 if (isset($_SESSION['usuario'])) {

@@ -9,15 +9,15 @@ class InicioController {
     private $temaModel;
     private $postModel;
 
-    public function __construct($db) {
+    public function __construct() {
         if (!isset($_SESSION['usuario'])) {
             header("Location: /reto-1-equipo-3/php/index.php");
             exit();
         }
 
         // Inicializa los modelos y pasa la conexión a la base de datos
-        $this->temaModel = new Tema($db);
-        $this->postModel = new Post($db);
+        $this->temaModel = new Tema();
+        $this->postModel = new Post();
     }
 
     // Método para obtener temas
@@ -30,7 +30,7 @@ class InicioController {
         return $this->postModel->obtenerTodos(); // Asegúrate de tener este método en tu modelo Post
     }
 
-    public function init($id_tema) { // Agrega $id_tema como parámetro
+    public function init() {
         // Obtén los temas y las publicaciones
         $temas = $this->getThemes();
         $preguntas = $this->getAllPosts(); // Cambia para obtener todas las preguntas
