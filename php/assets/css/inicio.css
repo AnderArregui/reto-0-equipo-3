@@ -6,143 +6,275 @@
     font-family: 'Helvetica';
    
 }
-
-
-nav {
-    font-weight: 300;
-    width: 100%;
-    height: 10vh;
-    background-color:rgb(23, 23, 23);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5%;
-}
-
-nav img {
-    width: 150px;
-    min-width: 100px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-    z-index: 2;
-   
-}
-
-.nav-links li {
-    list-style: none;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: white;
-}
-
-.search-container {
-    display: flex;
-    align-items: center; /* Centra el contenido verticalmente */
-    background-color: #f1f1f1;
-    padding: 5px; /* Ajusta el padding para un mejor espaciado */
-    border-radius: 7px;
-    width: 200px; /* Define un ancho fijo para la barra de búsqueda */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.search-container input {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: rgb(23, 23, 23);
-    border-radius: 7px;
-    font-size: 1em;
-    width: 100%; 
-    transition: width 0.4s ease;
-}
-
-.search-container input:focus {
-    width: 100%; 
-}
-
-.search-icon {
-    margin-left: 8em; 
-    height: 20px;
+body{
+    background-color: rgb(23, 23, 23);
+    background-image:linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url(../images/background.png);
 }
 
 
-.burger {
-    display: none;
-    cursor: pointer;
-}
-
-
-
-.profile-icon img {
-    width: 5px; 
-}
-
-
-
+/* Contenedor general */
 .general {
+    
     width: 100%;
     min-height: 100vh;
-    background-color: rgb(70, 69, 69);
     padding: 20px;
 }
 
 .container {
+    padding-top: 7em;
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
 }
 
+/* Sección de temas */
 .temas {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    margin-bottom: 40px;
-    background-color: rgb(49, 49, 49);
-    padding: 20px;
+    margin-bottom: 30px;
     border-radius: 10px;
+    
+    padding: 3em;
 }
-.titulo{
+
+/* Títulos */
+.titulo {
+    font-weight: 200;
+    font-size: 2em;
+    margin-bottom: 40px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/*Diseño de la pagina de contacto*/
+
+.contacto
+{
+    padding: 20px;
+    width: 400px;
+    margin: 50px auto;
+}
+
+.contacto label
+{
+    display: flex;
+    justify-content: right;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #bfbfbf;
+}
+
+.contacto input[type="text"],
+.contacto input[type="email"],
+.contacto textarea
+{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #3b3b3b;
+    border: 1px solid #5f5f5f;
+    border-radius: 5px;
+    color: #f1f1f1;
+    font-size: 1.1em;
+}
+
+.contacto button {
+    background-color: #f1f1f1;
+    color: #2b2b2b;
+    display: flex;
+    justify-content: right;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contacto button:hover {
+    background-color: #cccccc;
+}
+
+/* Diseño de cada tema */
 .tema {
-    aspect-ratio: 1;
-    background-color: turquoise;
+    position: relative;
     border-radius: 10px;
     display: flex;
-    justify-content: start;
-    align-items: flex-end;
+    justify-content: flex-start; 
+    align-items: flex-end; 
+    overflow: hidden; 
+    background-color: #363636; /* Color de fondo gris completo */
+    height: 300px; 
+    z-index: 3;
+    flex-wrap: wrap;
+    
+    overflow: visible;
+}
 
+.tema-img {
+    position: absolute;
+    top: -80px; /* Ajusta para que la imagen sobresalga más */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; /* Aumenta el ancho para que sobresalga */
+    border-radius: 10px 10px 0 0; 
+    z-index: 5; /* Asegúrate de que la imagen esté detrás del degradado */
 }
-.tema h3{
-    margin-left: 5px;
+
+/* Degradado de color */
+/* Degradado por defecto */
+.degradado {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 96%, var(--color-base, #FF3183) 100%);
+    z-index: 6;
+    border-radius: 10px;
+    background-size: 100% 100%; /* Tamaño inicial */
+    background-position: 0 100%; /* Posición inicial */
+    transition: background-position 0.5s ease; /* Transición progresiva */
 }
+
+/* Efecto al hacer hover */
+.tema:hover .degradado {
+    background-position: 0 85%; /* Cambia la posición para el degradado */
+}
+.tema:hover h3{
+    color:#363636;
+}
+.tema:hover #palabraTema{
+    color:#363636;
+}
+/* Efecto al hacer hover para que el div crezca un poco */
+.tema {
+    transition: transform 0.5s ease; /* Transición para el crecimiento */
+}
+
+.tema:hover {
+    transform: scale(1.05); /* Escala el div para que crezca un poco */
+    background-color: var(--color-base);
+    cursor: pointer;
+}
+/* Texto dentro del tema */
+#palabraTema{
+    font-family: 'Helvetica';
+    font-weight: 300;
+    font-size: 1em;
+    margin-left: 1.6em;
+    z-index: 3; 
+    width: 100%;
+    color: #ffffff;
+    margin-bottom: -8.4em; 
+}
+.tema h3 {
+    font-family: 'Helvetica';
+    font-weight: 600;
+    font-size: 1.85em;
+    margin-left: .8em;
+    z-index: 3; /* Asegura que el texto esté por encima del degradado */
+    position: relative; 
+    padding-bottom: .8em; 
+    color: #ffffff; 
+}
+
+/* Link para más temas */
+#mastemas {
+    padding: .6em 1.5em;
+    text-align: center;
+    background-color: #363636;
+    border-radius: 10px;
+    width: fit-content;
+    text-decoration: none; /* Eliminar subrayado */
+    transition: transform 0.5s ease;
+}
+#mastemas a {
+    font-family: 'Helvetica';
+    font-weight: 600;
+    text-decoration: none; /* Eliminar subrayado del enlace */
+}
+#mastemas:hover {
+    transform: scale(1.05); /* Escala el div para que crezca un poco */
+    cursor: pointer;
+}
+
+
+
+
+
 
 .preguntas {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-
+    gap: 10px; /* Espacio entre las preguntas */
+    width: 100%;
+    max-width: 90%; /* Limitar el ancho */
+    margin: 0 auto; /* Centrar en la página */
+}
+.preguntas h2{
+    margin-left:.5em;
+    font-weight: 300;
 }
 
 .pregunta {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #363636;
+    border-radius: 10px;
     width: 100%;
-    height: 100px;
-    background-color: lightcoral;
-    border-radius: 5px;
-    border: 1px solid black;
-    
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pregunta h3 {
+    font-size: 1em;
+    font-weight: 500;
+    width: 35%;
+    color: #ffffff;
+}
+
+.pregunta p {
+    font-weight: 300;
+    font-size: 0.9em;
+    color: #ccc;
+    margin-left: 20px;
+    line-height: 1.5;
+}
+
+.pregunta:last-child {
+    margin-bottom: 0;
+}
+
+/* Sin efectos de hover */
+.pregunta:hover {
+    background-color: #363636; /* Mantener el mismo color */
+    transform: none; /* Sin zoom */
+}
+
+.save-icon {
+    width: 24px; /* Ajusta el tamaño del ícono */
+    height: 24px;
+    float: right; /* Para alinearlo a la derecha */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
+    margin-left: 10px; /* Espacio entre el contenido y el ícono */
 }
 
 
-@media screen and (max-width: 768px) {
+
+
+
+@media screen and (max-width: 1000px) {
     nav {
         flex-wrap: wrap;
         
@@ -163,7 +295,6 @@ nav img {
 
     .nav-links.active {
         display: flex;
-        
     }
 
     .search-container {
@@ -171,7 +302,6 @@ nav img {
         width: 100%;
         justify-content: center;
         margin-top: 30px;
-
     }
 
     .burger {
@@ -180,7 +310,6 @@ nav img {
         left: 0;
         order: 1;
         visibility: visible;
-
     }
     .material-symbols-outlined{
         display: block;
@@ -255,75 +384,4 @@ nav img {
     justify-content: center;
     align-items: center;
     transition: transform 0.5s ease; /* Añadimos la transición para el efecto de rotación */
-}
-
-/* helvetica */
-@font-face {
-    font-family: 'Helvetica';
-    src: url('../fuentes/HelveticaNeueHv.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('../fuentes/HelveticaNeueIt.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('../fuentes/HelveticaNeueUltraLightv130.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('../fuentes/Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('../fuentes/HelveticaNeueMedium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('../fuentes/HelveticaNeueThin.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('../fuentes/HelveticaNeueBlack.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('../fuentes/HelveticaNeueBold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('../fuentes/HelveticaNeueHeavy.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Helvetica';
-    src: url('../fuentes/HelveticaNeueLight.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
 }

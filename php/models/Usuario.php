@@ -2,7 +2,6 @@
 
 class Usuario {
     private $connection;
-    private $db;
 
     public function __construct() {
         // Cargar la conexión
@@ -21,6 +20,13 @@ class Usuario {
 
         // Retorna true si hay coincidencias
         return $stmt->rowCount() > 0;
+    }
+
+    public function obtenerPorNombre($nombre) {
+        $query = "SELECT * FROM usuarios WHERE nombre = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$nombre]);
+        return $stmt->fetch(); // Retorna todos los datos del usuario
     }
 }
 ?>
