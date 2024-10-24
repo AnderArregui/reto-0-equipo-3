@@ -1,6 +1,7 @@
 <?php
 class Post {
     private $db;
+    private $connection;
     
     public function __construct()
     {
