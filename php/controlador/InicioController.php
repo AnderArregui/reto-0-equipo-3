@@ -2,9 +2,9 @@
 require_once "models/Tema.php";
 require_once "models/Post.php";
 
-class TemaController {
-    public $showLayout = true;
-    public $view = 'list';
+class InicioController {
+    public $showLayout = true; // Para controlar si se debe mostrar el layout
+    public $view = 'inicio'; // Nombre de la vista a cargar
 
     private $temaModel;
     private $postModel;
