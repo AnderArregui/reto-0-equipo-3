@@ -25,6 +25,6 @@
         </div>
 
         <div class="profile-icon">
-            <a href=""><img src="/reto-1-equipo-3/php/assets/images/admin_blanco-05.png" alt="Perfil"></a>
+            <a href="index.php?controller=Usuario&action=perfil"><img src="/reto-1-equipo-3/php/assets/images/admin_blanco-05.png" alt="Perfil"></a>
         </div>
     </nav>
