@@ -12,7 +12,6 @@ class UsuarioController {
 
     public function __construct() {
         $this->view = "login";
-        $this->usuario = new Usuario(); // Initialize the Usuario model in the constructor
     }
 
     public function login() {

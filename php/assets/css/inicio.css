@@ -117,6 +117,16 @@ body{
     
     overflow: visible;
 }
+.tema-link {
+    text-decoration: none; 
+    color: inherit; 
+    display: block; 
+}
+
+.tema-link:hover .tema {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
 
 .tema-img {
     position: absolute;
@@ -136,7 +146,7 @@ body{
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 96%, var(--color-base, #FF3183) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 96%, var(--color-base, #363636) 100%);
     z-index: 6;
     border-radius: 10px;
     background-size: 100% 100%; /* Tamaño inicial */
@@ -156,7 +166,7 @@ body{
 }
 /* Efecto al hacer hover para que el div crezca un poco */
 .tema {
-    transition: transform 0.5s ease; /* Transición para el crecimiento */
+    transition: 0.5s; /* Transición para el crecimiento */
 }
 
 .tema:hover {

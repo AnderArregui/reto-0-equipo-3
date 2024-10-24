@@ -6,3 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
         tema.style.setProperty('--color-base', colorBase);
     });
 });
+
+
+

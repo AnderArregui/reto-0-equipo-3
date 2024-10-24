@@ -1,6 +1,7 @@
 <?php
 class Post {
     private $db;
+    private $table = "posts";
     
     public function __construct()
     {
@@ -42,9 +43,9 @@ class Post {
 }
 
 
-
-
-
+    
+    
+    
     public function obtenerPorTema($id_tema) {
         $query = "SELECT p.*, u.nombre as nombre_usuario 
                   FROM posts p 
@@ -62,3 +63,4 @@ class Post {
         return $stmt->execute([$id_post]);
     }
 }
+?>
