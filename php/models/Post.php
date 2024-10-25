@@ -1,6 +1,6 @@
 <?php
 class Post {
-    private $connection;
+   private $connection;
     private $table = "posts";
     
     
@@ -19,6 +19,9 @@ class Post {
         $stmt = $this->connection->prepare($query);
         return $stmt->execute([$id_usuario, $id_tema, $contenido]);
     }
+    
+    
+    
     
     public function obtenerPorId($id) {
         $query = "SELECT p.*, u.nombre as nombre_usuario, t.nombre as nombre_tema 

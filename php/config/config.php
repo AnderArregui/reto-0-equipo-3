@@ -12,6 +12,10 @@ try {
 }
 
 /*
+define('DB_HOST', '172.20.227.241');
+
+define('DB_HOST', '150.241.37.58');
+
 
 define('DB_HOST', '127.0.0.1');
 define('DB_USER', 'root');

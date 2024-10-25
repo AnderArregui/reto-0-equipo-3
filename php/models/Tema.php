@@ -34,7 +34,7 @@ class Tema {
 
    public function obtenerTemas() {
     try {
-        $sql = "SELECT  nombre  FROM " . $this->table;
+        $sql = "SELECT  id_tema, nombre  FROM " . $this->table;
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         //$temas = $stmt->fetchAll(PDO::FETCH_ASSOC);

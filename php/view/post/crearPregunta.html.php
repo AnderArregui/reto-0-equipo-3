@@ -1,6 +1,5 @@
 <?php
 $temas = $dataToView["data"]['temas'];
-
 ?>  
 
 <!DOCTYPE html>
@@ -38,12 +37,13 @@ $temas = $dataToView["data"]['temas'];
     <form action="index.php?controller=Post&action=crearPreguntas" method="POST">
         <div class="generalPregutar">   
             <div class="divDiseno">
-            <div class="tituloTema">
+                <div class="tituloTema">
                     <h1>Elige el tema al que pertenece</h1>
                 </div>
 
                 <div class="temasSelect">
                     <select name="tema" id="tema">
+                        <option value="">-- Selecciona un tema --</option> <!-- Opción predeterminada -->
                         <?php
                         if (!empty($temas)) {
                             foreach ($temas as $tema) {
@@ -54,25 +54,23 @@ $temas = $dataToView["data"]['temas'];
                         }
                         ?>
                     </select>
-                   
-                    <div class="crearTema">
-                        <label for="crear">Crear Tema</label>
-                        <input type="checkbox" name="crear_tema" id="crear" onchange="toggleTemaCreation()">
-                        <input type="text" name="nuevo_tema" id="nuevo_tema" placeholder="Nombre del nuevo tema" style="display: none;">
-                        <button type="submit" name="action" value="crearTema" id="crear_tema_btn" style="display: none;">Crear Tema</button>
-                    </div>
+                </div>
+               
+                <div class="crearTema">
+                    <label for="crear">Crear Tema</label>
+                    <input type="checkbox" name="crear_tema" id="crear" onchange="toggleTemaCreation()">
+                    <input type="text" name="nuevo_tema" id="nuevo_tema" placeholder="Nombre del nuevo tema" style="display: none;">
+                    <button type="submit" name="action" value="crearTema" id="crear_tema_btn" style="display: none;">Crear Tema</button>
+                </div>
 
                 <div class="CrearPregunta">
                     <h1>Formula la pregunta</h1>
-                    <textarea name="pregunta" id="pregunta" placeholder="Escribe la pregunta aquí" ></textarea> 
+                    <textarea name="pregunta" id="pregunta" placeholder="Escribe la pregunta aquí" required></textarea> 
                 </div>
                         
-               
-                    <input type="submit" name="action" value="subirPregunta" class="subir">
-                </div>
+                <input type="submit" name="action" value="subirPregunta" class="subir">
             </div>
         </div>
     </form>
-    
 </body>
 </html>
