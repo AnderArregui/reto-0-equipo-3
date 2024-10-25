@@ -5,14 +5,22 @@ class Tema {
     private $connection;
     private $table = "temas";
 
-    public function __construct($db) {
-        $this->connection = $db;
+    public function __construct()
+    {
+        $this->getConection();
     }
-    
+
+    public function getConection()
+    {
+        $db = new db();
+        $this->connection = $db->connection; // Accede a la conexión
+    }
+
 
     public function crear($nombre, $caracteristica) {
         $query = "INSERT INTO " . $this->table . " (nombre, caracteristica) VALUES (?, ?)";
         $stmt = $this->connection->prepare($query);
+
         if ($stmt->execute([$nombre, $caracteristica])) {
             return $this->connection->lastInsertId();
         }
@@ -20,6 +28,13 @@ class Tema {
     }
 
     public function obtenerTodos() {
+
+        return $stmt->execute([$nombre, $caracteristica]);
+    }
+
+    public function obtenerTodos()
+    {
+
         $sql = "SELECT * FROM " . $this->table;
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
@@ -31,6 +46,7 @@ class Tema {
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
 
    public function obtenerTemas() {
     try {
@@ -54,3 +70,6 @@ class Tema {
     }
 }
 }
+
+}
+

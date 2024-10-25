@@ -1,11 +1,13 @@
 <?php
 class Post {
-   private $connection;
+
+    private $db;
     private $table = "posts";
     
-    
-    public function __construct($db) {
-        $this->connection = $db;
+    public function __construct()
+    {
+        $this->getConection();
+
     }
 
     public function getConection()
@@ -15,8 +17,10 @@ class Post {
     }
     
     public function crear($id_usuario, $id_tema, $contenido) {
+
         $query = "INSERT INTO " . $this->table . " (id_usuario, id_tema, contenido) VALUES (?, ?, ?)";
         $stmt = $this->connection->prepare($query);
+
         return $stmt->execute([$id_usuario, $id_tema, $contenido]);
     }
     

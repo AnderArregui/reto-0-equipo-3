@@ -1,12 +1,52 @@
-
-
-
 <?php
+session_start();
 
-require_once '../../controlador/InicioController.php';
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../../index.php");
+    exit();
+}
 
+// Carga la configuración de la base de datos
+require_once '../../config/config.php';
+
+function getThemes($conn) {
+    try {
+        $stmt = $conn->query("SELECT * FROM grupo3_2425.Temas");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        
+    } catch (PDOException $e) {
+        error_log("Error fetching themes: " . $e->getMessage());
+        return [];
+    }
+}
+
+function getPosts($conn) {
+    try {
+        $stmt = $conn->query("SELECT *
+                              FROM Posts  
+                             ");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Error fetching posts: " . $e->getMessage());
+        return [];
+    }
+}
+
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $temas = getThemes($conn);
+    
+     $preguntas = getPosts($conn);
+} catch (PDOException $e) {
+    error_log("Database connection error: " . $e->getMessage());
+    $temas = [];
+    $preguntas = [];
+}
 ?>
-
 
 <!DOCTYPE html>
 
@@ -20,7 +60,7 @@ require_once '../../controlador/InicioController.php';
 </head>
 <body>
     <nav>
-        <img src="../../assets/images/logo sin fondo.png" alt="logo">
+        <img src="../../../src/logo sin fondo.png" alt="logo">
         <ul class="nav-links">
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Temas</a></li>
@@ -38,36 +78,27 @@ require_once '../../controlador/InicioController.php';
     
     <div class="general">
         <div class="container">
-            <div class="titulo"><h2>Temas</h2> </div> 
-                <div class="temas">
-                
-                    <?php 
-                    $contador = 0; // Inicializamos el contador
-
-                        if (!empty($temas)): 
-                        while ($contador < 4 && $contador < count($temas)): // Aseguramos que no se pase de 4 iteraciones
-                            $tema = $temas[$contador]; // Accedemos a cada tema por índice
-                            ?>
-                            <div class="tema" style="background-color: <?php echo htmlspecialchars($tema['caracteristica']); ?>">
-                                <h3><?php echo htmlspecialchars($tema['nombre']); ?></h3>
-                            </div>
-                            <?php
-                            $contador++; // Incrementamos el contador
-                        endwhile;
-                        else: ?>
+            <div class="temas">
+                <h2>Temas</h2>
+                <?php if (!empty($temas)): ?>
+                    <?php foreach ($temas as $tema): ?>
+                        <div class="tema" style="background-color: <?php echo htmlspecialchars($tema['caracteristica']); ?>">
+                            <h3><?php echo htmlspecialchars($tema['nombre']); ?></h3>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <p>No hay temas disponibles.</p>
-                    <?php endif; ?>
-                    <div id="mastemas"> <a href="#">Más temas</a></div>
-                </div>
+                <?php endif; ?>
+            </div>
 
-        <div class="preguntas">
+            <div class="preguntas">
                 <h2>Preguntas Recientes</h2>
                 <?php if (!empty($preguntas)): ?>
                     <?php foreach ($preguntas as $pregunta): ?>
                         <div class="pregunta">
                             <h3><?php echo htmlspecialchars($pregunta['contenido']); ?></h3>
-                            <p>Por: <?php echo htmlspecialchars($pregunta['nombre_usuario']); ?></p> <!-- Nombre del usuario -->
-                            <p>Tema: <?php echo htmlspecialchars($pregunta['nombre_tema']); ?></p> 
+                            <p>Por: <?php echo htmlspecialchars($pregunta['id_usuario']); ?></p>
+                            <p>Tema: <?php echo htmlspecialchars($pregunta['id_tema']); ?></p>
                             <p>Fecha: <?php echo htmlspecialchars($pregunta['fecha']); ?></p>
                             <p>Likes: <?php echo htmlspecialchars($pregunta['likes']); ?></p>
                         </div>
@@ -78,11 +109,7 @@ require_once '../../controlador/InicioController.php';
             </div>
         </div>
     </div>
-
-                    <div class="botonMas">
-                        <a href="#">+</a>
-                    </div>
-    <script src="./js/menu.js"></script>
+    <script src="script.js"></script>
     <?php
 session_start(); // Inicia la sesión
 
@@ -93,6 +120,15 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 ?>
+
+
+
+
+
+
+
+
+
 
 
 </body>

@@ -1,4 +1,5 @@
 <script src="./js/menu.js"></script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,5 +9,6 @@
 </head>
 <body>
     <h1 style="color:black;">esto es el footer</h1>
+
 </body>
 </html>

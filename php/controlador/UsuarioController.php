@@ -10,6 +10,7 @@ class UsuarioController {
         $this->view = "login"; // Vista por defecto
     }
 
+
     public function login() {
         $this->showLayout = false; // No mostrar el header/footer en la página de login
 
@@ -29,6 +30,7 @@ class UsuarioController {
             }
         }
 
+
         $this->view = "login"; // Mantiene la vista de login
     }
 
@@ -42,7 +44,11 @@ class UsuarioController {
         $this->view = "inicio"; // Vista de bienvenida
     }
 
-   
-
+    public function logout() {
+        // Cierra la sesión
+        session_destroy();
+        header("Location: index.php?controller=usuario&action=login");
+        exit();
+    }
 }
-
+?>
