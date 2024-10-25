@@ -1,11 +1,13 @@
 <?php
 class Post {
+
     private $db;
     private $table = "posts";
     
     public function __construct()
     {
         $this->getConection();
+
     }
 
     public function getConection()
@@ -15,10 +17,15 @@ class Post {
     }
     
     public function crear($id_usuario, $id_tema, $contenido) {
-        $query = "INSERT INTO posts (id_usuario, id_tema, contenido) VALUES (?, ?, ?)";
-        $stmt = $this->db->prepare($query);
+
+        $query = "INSERT INTO " . $this->table . " (id_usuario, id_tema, contenido) VALUES (?, ?, ?)";
+        $stmt = $this->connection->prepare($query);
+
         return $stmt->execute([$id_usuario, $id_tema, $contenido]);
     }
+    
+    
+    
     
     public function obtenerPorId($id) {
         $query = "SELECT p.*, u.nombre as nombre_usuario, t.nombre as nombre_tema 

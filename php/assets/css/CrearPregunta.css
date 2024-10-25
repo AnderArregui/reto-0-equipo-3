@@ -1,0 +1,121 @@
+body{
+    background-color: rgb(70, 69, 69);
+    
+}
+
+.generalPregutar{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.divDiseno{
+    width: 70%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(53, 53, 53);
+    gap: 30px;
+}
+
+
+.CrearPregunta{
+    width: 70%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+.CrearPregunta textarea{
+    width: 80%;
+    height: 100%;
+    font-size: 20px;
+    color: black;
+    padding: 12px;
+    border-radius: 5px;
+    border: 0;
+    resize: none;
+}
+
+.temasSelect{
+    width: 80%;
+    height: 80%;
+    gap: 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.temasSelect input, select,option{
+    color: black;
+}
+
+.temasSelect select{
+    width: 30%;
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+}
+
+.crearTema{
+    width: 70%;
+    height: 70%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.crearTema label{
+    font-size: 25px;
+    border: 4px solid black;
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px;
+}
+.crearTema input[type="checkbox"]{
+    display: none;
+    visibility: hidden;
+}
+
+.crearTema input[type="checkbox"]:not(:checked) ~ input[type="text"],
+.crearTema input[type="checkbox"]:not(:checked) ~ input[type="submit"] {
+    display: none;
+}
+
+.crearTema input[type="checkbox"]:checked ~ input[type="text"],
+.crearTema input[type="checkbox"]:checked ~ input[type="submit"] {
+    display: block;
+    visibility: visible;
+}
+.crearTema input[type="checkbox"]:is(:checked)~input {
+
+    display: block;
+    visibility: visible;
+}
+
+
+.crearTema input[type="text"]{
+    width: 30%;
+    height: 20%;
+    font-size: 20px;
+    padding-left: 4px;
+    border-radius: 5px;
+    border: 0;
+}
+
+.crearTema input[type="submit"],.subir{
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 0px;
+}

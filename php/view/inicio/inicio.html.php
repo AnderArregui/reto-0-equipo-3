@@ -18,7 +18,9 @@
                         else: ?>
                     <p>No hay temas disponibles.</p>
                     <?php endif; ?>
+
                     <div id="mastemas"> <a href="#">Más temas</a></div>
+
                 </div>
 
         <div class="preguntas">
@@ -39,4 +41,9 @@
             <?php endif; ?>
         </div>
     </div>
+</div>
+
+
+<div class="botonMas">
+  <a href="/reto-1-equipo-3/php/index.php?controller=Post&action=crearPregunta">+</a>
 </div>

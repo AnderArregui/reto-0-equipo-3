@@ -10,6 +10,7 @@ class UsuarioController {
         $this->view = "login"; // Vista por defecto
     }
 
+
     public function login() {
         $this->showLayout = false; // No mostrar el header/footer en la página de login
 
@@ -28,6 +29,7 @@ class UsuarioController {
                 echo "<script>alert('Usuario o contraseña incorrectos');</script>";
             }
         }
+
 
         $this->view = "login"; // Mantiene la vista de login
     }
