@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/headerFooter.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/inicio.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/perfil.css">
     <title>Página de Inicio</title>
 </head>
 <body>
