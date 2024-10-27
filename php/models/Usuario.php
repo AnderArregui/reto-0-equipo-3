@@ -22,11 +22,33 @@ class Usuario {
         return $stmt->rowCount() > 0;
     }
 
+    public function obtenerIdPorNombre($nombre_usuario) {
+        $query = "SELECT id_usuario FROM usuarios WHERE nombre = :nombre_usuario";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+    
+
     public function obtenerPorNombre($nombre) {
         $query = "SELECT * FROM usuarios WHERE nombre = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$nombre]);
         return $stmt->fetch(); // Retorna todos los datos del usuario
     }
+
+    public function obtenerUsuarioPorId($id_post) {
+        $query = "
+            SELECT u.nombre AS nombre_usuario
+            FROM posts p
+            JOIN usuarios u ON p.id_usuario = u.id_usuario
+            WHERE p.id_post = ?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$id_post]); 
+        return $stmt->fetch(PDO::FETCH_ASSOC); 
+    }
+    
 }
 ?>

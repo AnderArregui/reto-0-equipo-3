@@ -4,8 +4,10 @@
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding-top: 5em;
+    padding-top: 4em;
     height: 100vh;
+    
+    margin-bottom: 22em;
 }
 #textoContacto{
     display: flex;
@@ -20,12 +22,12 @@
     font-weight: 600;
     font-size: 4.5em;
     letter-spacing: -0.05em;
-    
 }
 .infoContacto{
     font-weight: 200;
     font-size: 1.5em;
     width: 65%;
+    padding-left: .2em;
 }
 
 #formContacto{
@@ -59,7 +61,7 @@
 {
     display: flex;
     justify-content: left;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: 600;
     letter-spacing: -0.05em;
     margin-bottom: 5px;
@@ -73,7 +75,7 @@
     width: 100%;
     height: 40%;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     background-color: #3b3b3b;
     border: 1px solid #5f5f5f;
     border-radius: 5px;
@@ -92,6 +94,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: -.8em;
 }
 
 #formContacto button:hover {
@@ -107,10 +110,9 @@
 
 .imgJefes {
     opacity: 0.6;
-    width: 32%; /* Aumenta el ancho para que sobresalga */
-    border-radius: 10px;
-    margin-bottom: 5em; /* Asegúrate de que la imagen esté detrás del degradado */
-    transition: opacity 0.3s ease; /* Añade la transición de opacidad */
+    width: 32%; 
+    border-radius: 10px; 
+    transition: opacity 0.3s ease; 
 }
 
 .imgJefes:hover {

@@ -23,6 +23,7 @@
             
             <h3><?php echo htmlspecialchars($tema['nombre']); ?></h3>
         </div>
+            </a>
         <?php
                 $contador++;
             endforeach;

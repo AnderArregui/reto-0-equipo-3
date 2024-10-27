@@ -1,6 +1,7 @@
 <?php
 require_once "models/Tema.php";
 require_once "models/Post.php";
+require_once "models/Respuesta.php";
 
 class InicioController {
     public $showLayout = true;
@@ -8,6 +9,7 @@ class InicioController {
 
     private $temaModel;
     private $postModel;
+    private $respuestaModel;
 
     public function __construct() {
         if (!isset($_SESSION['usuario'])) {
@@ -18,6 +20,7 @@ class InicioController {
 
         $this->temaModel = new Tema();
         $this->postModel = new Post();
+        $this->respuestaModel = new Respuesta();
     }
 
 

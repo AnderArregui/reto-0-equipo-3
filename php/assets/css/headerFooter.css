@@ -1,26 +1,26 @@
 nav {
     font-weight: 300;
-    width: 70%; /* Asegúrate de que haya espacio a los lados */
+    width: 70%; 
     height: 8vh;
-    background-color: #363636;
+    background-color: #6c6c6c;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 1% 0 3%;
-    border-radius: 30px; /* Redondea los bordes */
-    margin: 0px auto; /* Centra el header y deja espacio en la parte superior */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra opcional */
-    position: fixed; /* Hace que el header esté fijo en la parte superior */
-    top: 20px; /* Ajusta el margen superior para que no toque el borde superior */
-    left: 50%; /* Centra el header */
-    transform: translateX(-50%); /* Ajusta para centrarlo correctamente */
-    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    border-radius: 30px; 
+    margin: 0px auto; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+    position: fixed; 
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    z-index: 1000; 
 }
 
 
 
 nav img {
-    margin-top:-.3em;
+    margin-top:-.1em;
     width: 150px;
     min-width: 100px;
 }
@@ -43,11 +43,11 @@ nav img {
 
 .search-container {
     display: flex;
-    align-items: center; /* Centra el contenido verticalmente */
+    align-items: center;
     background-color: #f1f1f1;
-    padding: 5px; /* Ajusta el padding para un mejor espaciado */
+    padding: 5px;
     border-radius: 7px;
-    width: 200px; /* Define un ancho fijo para la barra de búsqueda */
+    width: 200px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -99,6 +99,7 @@ footer {
     bottom: 0;
     left: 0; 
     right: 0; 
+    position:relative;
 
 }
 
