@@ -15,24 +15,9 @@
             </ul>
         </div>
         <div id="visualizacion">
-            
+
         </div>
     </div>
-    
+
 </div>
 <script src="/reto-1-equipo-3/php/assets/js/visualizacionperfil.js"></script>
-
-
-<!-- <div class="informacion">
-               <h1 id="saludo">Hola,  !</h1>
-               <h5 id="especialidad">Especialidad: <?php echo htmlspecialchars($usuario['especialidad']); ?></h5>
-               <h5 id="añosEmpresa">Años en la empresa: <?php echo htmlspecialchars($usuario['anios_empresa']); ?></h5>
-                <h5 id="email">Mail: <?php echo htmlspecialchars($usuario['email']); ?></h5>
-                <div class="botones">
-                   <button>Guardados</button>
-                   <button>Editar</button>
-                  <button>Cerrar cuenta</button>
-                  <button>Cambiar contraseña</button>
-
-                  
-     -->

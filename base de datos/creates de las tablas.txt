@@ -28,7 +28,6 @@ CREATE TABLE posts (
     id_tema INT,
     contenido TEXT,
     ruta_media VARCHAR(255),
-    likes INT DEFAULT 0,
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_tema) REFERENCES temas(id_tema)

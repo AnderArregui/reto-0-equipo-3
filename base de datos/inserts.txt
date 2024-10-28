@@ -1,36 +1,69 @@
 INSERT INTO usuarios (foto, nombre, contrasena, especialidad, anios_empresa, email, tipo) 
 VALUES
-('juan.png', 'juanLopez', '12345', 'Propulsión', 5, 'juan.lopez@aergibide.com', 'usuario'),
+('juan.png', 'ander', 'Jm12345', 'Propulsión', 5, 'juan.lopez@aergibide.com', 'usuario'),
 ('ana.png', 'ana09', 'abcde', 'Materiales', 7, 'ana.martinez@aergibide.com', 'usuario'),
 ('carlos.png', 'carlosG', 'password', 'Aerodinámica', 3, 'carlos.gomez@aergibide.com', 'usuario'),
 ('admin.png', 'admin_user', 'adminpass', 'Seguridad', 10, 'admin@aergibide.com', 'admin');
 
 INSERT INTO temas (nombre, caracteristica, imagen) 
-VALUES ('Propulsión', '#FF3183', '/reto-1-equipo-3/php/assets/images/1.png');
+VALUES 
+('Propulsión', '#FF3183', '/reto-1-equipo-3/php/assets/images/1.png'),
+('Aerodinámica', '#7EC5FF', '/reto-1-equipo-3/php/assets/images/2.png'),
+('Seguridad', '#FFA3A5', '/reto-1-equipo-3/php/assets/images/3.png'),
+('Materiales', '#00F382', '/reto-1-equipo-3/php/assets/images/4.png'),
+('Innovación', NULL, NULL),  -- Nuevo tema sin característica ni imagen
+('Optimización', NULL, NULL),  -- Nuevo tema sin característica ni imagen
+('Eficiencia', NULL, NULL),    -- Nuevo tema sin característica ni imagen
+('Colaboración', NULL, NULL);  -- Nuevo tema sin característica ni imagen
 
-INSERT INTO temas (nombre, caracteristica, imagen) 
-VALUES ('Aerodinámica', '#7EC5FF', '/reto-1-equipo-3/php/assets/images/2.png');
-
-INSERT INTO temas (nombre, caracteristica, imagen) 
-VALUES ('Seguridad', '#FFA3A5', '/reto-1-equipo-3/php/assets/images/3.png');
-
-INSERT INTO temas (nombre, caracteristica, imagen) 
-VALUES ('Materiales', '#00F382', '/reto-1-equipo-3/php/assets/images/4.png');
-
-
-INSERT INTO posts (id_usuario, id_tema, contenido, ruta_media, likes) 
+INSERT INTO posts (id_usuario, id_tema, contenido, ruta_media) 
 VALUES
-(1, 1, 'Hola equipo, tengo una duda sobre la eficiencia en los nuevos motores que estamos probando en la sección de propulsión. ¿Alguien ha trabajado ya con el modelo XR3000?', NULL, 0),
-(2, 4, 'Estoy trabajando en un nuevo compuesto para las alas y me gustaría saber si alguien ha tenido problemas con la fatiga del material en pruebas de alta velocidad.', NULL, 0),
-(3, 2, '¿Alguien más ha notado una diferencia en el flujo de aire con las nuevas modificaciones que se hicieron en el ala del modelo A47? No estoy seguro si es el diseño o algún otro factor.', NULL, 0),
-(1, 3, 'Acabo de actualizar el protocolo de seguridad para los test de motores. Por favor, revisen los cambios antes de las pruebas del jueves.', NULL, 0);
+(1, 1, 'Hola equipo, tengo una duda sobre la eficiencia en los nuevos motores que estamos probando en la sección de propulsión. ¿Alguien ha trabajado ya con el modelo XR3000?', NULL),
+(2, 4, 'Estoy trabajando en un nuevo compuesto para las alas y me gustaría saber si alguien ha tenido problemas con la fatiga del material en pruebas de alta velocidad.', NULL),
+(3, 2, '¿Alguien más ha notado una diferencia en el flujo de aire con las nuevas modificaciones que se hicieron en el ala del modelo A47? No estoy seguro si es el diseño o algún otro factor.', NULL),
+(1, 3, 'Acabo de actualizar el protocolo de seguridad para los test de motores. Por favor, revisen los cambios antes de las pruebas del jueves.', NULL),
+(1, 5, '¿Qué ideas tienen sobre la innovación en aerodinámica para los nuevos modelos?', NULL),
+(2, 6, 'Me gustaría discutir cómo optimizar los procesos de manufactura en nuestros componentes.', NULL),
+(3, 7, 'La eficiencia de combustible es crucial en el nuevo diseño. ¿Qué propuestas tienen?', NULL),
+(1, 8, 'La colaboración entre departamentos puede ser clave para mejorar la calidad. ¿Alguien más lo ha notado?', NULL);
 
 INSERT INTO respuestas (id_post, id_usuario, contenido, ruta_media, likes) 
 VALUES
-(1, 2, '¡Sí! He trabajado con el XR3000. La clave está en ajustar los parámetros de combustión. Luego te paso los detalles.', NULL, 2),
-(2, 1, 'No he tenido problemas con la fatiga, pero sería bueno probarlo bajo condiciones de presión más extremas.', NULL, 1),
-(3, 2, 'Yo noté algo similar. Hicimos algunas simulaciones y el nuevo diseño afecta más en condiciones de alta altitud.', NULL, 1),
-(4, 3, 'Gracias, lo reviso ahora mismo. Es importante que todos estemos al tanto de esto.', NULL, 3);
+-- Respuestas para el post 1 (Propulsión) - 8 respuestas
+(1, 2, 'Sí, ajusta los parámetros y verás la diferencia!', NULL, 5),
+(1, 3, 'Prueba con menos combustible al inicio, es clave para XR3000.', NULL, 2),
+(1, 4, '¡Buen punto! Nosotros también tuvimos que recalibrar.', NULL, 3),
+(1, 2, '¿Has probado con menos presión en los inyectores?', NULL, 1),
+(1, 1, 'Justo eso pensé, buen ajuste puede ayudar.', NULL, 4),
+(1, 4, '¡Exacto! También ajustamos la mezcla de aire.', NULL, 3),
+(1, 2, '¿Tienes el manual técnico actualizado? Hay varios cambios.', NULL, 2),
+(1, 3, 'De hecho, ajustamos eso y ¡se notó el cambio de inmediato!', NULL, 1),
+
+-- Respuestas para el post 2 (Materiales) - 3 respuestas
+(2, 1, 'Tal vez deberíamos hacer un test de presión conjunta.', NULL, 3),
+(2, 3, '¿Qué tal funcionó el compuesto en pruebas térmicas?', NULL, 2),
+(2, 4, 'Buena idea, cuenta con mi apoyo.', NULL, 1),
+
+-- Respuestas para el post 3 (Aerodinámica) - 5 respuestas
+(3, 2, 'Ajusté el ángulo y mejoró, pero no estoy 100% seguro.', NULL, 2),
+(3, 1, 'Mismo problema acá, ¡es el diseño seguro!', NULL, 4),
+(3, 3, '¡Interesante! Prueba en distintas altitudes.', NULL, 3),
+(3, 2, '¿Ajustaste solo el ala o también la sección de cola?', NULL, 1),
+(3, 4, 'Para alta altitud es normal un cambio, ajusta la altura.', NULL, 2),
+
+-- Respuestas para el post 4 (Seguridad) - 12 respuestas
+(4, 2, 'Buen cambio, ¡justo a tiempo para las pruebas!', NULL, 5),
+(4, 1, '¡Lo reviso hoy, gracias!', NULL, 2),
+(4, 3, 'Listo, también hice unas anotaciones en el protocolo.', NULL, 3),
+(4, 4, 'Es importante el cambio en la presión de seguridad.', NULL, 4),
+(4, 2, 'Perfecto, ya actualicé los documentos.', NULL, 1),
+(4, 3, '¿Puedes subirlo al repositorio?', NULL, 2),
+(4, 1, '¡Hecho, ahora todos lo tienen disponible!', NULL, 4),
+(4, 4, 'Listo para la revisión en equipo.', NULL, 3),
+(4, 2, 'Sí, revisé eso y estamos listos.', NULL, 1),
+(4, 3, 'Cambio anotado, ¡a por las pruebas!', NULL, 2),
+(4, 1, 'Gracias, lo revisé con el equipo.', NULL, 4),
+(4, 2, 'Ahora todo el equipo está sincronizado, excelente.', NULL, 2);
 
 INSERT INTO guardado (id_post, id_usuario) 
 VALUES
