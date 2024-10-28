@@ -26,7 +26,6 @@ class Guardado {
             echo json_encode(['success' => $success]);
         }
     }
-}
     
     public function eliminar($id_post, $id_usuario) {
         $query = "DELETE FROM Guardado WHERE id_post = ? AND id_usuario = ?";

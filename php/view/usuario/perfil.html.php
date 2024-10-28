@@ -2,7 +2,7 @@
     <div class="perfil">
         <!-- Pasamos la informacion del dataToView a la variable usuario, posteriormente ponemos la foto "Si tiene" y desplegamos el menu que nos da el ajax. -->
         <?php $usuario = $dataToView["data"]["usuario"]; ?>
-        <img src="<?php echo $usuario['foto']; ?>" alt="Foto de perfil">
+        <img src="<?php echo $usuario["foto_perfil"]; ?>" alt="Foto de perfil">
         <h2 id="nombreUsuario">Bienvenido, <?php echo htmlspecialchars($usuario['nombre']); ?>!</h2>
         <h3 id="tipoUsuario"><?php if($usuario["tipo"] == "admin"): ?>Administrador<?php else: ?>Usuario<?php endif;?></h3>
         <div class="menuperfil">
@@ -14,10 +14,7 @@
                 <li><a href="javascript:void(0);" onclick='gestionarPerfil(); setActive(this)'>Gestionar Perfil</a></li>
             </ul>
         </div>
-        <div id="visualizacion">
-
-        </div>
+        <div id="visualizacion"></div>
     </div>
-
 </div>
 <script src="/reto-1-equipo-3/php/assets/js/visualizacionperfil.js"></script>

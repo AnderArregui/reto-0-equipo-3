@@ -31,7 +31,7 @@ class Usuario {
     
 
     public function obtenerPorNombre($nombre) {
-        $query = "SELECT id_usuario, nombre, foto AS foto_perfil FROM usuarios WHERE nombre = ?";
+        $query = "SELECT id_usuario, nombre, foto AS foto_perfil, contrasena, especialidad, anios_empresa, email, tipo FROM usuarios WHERE nombre = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$nombre]);
         return $stmt->fetch(PDO::FETCH_ASSOC); 
