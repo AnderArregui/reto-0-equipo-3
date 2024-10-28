@@ -53,21 +53,6 @@ body{
     align-items: center;
 }
 
-/* Diseño de la pagina de perfil */
-
-.perfil {
-    display:block;
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-}
-
-.fotoPerfil img{
-    width: 180px;
-    border-radius: 100px;
-}
-
-
 /*Diseño de la pagina de contacto*/
 
 .contacto
