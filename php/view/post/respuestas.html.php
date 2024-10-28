@@ -3,7 +3,6 @@
     $id_post = $_GET['id_post'] ?? null;
 
     if ($id_post): 
-        // Cambia la forma de acceder a los datos
         $post = $dataToView['data']['post']; 
         $respuestas = $dataToView['data']['respuestas'];
         $temas = $dataToView['data']['tema'];
@@ -16,9 +15,8 @@
                 <p>Tema: <?php echo htmlspecialchars($temas['nombre_tema'] ?? 'Tema no especificado'); ?></p>
                     <p>Por: <?php echo htmlspecialchars($usuario['nombre_usuario'] ?? 'Usuario desconocido'); ?></p>
                 <p>Fecha: <?php echo htmlspecialchars($post['fecha']); ?></p>
-                    <p>Likes: <?php echo htmlspecialchars($post['likes']); ?></p>
                 </div>
-                <img src="/reto-1-equipo-3/php/assets/images/nolike.png" alt="Like" class="save-icon" onclick="like(this)" />
+                <img src="/reto-1-equipo-3/php/assets/images/nosave.png" alt="Guardar" class="save-icon" onclick="guardar(this)" />
 
             </div>
 
@@ -52,7 +50,16 @@
                     <img src="<?php echo htmlspecialchars($respuesta['ruta_media']); ?>" alt="Imagen adjunta" style="max-width: 100%; max-height: 200px; height: auto;">
                 <?php endif; ?>
             <?php endif; ?>
-            <p>Fecha: <?php echo htmlspecialchars($respuesta['fecha']); ?></p>
+            <div class="respuestaDerecha">
+                <div class="postInfo">
+                    <p>Fecha: <?php echo htmlspecialchars($respuesta['fecha']); ?></p>
+                    <p>Likes: <?php echo htmlspecialchars($respuesta['likes']); ?></p>
+                </div>
+                <div class="postInfo">
+                <img src="/reto-1-equipo-3/php/assets/images/nolike.png" alt="Like" class="save-icon" onclick="like(this)" />
+                </div>
+            </div>
+           
         </div>
     <?php endforeach; ?>
 <?php else: ?>

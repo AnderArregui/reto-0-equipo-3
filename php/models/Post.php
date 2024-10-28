@@ -36,9 +36,21 @@ class Post {
         $query = "
             SELECT 
                 p.*, 
-                t.nombre AS nombre_tema, t.caracteristica AS caracteristica, 
+                t.nombre AS nombre_tema, 
+                t.caracteristica AS caracteristica, 
                 u.nombre AS nombre_usuario, 
-                (SELECT COUNT(*) FROM respuestas r WHERE r.id_post = p.id_post) AS total_respuestas
+                (SELECT COUNT(*) FROM respuestas r WHERE r.id_post = p.id_post) AS total_respuestas,
+                (SELECT u2.nombre 
+                 FROM respuestas r2 
+                 JOIN usuarios u2 ON r2.id_usuario = u2.id_usuario 
+                 WHERE r2.id_post = p.id_post 
+                 ORDER BY r2.fecha DESC 
+                 LIMIT 1) AS autor_ultimo_mensaje,
+                (SELECT TIMESTAMPDIFF(MINUTE, r2.fecha, NOW()) 
+                 FROM respuestas r2 
+                 WHERE r2.id_post = p.id_post 
+                 ORDER BY r2.fecha DESC 
+                 LIMIT 1) AS minutos_transcurridos
             FROM 
                 posts p
             JOIN 
@@ -48,11 +60,12 @@ class Post {
             ORDER BY 
                 p.fecha DESC
         ";
-        
+    
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
     
     public function obtenerPorTema($id_tema) {
         $query = "SELECT p.*, u.nombre as nombre_usuario, t.caracteristica 
@@ -72,7 +85,6 @@ class Post {
         $stmt = $this->connection->prepare($query);
         return $stmt->execute([$id_post]);
     }
-
-    
 }
+
 ?>

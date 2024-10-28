@@ -46,6 +46,16 @@
         </div>
 
         <div class="profile-icon">
-            <a href="index.php?controller=Usuario&action=perfil"><img src="/reto-1-equipo-3/php/assets/images/admin_blanco-05.png" alt="Perfil"></a>
+            <a href="index.php?controller=Usuario&action=perfil">
+                <?php 
+                $elUsuario = $dataToView['data']['usuario'];
+
+                $fotoPerfil = isset($elUsuario['foto_perfil']) && !empty($elUsuario['foto_perfil']) 
+                    ? htmlspecialchars($elUsuario['foto_perfil']) 
+                    : '/ruta/a/imagen/placeholder.png';
+                ?>
+                <img src="<?php echo $fotoPerfil; ?>" alt="Perfil">
+            </a>
         </div>
+
     </nav>

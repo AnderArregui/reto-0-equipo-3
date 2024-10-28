@@ -93,7 +93,6 @@ class PostController {
                 $id_tema = $_POST['temaSelect'];
             }
     
-            // Obtener nombre de usuario
             $nombre_usuario = $_SESSION['usuario'] ?? null;
             if (!$nombre_usuario) {
                 $_SESSION['mensaje'] = "Usuario no encontrado en la sesión.";

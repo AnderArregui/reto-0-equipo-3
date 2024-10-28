@@ -12,13 +12,12 @@ class Usuario {
 
 
     public function validateLogin($username, $password) {
-        // Preparar la consulta para evitar inyecciones SQL
         $stmt = $this->connection->prepare("SELECT * FROM usuarios WHERE nombre = :username AND contrasena = :password");
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $password);
         $stmt->execute();
 
-        // Retorna true si hay coincidencias
+
         return $stmt->rowCount() > 0;
     }
 
@@ -32,11 +31,13 @@ class Usuario {
     
 
     public function obtenerPorNombre($nombre) {
-        $query = "SELECT * FROM usuarios WHERE nombre = ?";
+        $query = "SELECT id_usuario, nombre, foto AS foto_perfil FROM usuarios WHERE nombre = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$nombre]);
-        return $stmt->fetch(); // Retorna todos los datos del usuario
+        return $stmt->fetch(PDO::FETCH_ASSOC); 
     }
+    
+    
 
     public function obtenerUsuarioPorId($id_post) {
         $query = "

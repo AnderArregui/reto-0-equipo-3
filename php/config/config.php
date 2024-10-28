@@ -1,10 +1,10 @@
 <?php
  
+ define('DB_HOST', '172.20.227.241');
+ define('DB_USER', 'grupo3_2425');
+ define('DB_PASS', 'dqwW2[h1v1x)G)6/');
+ define('DB_NAME', 'grupo3_2425');
 
-define('DB_HOST', '127.0.0.1');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'aeronautica');
 
 
 try {
@@ -15,9 +15,9 @@ try {
 }
 
 /*
-define('DB_HOST', '172.20.227.241');
-define('DB_USER', 'grupo3_2425');
-define('DB_PASS', 'dqwW2[h1v1x)G)6/');
-define('DB_NAME', 'grupo3_2425');
+define('DB_HOST', '127.0.0.1');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'aeronautica');
 
 */

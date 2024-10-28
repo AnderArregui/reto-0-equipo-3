@@ -26,7 +26,7 @@ if (isset($_SESSION['usuario'])) {
     $id_tema = isset($_GET['id_tema']) ? $_GET['id_tema'] : 1;
 
 
-    if (method_exists($controller, 'init')) {
+if (method_exists($controller, 'init')) {
         $dataToView["data"] = $controller->init($id_tema);
     }
 } else {

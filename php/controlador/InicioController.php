@@ -10,6 +10,7 @@ class InicioController {
     private $temaModel;
     private $postModel;
     private $respuestaModel;
+    private $usuarioModel;
 
     public function __construct() {
         if (!isset($_SESSION['usuario'])) {
@@ -21,6 +22,7 @@ class InicioController {
         $this->temaModel = new Tema();
         $this->postModel = new Post();
         $this->respuestaModel = new Respuesta();
+        $this->usuarioModel = new Usuario();
     }
 
 
@@ -33,6 +35,24 @@ class InicioController {
         return $this->postModel->obtenerTodos(); 
     }
 
+    public function getUsuario() {
+
+    if (!isset($_SESSION['usuario'])) {
+        header("Location: index.php?controller=usuario&action=login");
+        exit();
+    }
+
+    $nombre_usuario = $_SESSION['usuario'];
+
+    $this->usuario = new Usuario();
+    $usuarioData = $this->usuarioModel->obtenerPorNombre($nombre_usuario);
+
+
+    $this->view = "perfil";
+    
+    return $usuarioData;
+    }
+
     public function contacto()
     {
         $this->view = "contacto";
@@ -41,13 +61,15 @@ class InicioController {
 
     public function init() {
        
+        $usuario = $this->getUsuario();
         $temas = $this->getThemes();
         $preguntas = $this->getAllPosts();
         $this->view = "inicio"; 
         
         return [
             'temas' => $temas, 
-            'preguntas' => $preguntas
+            'preguntas' => $preguntas,
+            'usuario' => $usuario
         ];
     }
 }

@@ -37,13 +37,11 @@ $claseTema = empty($imagenTema) && empty($colorTema) ? 'tema-sin-imagen-color' :
                 </div>
                 <div class="postInfo">
                     <p>Respuestas: <?php echo htmlspecialchars($pregunta['total_respuestas'] ?? '0'); ?></p>
-                    <p>Likes: <?php echo htmlspecialchars($pregunta['likes']); ?></p>
                 </div>
                 <div class="postInfo">
                     <p>Últ. mensaje: juanPerez</p>
                     <p>Hace 24 minutos</p>
                 </div>
-                <img src="/reto-1-equipo-3/php/assets/images/nolike.png" alt="Like" class="save-icon" onclick="like(this)" />
                 <img src="/reto-1-equipo-3/php/assets/images/nosave.png" alt="Guardar" class="save-icon" onclick="guardar(this)" />
             </div>
                 <?php endforeach; ?>

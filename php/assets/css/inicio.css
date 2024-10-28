@@ -308,6 +308,13 @@ body{
     padding-bottom: 5px;
 }
 
+.respuestaDerecha{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap:20px;
+}
+
 
 .file-input-container {
     margin: 1em 0;

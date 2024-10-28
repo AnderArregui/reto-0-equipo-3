@@ -15,16 +15,16 @@ class UsuarioController {
     }
 
     public function login() {
-        $this->showLayout = false; // No mostrar el header/footer en la página de login
+        $this->showLayout = false;
 
-        // Verifica si el formulario fue enviado por POST
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
 
             $this->usuario = new Usuario();
             if ($this->usuario->validateLogin($username, $password)) {
-                // Iniciar sesión y redirigir
+
                 $_SESSION['usuario'] = $username;
                 header("Location: index.php?controller=Inicio&action=inicio");
                 exit();
@@ -33,48 +33,60 @@ class UsuarioController {
             }
         }
 
-        $this->view = "login"; // Mantiene la vista de login
+        $this->view = "login"; 
     }
 
     public function inicio() {
-        // Verifica que el usuario haya iniciado sesión
+
         if (!isset($_SESSION['usuario'])) {
             header("Location: index.php?controller=usuario&action=login");
             exit();
         }
 
-        $this->view = "inicio"; // Vista de bienvenida
+        $this->view = "inicio";
     }
 
-    public function perfil()
-    {
-        // Verificar si el usuario ha iniciado sesión
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php?controller=usuario&action=login");
-            exit();
+   public function perfil()
+{
+
+    if (!isset($_SESSION['usuario'])) {
+        header("Location: index.php?controller=usuario&action=login");
+        exit();
+    }
+
+    $nombre_usuario = $_SESSION['usuario'];
+
+    $this->usuario = new Usuario();
+    $usuarioData = $this->usuario->obtenerPorNombre($nombre_usuario);
+
+
+    $this->view = "perfil";
+    
+    return $usuarioData;
+}
+
+
+    public function obtenerIdPorNombre() {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $nombre_usuario = $data['nombre_usuario'];
+
+        $usuario = $this->usuarioModel->obtenerIdPorNombre($nombre_usuario);
+
+        if ($usuario) {
+            echo json_encode(['success' => true, 'id_usuario' => $usuario['id_usuario']]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Usuario no encontrado.']);
         }
-
-        // Cargar los datos del usuario desde la sesión
-        $nombre_usuario = $_SESSION['usuario'];
-
-        // Obtener los datos completos del usuario desde la base de datos
-        $this->usuario = new Usuario();
-        $usuarioData = $this->usuario->obtenerPorNombre($nombre_usuario);
-
-        $this->view = "perfil";
-
-        return $usuarioData;
-
     }
 
     public function init() {
-        // Obtén los temas y las publicaciones
         $usuario = $this->perfil();
-
+    
         return [
-            'usuario' => $usuario // Asigna las preguntas a la clave 'preguntas'
+            'usuario' => $usuario,
         ];
     }
+    
 
     public function logout() {
         // Cierra la sesión

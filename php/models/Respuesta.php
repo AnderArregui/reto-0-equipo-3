@@ -20,7 +20,7 @@ class Respuesta {
             'id_post' => $id_post,
             'id_usuario' => $id_usuario,
             'contenido' => $contenido,
-            'ruta_media' => $ruta_media // Cambiamos el campo 'media' por 'ruta_media'
+            'ruta_media' => $ruta_media
         ]);
     }
 

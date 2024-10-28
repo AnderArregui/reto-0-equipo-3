@@ -1,6 +1,6 @@
 INSERT INTO usuarios (foto, nombre, contrasena, especialidad, anios_empresa, email, tipo) 
 VALUES
-('juan.png', 'juanLopez', '12345', 'Propulsión', 5, 'juan.lopez@aergibide.com', 'usuario'),
+('juan.png', 'ander', 'Jm12345', 'Propulsión', 5, 'juan.lopez@aergibide.com', 'usuario'),
 ('ana.png', 'ana09', 'abcde', 'Materiales', 7, 'ana.martinez@aergibide.com', 'usuario'),
 ('carlos.png', 'carlosG', 'password', 'Aerodinámica', 3, 'carlos.gomez@aergibide.com', 'usuario'),
 ('admin.png', 'admin_user', 'adminpass', 'Seguridad', 10, 'admin@aergibide.com', 'admin');
@@ -16,18 +16,16 @@ VALUES
 ('Eficiencia', NULL, NULL),    -- Nuevo tema sin característica ni imagen
 ('Colaboración', NULL, NULL);  -- Nuevo tema sin característica ni imagen
 
-INSERT INTO posts (id_usuario, id_tema, contenido, ruta_media, likes) 
+INSERT INTO posts (id_usuario, id_tema, contenido, ruta_media) 
 VALUES
-(1, 1, 'Hola equipo, tengo una duda sobre la eficiencia en los nuevos motores que estamos probando en la sección de propulsión. ¿Alguien ha trabajado ya con el modelo XR3000?', NULL, 0),
-(2, 4, 'Estoy trabajando en un nuevo compuesto para las alas y me gustaría saber si alguien ha tenido problemas con la fatiga del material en pruebas de alta velocidad.', NULL, 0),
-(3, 2, '¿Alguien más ha notado una diferencia en el flujo de aire con las nuevas modificaciones que se hicieron en el ala del modelo A47? No estoy seguro si es el diseño o algún otro factor.', NULL, 0),
-(1, 3, 'Acabo de actualizar el protocolo de seguridad para los test de motores. Por favor, revisen los cambios antes de las pruebas del jueves.', NULL, 0),
-
--- Nuevos posts para los nuevos temas
-(1, 5, '¿Qué ideas tienen sobre la innovación en aerodinámica para los nuevos modelos?', NULL, 0),
-(2, 6, 'Me gustaría discutir cómo optimizar los procesos de manufactura en nuestros componentes.', NULL, 0),
-(3, 7, 'La eficiencia de combustible es crucial en el nuevo diseño. ¿Qué propuestas tienen?', NULL, 0),
-(1, 8, 'La colaboración entre departamentos puede ser clave para mejorar la calidad. ¿Alguien más lo ha notado?', NULL, 0);
+(1, 1, 'Hola equipo, tengo una duda sobre la eficiencia en los nuevos motores que estamos probando en la sección de propulsión. ¿Alguien ha trabajado ya con el modelo XR3000?', NULL),
+(2, 4, 'Estoy trabajando en un nuevo compuesto para las alas y me gustaría saber si alguien ha tenido problemas con la fatiga del material en pruebas de alta velocidad.', NULL),
+(3, 2, '¿Alguien más ha notado una diferencia en el flujo de aire con las nuevas modificaciones que se hicieron en el ala del modelo A47? No estoy seguro si es el diseño o algún otro factor.', NULL),
+(1, 3, 'Acabo de actualizar el protocolo de seguridad para los test de motores. Por favor, revisen los cambios antes de las pruebas del jueves.', NULL),
+(1, 5, '¿Qué ideas tienen sobre la innovación en aerodinámica para los nuevos modelos?', NULL),
+(2, 6, 'Me gustaría discutir cómo optimizar los procesos de manufactura en nuestros componentes.', NULL),
+(3, 7, 'La eficiencia de combustible es crucial en el nuevo diseño. ¿Qué propuestas tienen?', NULL),
+(1, 8, 'La colaboración entre departamentos puede ser clave para mejorar la calidad. ¿Alguien más lo ha notado?', NULL);
 
 INSERT INTO respuestas (id_post, id_usuario, contenido, ruta_media, likes) 
 VALUES

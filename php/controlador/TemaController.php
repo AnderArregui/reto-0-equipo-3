@@ -8,6 +8,7 @@ class TemaController {
 
     private $temaModel;
     public $postModel;
+    public $usuarioModel;
 
     public function __construct() {
         if (!isset($_SESSION['usuario'])) {
