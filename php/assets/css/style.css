@@ -69,81 +69,77 @@ input {
     padding: 10px;
     border-radius: 7px;
     border: 0px;
-    background-color: #000000; /* Cambia a un gris más oscuro para mayor contraste */
-    color: white; /* Asegúrate de que el texto sea visible */
+    background-color: #000000; 
+    color: white; 
     width: 100%;
-    position: relative; /* Asegúrate de que el elemento tenga un contexto de apilamiento */
-    z-index: 10; /* Asegúrate de que esté por encima de otros elementos */
+    position: relative; 
+    z-index: 10; 
 }
 
-/* Opcional: Eliminar backdrop-filter si causa problemas */
+
 input {
-    backdrop-filter: none; /* Elimina el filtro de desenfoque */
+    backdrop-filter: none;
 }
 input:focus {
-    outline: none; /* Elimina el contorno de enfoque */
-    box-shadow: none; /* Elimina la sombra si está definida */
+    outline: none; 
+    box-shadow: none; 
 }
 
 
-/* Media queries para pantallas más pequeñas */
-/* Adaptaciones para dispositivos móviles */
-/* Adaptaciones para dispositivos móviles */
 @media (max-width: 600px) {
     body {
-        background: url('../images/back.png') no-repeat 80%; /* Imagen de fondo */
+        background: url('../images/back.png') no-repeat 80%;
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Centra el contenido en la página */
-        align-items: center; /* Centra verticalmente el contenido */
-        padding: 20px; /* Añade algo de padding para espacios en móviles */
-        min-height: 100vh; /* Asegura que cubra toda la pantalla */
+        justify-content: center;
+        align-items: center;
+        padding: 20px; 
+        min-height: 100vh; 
     }
 
     .logo {
-        position: absolute; /* Ajusta la posición del logo */
-        width: 60%; /* Haz el logo más grande en móviles */
-        margin: -30px auto 30px auto; /* Centra el logo horizontalmente y añade espacio inferior */
+        position: absolute; 
+        width: 60%; 
+        margin: -30px auto 30px auto;
     }
 
     form {
-        width: 100%; /* Ocupa todo el ancho disponible */
-        max-width: 350px; /* Ajusta el ancho máximo del formulario */
-        margin: 4em auto 0 auto; /* Centra el formulario */
-        padding: 2em 20px; /* Reduce el padding */
-        display: flex; /* Asegura que el formulario siga usando flexbox */
-        flex-direction: column; /* Mantiene la dirección de los elementos en columna */
-        align-items: center; /* Centra los elementos dentro del formulario */
+        width: 100%; 
+        max-width: 350px; 
+        margin: 4em auto 0 auto; 
+        padding: 2em 20px; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center;
     }
 
     #iniSes {
         font-weight: 300;
-        font-size: 1.5em; /* Reduce ligeramente el tamaño del título */
+        font-size: 1.5em;
     }
 
     .apartado {
         font-weight: 300;
-        font-size: 1.2em; /* Reduce el tamaño de las etiquetas */
+        font-size: 1.2em;
     }
 
     input {
-        font-size: 0.9em; /* Reduce el tamaño de los inputs */
-        padding: 8px; /* Ajusta el padding de los inputs */
+        font-size: 0.9em; 
+        padding: 8px; 
     }
 
     .botones {
-        flex-direction: column; /* Coloca los botones en columna */
-        gap: 10px; /* Ajusta el espacio entre los botones */
-        margin-top: 1em; /* Reduce el margen superior */
+        flex-direction: column;
+        gap: 10px; 
+        margin-top: 1em;
     }
 
     .cssbuttons-io span {
-        font-size: 0.9em; /* Reduce el tamaño del texto en los botones */
+        font-size: 0.9em;
     }
 
-    /* Ajustes adicionales */
     .logo img {
-        width: 100%; /* Asegura que el logo sea completamente visible y ocupe su contenedor */
+        width: 100%;
         height: auto;
     }
 }

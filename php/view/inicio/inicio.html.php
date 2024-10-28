@@ -4,11 +4,11 @@
         <div class="temas">
         <?php 
         $contador = 0; 
-        $temas = $dataToView["data"]['temas']; // Asegúrate de que esta clave contenga los temas
+        $temas = $dataToView["data"]['temas'];
         if (!empty($temas)):
             while ($contador < 4 && $contador < count($temas)): 
                 $tema = $temas[$contador]; 
-                // Obtener la ruta de la imagen desde la base de datos
+                
                 $imagenTema = !empty($tema['imagen']) ? htmlspecialchars($tema['imagen']) : 'default.jpg'; // Asigna una imagen por defecto si no hay imagen
         ?>
         <!-- Hacemos que el contenedor del tema sea un enlace -->
@@ -32,27 +32,32 @@
     </div>
 </div>
 
-
 <div class="preguntas"> 
     <h2>Preguntas Recientes</h2>
-    <?php $preguntas = $dataToView["data"]['preguntas']; // Accede a las preguntas
+    <?php $preguntas = $dataToView["data"]['preguntas'];
     if (!empty($preguntas)): ?>
         <?php foreach ($preguntas as $pregunta): ?>
-            <div class="pregunta">
-                <h3><?php echo htmlspecialchars($pregunta['contenido']); ?></h3>
+            <div class="pregunta" style="border: 2px dashed <?php echo htmlspecialchars($pregunta['caracteristica']); ?>">
+                <h3>
+                    <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo htmlspecialchars($pregunta['id_post']); ?>" class="tema-link">
+                        <?php echo htmlspecialchars($pregunta['contenido']); ?>
+                    </a>
+                </h3>
+               
                 <div class="postInfo">
                     <p>Tema: <?php echo htmlspecialchars($pregunta['nombre_tema'] ?? 'Tema no especificado'); ?></p>
                     <p>Por: <?php echo htmlspecialchars($pregunta['nombre_usuario'] ?? 'Usuario desconocido'); ?></p>
                     <p>Fecha: <?php echo htmlspecialchars($pregunta['fecha']); ?></p>  
                 </div>
                 <div class="postInfo">
-                    <p>Respuestas: 1024</p>
+                    <p>Respuestas: <?php echo htmlspecialchars($pregunta['total_respuestas'] ?? '0'); ?></p>
                     <p>Likes: <?php echo htmlspecialchars($pregunta['likes']); ?></p>
                 </div>
                 <div class="postInfo">
                     <p>Últ. mensaje: juanPerez</p>
                     <p>Hace 24 minutos</p>
                 </div>
+                <img src="/reto-1-equipo-3/php/assets/images/nolike.png" alt="Like" class="save-icon" onclick="like(this)" />
                 <img src="/reto-1-equipo-3/php/assets/images/nosave.png" alt="Guardar" class="save-icon" onclick="guardar(this)" />
             </div>
         <?php endforeach; ?>
@@ -61,7 +66,13 @@
     <?php endif; ?>
 </div>
 
-<script src="/reto-1-equipo-3/php/assets/js/guardar.js"></script>
 
+
+<script src="/reto-1-equipo-3/php/assets/js/guardar.js"></script>
+<div class="botonMas">
+  <a href="/reto-1-equipo-3/php/index.php?controller=Post&action=crearPregunta">
+    <img src="/reto-1-equipo-3/php/assets/images/crear.svg" alt="Añadir pregunta">
+  </a>
+</div>
     </div>
 </div>

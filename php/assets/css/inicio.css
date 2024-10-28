@@ -11,9 +11,8 @@ body{
 }
 
 
-/* Contenedor general */
 .general {
-    
+
     width: 100%;
     min-height: 100vh;
     padding: 20px;
@@ -30,7 +29,7 @@ body{
     
 }
 
-/* Sección de temas */
+
 .temas {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -41,7 +40,7 @@ body{
     padding: 3em;
 }
 
-/* Títulos */
+
 .titulo {
     font-weight: 200;
     font-size: 2em;
@@ -53,7 +52,6 @@ body{
 }
 
 
-/* Diseño de cada tema */
 .tema {
     position: relative;
     border-radius: 10px;
@@ -61,7 +59,7 @@ body{
     justify-content: flex-start; 
     align-items: flex-end; 
     overflow: hidden; 
-    background-color: #363636; /* Color de fondo gris completo */
+    background-color: #363636;
     height: 300px; 
     z-index: 3;
     flex-wrap: wrap;
@@ -70,27 +68,27 @@ body{
 }
 .tema-link {
     text-decoration: none; 
-    color: inherit; 
+    color: #ccc; 
     display: block; 
+    transition: 5ms ease;
 }
 
-.tema-link:hover .tema {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+.tema-link:hover {
+    color: white;
 }
 
 
 .tema-img {
     position: absolute;
-    top: -80px; /* Ajusta para que la imagen sobresalga más */
+    top: -80px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%; /* Aumenta el ancho para que sobresalga */
+    width: 100%;
     border-radius: 10px 10px 0 0; 
-    z-index: 5; /* Asegúrate de que la imagen esté detrás del degradado */
+    z-index: 5;
 }
 
-/* Degradado de color */
-/* Degradado por defecto */
+
 .degradado {
     position: absolute;
     top: 0;
@@ -100,14 +98,13 @@ body{
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 96%, var(--color-base, #363636) 100%);
     z-index: 6;
     border-radius: 10px;
-    background-size: 100% 100%; /* Tamaño inicial */
-    background-position: 0 100%; /* Posición inicial */
-    transition: background-position 0.5s ease; /* Transición progresiva */
+    background-size: 100% 100%;
+    background-position: 0 100%;
+    transition: background-position 0.5s ease;
 }
 
-/* Efecto al hacer hover */
 .tema:hover .degradado {
-    background-position: 0 85%; /* Cambia la posición para el degradado */
+    background-position: 0 85%;
 }
 .tema:hover h3{
     color:#363636;
@@ -115,17 +112,17 @@ body{
 .tema:hover #palabraTema{
     color:#363636;
 }
-/* Efecto al hacer hover para que el div crezca un poco */
+
 .tema {
-    transition: 0.5s; /* Transición para el crecimiento */
+    transition: 0.5s;
 }
 
 .tema:hover {
-    transform: scale(1.05); /* Escala el div para que crezca un poco */
+    transform: scale(1.05);
     background-color: var(--color-base);
     cursor: pointer;
 }
-/* Texto dentro del tema */
+
 #palabraTema{
     font-family: 'Helvetica';
     font-weight: 300;
@@ -136,34 +133,46 @@ body{
     color: #ffffff;
     margin-bottom: -8.4em; 
 }
+#palabraTemaOculta{
+    font-family: 'Helvetica';
+    font-weight: 300;
+    font-size: 1em;
+    margin-left: 1.6em;
+    z-index: 3; 
+    width: 100%;
+    color: #000000;
+    margin-bottom: -8.4em; 
+    opacity: 0;
+
+}
 .tema h3 {
     font-family: 'Helvetica';
     font-weight: 600;
     font-size: 1.85em;
     margin-left: .8em;
-    z-index: 3; /* Asegura que el texto esté por encima del degradado */
+    z-index: 3; 
     position: relative; 
     padding-bottom: .8em; 
     color: #ffffff; 
 }
 
-/* Link para más temas */
+
 #mastemas {
     padding: .6em 1.5em;
     text-align: center;
     background-color: #363636;
     border-radius: 10px;
     width: fit-content;
-    text-decoration: none; /* Eliminar subrayado */
+    text-decoration: none; 
     transition: transform 0.5s ease;
 }
 #mastemas a {
     font-family: 'Helvetica';
     font-weight: 600;
-    text-decoration: none; /* Eliminar subrayado del enlace */
+    text-decoration: none; 
 }
 #mastemas:hover {
-    transform: scale(1.05); /* Escala el div para que crezca un poco */
+    transform: scale(1.05); 
     cursor: pointer;
 }
 
@@ -175,10 +184,10 @@ body{
 .preguntas {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espacio entre las preguntas */
+    gap: 10px; 
     width: 100%;
-    max-width: 90%; /* Limitar el ancho */
-    margin: 0 auto; /* Centrar en la página */
+    max-width: 90%; 
+    margin: 0 auto; 
 }
 .preguntas h2{
     margin-left:.5em;
@@ -192,10 +201,10 @@ body{
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #363636;
     border-radius: 10px;
     width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px dashed #808080;
 }
 
 .pregunta h3 {
@@ -217,19 +226,182 @@ body{
     margin-bottom: 0;
 }
 
-/* Sin efectos de hover */
-.pregunta:hover {
-    background-color: #363636; /* Mantener el mismo color */
-    transform: none; /* Sin zoom */
+.save-icon {
+    width: 24px;
+    height: 24px;
+    float: right;
+    cursor: pointer;
+    margin-left: 10px;
+}
+#respuestasH3{
+    margin:1em 0;
+}
+.preguntaBlanca {
+    margin-bottom: .5em;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px dashed #808080;
+}
+.preguntaBlanca h3 {
+    font-size: 1.2em;
+    font-weight: 500;
+    width: 65%;
+    padding: 15px 5px;
+    color:#ccc;
 }
 
-.save-icon {
-    width: 24px; /* Ajusta el tamaño del ícono */
-    height: 24px;
-    float: right; /* Para alinearlo a la derecha */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
-    margin-left: 10px; /* Espacio entre el contenido y el ícono */
+.preguntaBlanca p {
+    font-weight: 300;
+    font-size: 0.9em;
+    color: #ccc;
+    margin-left: 20px;
+    line-height: 1.5;
 }
+
+.preguntaBlanca:last-child {
+    margin-bottom: 0;
+}
+.respuesta {
+    margin-bottom: .3em;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 94%, #363636 100%);
+
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.respuesta h3 {
+    font-size: 1em;
+    font-weight: 500;
+    width: 35%;
+    color: #ffffff;
+}
+
+.respuesta p {
+    font-weight: 300;
+    font-size: 0.9em;
+    color: #ccc;
+    margin-left: 20px;
+    line-height: 1.5;
+}
+
+.respuesta:last-child {
+    margin-bottom: 0;
+}
+.postInfo #contenido {
+    font-size: 1em;
+    font-weight: 500;
+    color:#ccc;
+    padding-bottom: 5px;
+}
+
+
+.file-input-container {
+    margin: 1em 0;
+    position: relative;
+}
+.respuestaForm {
+    margin-bottom: .3em;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 20px;
+    border-radius: 10px;
+    width: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.respuestaForm h3 {
+    font-size: 1em;
+    font-weight: 500;
+    width: 35%;
+    color: #ffffff;
+}
+
+.respuestaForm p {
+    font-weight: 300;
+    font-size: 0.9em;
+    color: #ccc;
+    margin-left: 20px;
+    line-height: 1.5;
+}
+#sinRespuestas{
+    font-weight: 300;
+}
+.respuestaForm:last-child {
+    margin-bottom: 0;
+}
+
+.respuestaForm input {
+    font-size: 1em;
+    font-weight: 500;
+    font-style: normal;
+    padding: 40px 20px;
+    border-radius: 7px;
+    border: 0px;
+    background-color: #363636; 
+    color: #ccc; 
+    width: 100%;
+    position: relative; 
+    z-index: 10; 
+    backdrop-filter: none;
+}
+
+.respuestaForm :focus {
+    outline: none; 
+    box-shadow: none; 
+}
+
+.file-input {
+    display: none; 
+}
+
+.custom-file-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.file-icon {
+    width: 20px;
+    height: 20px;  
+    transition: 0.5ms;
+}
+
+
+
+.submit-button {
+    font-weight: 500;
+    padding: 10px 20px;
+    background-color: #ffffff; 
+    color: #363636;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+
+
 
 
 
@@ -285,64 +457,98 @@ body{
         height: 80px;
     }
     
+}@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 .botonMas {
-    background-color: rgba(0, 0, 0, 0.548);
-    width: 5%;
-    height: 10%;
-    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+    border-radius: 10px;
     border-bottom-right-radius: 0;
+    background-image: linear-gradient(270deg, #FF3183, #7EC5FF, #FFA3A5, #00F382);
+    background-color: transparent;
     display: flex;
-    justify-content: center;
     align-items: center;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    margin-right: 30px;
-    margin-bottom: 30px;
-    transition: 0.25s;
-    padding: 10px;
-    color: aliceblue;
-    font-size: 18px;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: 0.3s;
     overflow: hidden;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1001;
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite; 
 }
 
-.botonMas::after {
-    content: 'Hacer pregunta';
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    right: 10px;
-    white-space: nowrap;
-    transition: visibility 0s, opacity 0.45s linear;
-    color: aliceblue;
-    font-size: 1em;
+.botonMas a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.botonMas img {
+    width: 50px;
+    transition: transform 0.3s ease, width 0.3s ease, filter 0.3s ease;
+    animation: balanceAnimation 2s ease infinite;
+}
+
+@keyframes balanceAnimation {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-20deg); 
+    }
+
+    75% {
+        transform: rotate(20deg); 
+    }
 }
 
 .botonMas:hover {
-    background-color: rgb(0, 0, 0);
-    width: 11%; /* Aumentamos el ancho */
-    height: 10%; /* Aumentamos la altura */
-    border-radius: 20px;
+    border: none;
+    background-color: white;
+    width: 200px;
+    border-radius: 10px;
     border-bottom-right-radius: 0;
-    justify-content: start;
-    padding-left: 15px;
 }
 
-.botonMas:hover::after {
-    visibility: visible;
-    opacity: 1;
-    right: 15px;
+.botonMas:hover img {
+    width: 80px;
+    transform: translateY(50%);
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.7)); 
+    animation: none;
 }
-.botonMas:hover > a{
-    transform: rotate(-180deg);
+
+.botonMas::before {
+    font-family: 'Helvetica';
+    position: absolute;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    top: 10px;
+    content: "Formular Pregunta";
+    color: rgb(23, 23, 23);
+    font-size: 5px;
+    transition: transform 0.3s ease, font-size 0.3s ease;
+    opacity: 0;
 }
-.botonMas a {
-    text-decoration: none;
-    font-size: 4em;
-    color: aliceblue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.5s ease; /* Añadimos la transición para el efecto de rotación */
+
+.botonMas:hover::before {
+    font-size: 20px;
+    opacity: 1; 
 }
+
+
+
+
