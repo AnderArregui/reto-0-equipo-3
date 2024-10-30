@@ -23,8 +23,8 @@ class PostController {
         $nombre_usuario = $_SESSION['usuario']['nombre'] ?? null;
 
         if ($nombre_usuario) {
-            $this->id_usuario = $this->usuarioModel->obtenerIdPorNombre($nombre_usuario);
-            if (!$this->id_usuario) {
+            $id_usuario = $_SESSION['id_usuario'];
+            if (!$id_usuario) {
                 $_SESSION['mensaje'] = "Usuario no encontrado en la base de datos.";
                 header("Location: /reto-1-equipo-3/php/index.php");
                 exit();
@@ -35,7 +35,6 @@ class PostController {
     public function publicarRespuesta() {
         $contenido = $_POST['contenido'] ?? '';
         $id_post = $_POST['id_post'] ?? null;
-        $usuarioModel = new Usuario();
         $ruta = null;
     
         if (isset($_FILES['media']) && $_FILES['media']['error'] === UPLOAD_ERR_OK) {
@@ -52,8 +51,7 @@ class PostController {
         }
 
         if ($contenido && $id_post && isset($_SESSION['usuario'])) {
-            $nombre_usuario = $_SESSION['usuario'];
-            $id_usuario = $usuarioModel->obtenerIdPorNombre($nombre_usuario);
+            $id_usuario = $_SESSION['id_usuario'];
     
             if ($id_usuario) {
                 $respuestaModel = new Respuesta();
@@ -101,7 +99,7 @@ class PostController {
             }
     
             
-            $id_usuario = $this->usuarioModel->obtenerIdPorNombre($nombre_usuario);
+            $id_usuario = $_SESSION['id_usuario'];
             var_dump($id_usuario, $id_tema, $_POST['pregunta']);
     
             // Crear pregunta

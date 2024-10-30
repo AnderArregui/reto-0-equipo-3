@@ -17,8 +17,12 @@ class Usuario {
         $stmt->bindParam(':password', $password);
         $stmt->execute();
 
+        // Obtener el usuario si existe
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetch(PDO::FETCH_ASSOC); // Devuelve el registro del usuario
+        }
 
-        return $stmt->rowCount() > 0;
+        return false; // Devuelve falso si no se encontró el usuario
     }
 
     public function obtenerIdPorNombre($nombre_usuario) {

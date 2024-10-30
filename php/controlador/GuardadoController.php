@@ -1,5 +1,11 @@
 <?php
+require_once "models/Guardado.php";
 class GuardadoController {
+
+    public $view = "guardar";
+    public $showLayout = true;
+
+
     private $guardadoModel;
 
     public function __construct() {

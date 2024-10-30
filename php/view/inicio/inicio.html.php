@@ -35,6 +35,7 @@
 <div class="preguntas"> 
     <h2>Preguntas Recientes</h2>
     <?php $preguntas = $dataToView["data"]['preguntas'];
+    $guardados = $dataToView["data"]["guardados"];
     if (!empty($preguntas)): ?>
         <?php foreach ($preguntas as $pregunta): ?>
             <div class="pregunta" style="border: 2px dashed <?php echo htmlspecialchars($pregunta['caracteristica']); ?>">
@@ -73,7 +74,11 @@
                         ?>
                     </p>
                 </div>
-                <img src="/reto-1-equipo-3/php/assets/images/nosave.png" alt="Guardar" class="save-icon" data-id-post="<?php echo $pregunta['id_post']; ?>" onclick="guardar(this)" />
+                <?php 
+                    $isSaved = $guardados->verificarGuardado($pregunta['id_post'], $_SESSION['id_usuario']);
+                ?>
+                <!-- Para verificar los guardados del archivo -->
+                <img src="<?php echo $isSaved ? '/reto-1-equipo-3/php/assets/images/save.png' : '/reto-1-equipo-3/php/assets/images/nosave.png'; ?>" alt="Guardar" class="save-icon" data-id-post="<?php echo $pregunta['id_post']; ?>" data-id-usuario="<?php echo $_SESSION['id_usuario']; ?>" onclick="guardar(this)" />
             </div>
         <?php endforeach; ?>
     <?php else: ?>

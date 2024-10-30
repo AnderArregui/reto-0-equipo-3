@@ -1,6 +1,7 @@
 <?php
 require_once "models/Tema.php";
 require_once "models/Post.php";
+require_once "models/Guardado.php";
 
 class TemaController {
     public $showLayout = true;
@@ -46,10 +47,20 @@ class TemaController {
         // Obtén las publicaciones del tema
         $preguntas = $this->postModel->obtenerPorTema($id_tema);
 
+        // Inicializar el guardado
+        $guardadoModel = new Guardado();
+
+        // Preparar el array de guardados para la lista
+        $guardados = [];
+        foreach ($preguntas as $pregunta) {
+            $guardados[$pregunta['id_post']] = $guardadoModel->verificarGuardado($pregunta['id_post'], $_SESSION['id_usuario']);
+        }
+
         // Prepara los datos para la vista
         $dataToView = [
             "tema" => $temaData,
-            "preguntas" => $preguntas
+            "preguntas" => $preguntas,
+            "guardados" => $guardados
         ];
 
         require_once("view/tema/view.html.php");

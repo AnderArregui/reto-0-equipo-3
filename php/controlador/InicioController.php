@@ -2,6 +2,7 @@
 require_once "models/Tema.php";
 require_once "models/Post.php";
 require_once "models/Respuesta.php";
+require_once "models/Guardado.php";
 
 class InicioController {
     public $showLayout = true;
@@ -64,12 +65,17 @@ class InicioController {
         $usuario = $this->getUsuario();
         $temas = $this->getThemes();
         $preguntas = $this->getAllPosts();
+
+        // Inicializar el guardado
+        $guardadoModel = new Guardado();
+
         $this->view = "inicio"; 
         
         return [
             'temas' => $temas, 
             'preguntas' => $preguntas,
-            'usuario' => $usuario
+            'usuario' => $usuario,
+            'guardados' => $guardadoModel
         ];
     }
 }

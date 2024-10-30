@@ -23,9 +23,16 @@ class UsuarioController {
             $password = $_POST['password'];
 
             $this->usuario = new Usuario();
-            if ($this->usuario->validateLogin($username, $password)) {
+
+            // Obtener el usuario completo, para guardar la session
+
+            $usuarioModel = $this->usuario->validateLogin($username, $password);
+
+            if ($usuarioModel) {
 
                 $_SESSION['usuario'] = $username;
+                $_SESSION['id_usuario'] = $usuarioModel['id_usuario'];
+                
                 header("Location: index.php?controller=Inicio&action=inicio");
                 exit();
             } else {
@@ -66,19 +73,31 @@ class UsuarioController {
 }
 
 
-    public function obtenerIdPorNombre() {
-        $data = json_decode(file_get_contents("php://input"), true);
-        $nombre_usuario = $data['nombre_usuario'];
+public function obtenerIdPorNombre() {
+    header('Content-Type: application/json');
+    
+    $data = json_decode(file_get_contents("php://input"), true);
+    $nombre_usuario = $data['nombre_usuario'];
 
-        $usuario = $this->usuarioModel->obtenerIdPorNombre($nombre_usuario);
+    if (!$nombre_usuario) {
+        echo json_encode(['success' => false, 'message' => 'Nombre de usuario no proporcionado.']);
+        exit;
+    }
 
-        if ($usuario) {
-            echo json_encode(['success' => true, 'id_usuario' => $usuario['id_usuario']]);
+    try {
+        $usuarioModel = $this->usuario->obtenerIdPorNombre($nombre_usuario);
+
+        if ($usuarioModel) {
+            echo json_encode(['success' => true, 'id_usuario' => $usuarioModel['id_usuario']]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Usuario no encontrado.']);
         }
+    } catch (Exception $e) {
+        error_log('Error en obtenerIdPorNombre: ' . $e->getMessage());
+        echo json_encode(['success' => false, 'message' => 'Error interno del servidor.']);
     }
-
+    exit;
+}
     public function init() {
         $usuario = $this->perfil();
     
