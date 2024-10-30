@@ -9,25 +9,8 @@
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/temas.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/contacto.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/CrearPregunta.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/resultado.css">
     <title>Página de Inicio</title>
-    <script>
-        function toggleTemaCreation() {
-            var checkbox = document.getElementById('crear');
-            var label = document.querySelector('label[for="crear"]');
-            var input = document.getElementById('nuevo_tema');
-            var button = document.getElementById('crear_tema_btn');
-            
-            if (checkbox.checked) {
-                label.style.display = 'none';
-                input.style.display = 'inline-block';
-                button.style.display = 'inline-block';
-            } else {
-                label.style.display = 'inline-block';
-                input.style.display = 'none';
-                button.style.display = 'none';
-            }
-        }
-    </script>
 </head>
 <body>
     <nav>
@@ -38,24 +21,28 @@
             <li><a href="index.php?controller=Inicio&action=contacto">Contacto</a></li>
         </ul>
         <div class="search-container">
-            <input type="text">
+    <form action="index.php" method="GET">
+        <input type="hidden" name="controller" value="Resultado">
+        <input type="hidden" name="action" value="buscar">
+        <input type="text" name="termino" placeholder="Buscar..." required>
+        <button type="submit">
             <img src="/reto-1-equipo-3/php/assets/images/search.svg" alt="Lupa" class="search-icon">
-        </div>
-        <div class="burger">
-            <span class="material-symbols-outlined">menu</span>
-        </div>
+        </button>
+    </form>
+</div>
 
         <div class="profile-icon">
             <a href="index.php?controller=Usuario&action=perfil">
                 <?php 
                 $elUsuario = $dataToView['data']['usuario'];
-
                 $fotoPerfil = isset($elUsuario['foto_perfil']) && !empty($elUsuario['foto_perfil']) 
                     ? htmlspecialchars($elUsuario['foto_perfil']) 
-                    : '/ruta/a/imagen/placeholder.png';
+                    : '';
                 ?>
                 <img src="<?php echo $fotoPerfil; ?>" alt="Perfil">
             </a>
         </div>
 
     </nav>
+
+        

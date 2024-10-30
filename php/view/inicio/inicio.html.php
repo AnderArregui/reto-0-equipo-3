@@ -11,7 +11,6 @@
                 
                 $imagenTema = !empty($tema['imagen']) ? htmlspecialchars($tema['imagen']) : 'default.jpg'; // Asigna una imagen por defecto si no hay imagen
         ?>
-        <!-- Hacemos que el contenedor del tema sea un enlace -->
             <a href="index.php?controller=Tema&action=view&id_tema=<?php echo htmlspecialchars($tema['id_tema']); ?>" class="tema-link">
             <div class="tema" data-color="<?php echo htmlspecialchars($tema['caracteristica']); ?>">
                 <img src="<?php echo $imagenTema; ?>" alt="Imagen de <?php echo htmlspecialchars($tema['nombre']); ?>" class="tema-img">
@@ -32,8 +31,18 @@
     </div>
 </div>
 
+<div class="tresElementos">
 <div class="preguntas"> 
+    <div class="orden-control">
     <h2>Preguntas Recientes</h2>
+    <div>
+        <span>Ordenar por:</span>
+        <a href="index.php?controller=Inicio&action=ordenar&tipo=popular">Destacado</a>
+        <a href="index.php?controller=Inicio&action=ordenar&tipo=reciente">Reciente</a>
+        <a href="index.php?controller=Inicio&action=ordenar&tipo=tema">Por tema</a>
+        <a href="index.php?controller=Inicio&action=ordenar&tipo=aleatorio">Aleatorio</a>
+    </div>
+</div>
     <?php $preguntas = $dataToView["data"]['preguntas'];
     if (!empty($preguntas)): ?>
         <?php foreach ($preguntas as $pregunta): ?>
@@ -49,13 +58,12 @@
                 ?>
                 </a>
                 </h3>
-               
                 <div class="postInfo">
-                    <p>Tema: <?php echo htmlspecialchars($pregunta['nombre_tema'] ?? 'Tema no especificado'); ?></p>
                     <p>Por: <?php echo htmlspecialchars($pregunta['nombre_usuario'] ?? 'Usuario desconocido'); ?></p>
                     <p>Fecha: <?php echo htmlspecialchars($pregunta['fecha']); ?></p>  
                 </div>
                 <div class="postInfo">
+                <p>Tema: <?php echo htmlspecialchars($pregunta['nombre_tema'] ?? 'Tema no especificado'); ?></p>
                     <p>Respuestas: <?php echo htmlspecialchars($pregunta['total_respuestas'] ?? '0'); ?></p>
                 </div>
                 <div>
@@ -80,7 +88,49 @@
         <p>No hay preguntas disponibles.</p>
     <?php endif; ?>
 </div>
+<?php 
+$guardados = $dataToView['data']['guardados'];
+$likesUsuario = $dataToView['data']['likesUsuario'];
+?>
 
+    <div class="guardados">
+        <h2>Mis Guardados</h2>
+        <?php if (!empty($guardados)): ?>
+            <?php foreach ($guardados as $postGuardado): ?>
+                <div class="preguntaGuardada" style="border: 2px dashed <?php echo htmlspecialchars($postGuardado['caracteristica']); ?>">
+                    <h3>
+                        <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo htmlspecialchars($postGuardado['id_post']); ?>" class="tema-link">
+                            <?php 
+                                $maxCaracteres = 180;
+                                $contenido = htmlspecialchars($postGuardado['contenido']);
+                                echo (mb_strlen($contenido) > $maxCaracteres) 
+                                    ? mb_substr($contenido, 0, $maxCaracteres) . "..." 
+                                    : $contenido; 
+                            ?>
+                        </a>
+                    </h3>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No tienes posts guardados.</p>
+        <?php endif; ?>
+    </div>
+
+
+
+    <div class="likes-usuario">
+        <h2>Respuestas a las que he dado Like</h2>
+        <?php 
+        $likesUsuario = $dataToView["data"]['likesUsuario'] ?? []; 
+        if (!empty($likesUsuario)): ?>
+            <?php foreach ($likesUsuario as $respuestaLike): ?>
+                <p><?php echo $respuestaLike['contenido'] ?></p>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No has dado like a ninguna respuesta.</p>
+        <?php endif; ?>
+    </div>
+</div>
 
 
 <script src="/reto-1-equipo-3/php/assets/js/guardar.js"></script>

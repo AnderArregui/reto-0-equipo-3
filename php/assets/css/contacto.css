@@ -46,7 +46,7 @@
 }
 .emailContacto{
     width: 50%;
-    margin-right: 1em;
+    margin-right: 3em;
 }
 .asuntoContacto{
     width: 40%;
@@ -54,7 +54,7 @@
 }
 .mensajeContacto{
     width: 40%;
-    margin-right: 3em;
+    margin-right: 5em;
 }
 
 #formContacto label
@@ -95,6 +95,8 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: -.8em;
+
+    font-weight: 500;
 }
 
 #formContacto button:hover {

@@ -7,13 +7,14 @@
         $respuestas = $dataToView['data']['respuestas'];
         $temas = $dataToView['data']['tema'];
         $usuario = $dataToView['data']['usuario'];
+        $usuarioPost = $dataToView['data']['usuarioPost'];
 
         if ($post): ?>
             <div class="preguntaBlanca" style="border: 2px dashed <?php echo htmlspecialchars($temas['caracteristica']); ?>">
                 <h3><?php echo htmlspecialchars($post['contenido']); ?></h3>
                 <div class="postInfo">
                 <p>Tema: <?php echo htmlspecialchars($temas['nombre_tema'] ?? 'Tema no especificado'); ?></p>
-                    <p>Por: <?php echo htmlspecialchars($usuario['nombre_usuario'] ?? 'Usuario desconocido'); ?></p>
+                    <p>Por: <?php echo htmlspecialchars($usuarioPost['nombre_usuario'] ?? 'Usuario desconocido'); ?></p>
                 <p>Fecha: <?php echo htmlspecialchars($post['fecha']); ?></p>
                 </div>
                 <img src="/reto-1-equipo-3/php/assets/images/nosave.png" alt="Guardar" class="save-icon" onclick="guardar(this)" />

@@ -3,6 +3,7 @@
 require_once "models/Respuesta.php";
 require_once 'models/Tema.php';
 require_once 'models/Post.php';
+require_once "models/Usuario.php";
 
 class PostController {
     public $view;
@@ -72,10 +73,17 @@ class PostController {
     public function crearPregunta() {
         $temas = $this->temaModel->obtenerTodos();
         $this->view = "crearPregunta";
-        return ['temas' => $temas];
+
+            $usuarioModel = new Usuario();
+            $nombre_usuario = $_SESSION['usuario'];
+            $usuario = $usuarioModel->obtenerPorNombre($nombre_usuario);    
+
+            return [
+                'usuario' => $usuario,
+            'temas' => $temas
+        ];
     }
     
-
     public function crearPreguntas() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_tema = null;
@@ -104,7 +112,6 @@ class PostController {
             $id_usuario = $this->usuarioModel->obtenerIdPorNombre($nombre_usuario);
             var_dump($id_usuario, $id_tema, $_POST['pregunta']);
     
-            // Crear pregunta
             if (!empty($_POST['pregunta']) && $id_tema && $id_usuario) {
                 if ($this->postModel->crear($id_usuario, $id_tema, $_POST['pregunta'])) {
                     $_SESSION['mensaje'] = "";
@@ -139,10 +146,13 @@ class PostController {
             $postModel = new Post();
             $usuarioModel = new Usuario();
 
-            $usuario = $usuarioModel->obtenerUsuarioPorId($id_post);
+            $usuarioPost = $usuarioModel->obtenerUsuarioPorId($id_post);
             $tema = $postModel->obtenerPorId($id_post);
             $post = $respuestaModel->obtenerPost($id_post);
             $respuestas = $respuestaModel->obtenerPorPost($id_post);
+
+            $nombre_usuario = $_SESSION['usuario'];
+            $usuario = $usuarioModel->obtenerPorNombre($nombre_usuario); 
 
         
             return [
@@ -150,6 +160,7 @@ class PostController {
                     'respuestas' => $respuestas,
                     'tema' => $tema,
                     'usuario' => $usuario,
+                    'usuarioPost' => $usuarioPost
             ];
         }
 
@@ -158,10 +169,7 @@ class PostController {
                 'respuestas' => [],
                 'tema' => null,
                 'usuario' => null,
+                'usuarioPost' => null,
         ];
     }
-    
-
-
-    
 }

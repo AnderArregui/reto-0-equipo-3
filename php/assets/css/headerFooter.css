@@ -41,15 +41,27 @@ nav img {
     text-decoration: none;
     color: white;
 }
-
 .search-container {
     display: flex;
     align-items: center;
-    background-color: #f1f1f1;
-    padding: 5px;
-    border-radius: 7px;
-    width: 200px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    background-color: #f9f9f9; /* Un tono más claro para un mejor contraste */
+    padding: 2px 4px; /* Un poco más de espacio alrededor */
+    border-radius: 10px; /* Bordes más redondeados */
+    width: 250px; /* Ampliar el contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    transition: box-shadow 0.3s ease; /* Transición suave para el hover */
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+}
+
+.search-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .search-container input {
@@ -57,20 +69,45 @@ nav img {
     outline: none;
     background-color: transparent;
     color: rgb(23, 23, 23);
-    border-radius: 7px;
+    border-radius: 5px;
     font-size: 1em;
-    width: 100%; 
-    transition: width 0.4s ease;
+    font-weight: 500;
+    width: 50%;
+    padding: 6px;
+    transition: width 0.4s ease, background-color 0.3s ease;
+}
+
+.search-container input::placeholder {
+    color: #bbb; 
+    font-weight: 500;
 }
 
 .search-container input:focus {
-    width: 100%; 
+    width: 100%;
+    background-color: #fff; 
+}
+button {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    background-color: transparent;
+    border: none;
+    cursor: pointer; 
+    transition: transform 0.2s ease; 
 }
 
 .search-icon {
-    margin:.1em 0 0 8em; 
+    position: relative;
     height: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease; 
 }
+
+.search-icon:hover {
+    transform: scale(1.1); 
+    width: 10%;
+}
+
 
 
 .burger {

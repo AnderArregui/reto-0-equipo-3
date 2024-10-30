@@ -3,8 +3,13 @@
 class Usuario {
     private $connection;
 
-    public function __construct() {
-        // Cargar la conexión
+    public function __construct()
+    {
+        $this->getConection();
+    }
+
+    public function getConection()
+    {
         $db = new db();
         $this->connection = $db->connection;
     }
@@ -41,7 +46,7 @@ class Usuario {
 
     public function obtenerUsuarioPorId($id_post) {
         $query = "
-            SELECT u.nombre AS nombre_usuario
+            SELECT u.nombre  AS nombre_usuario, u.foto AS foto_perfil
             FROM posts p
             JOIN usuarios u ON p.id_usuario = u.id_usuario
             WHERE p.id_post = ?";

@@ -44,9 +44,6 @@ class Tema {
         $stmt->execute();
         return $stmt->fetchColumn();
     }
-    
-
-
     public function obtenerTemas() {
         try {
             $sql = "SELECT  id_tema, nombre  FROM " . $this->table;

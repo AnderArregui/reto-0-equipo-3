@@ -17,9 +17,6 @@ $claseTema = empty($imagenTema) && empty($colorTema) ? 'tema-sin-imagen-color' :
     <h3 id="palabraTemaOculta">Tema</h3>
     <h3><?php echo htmlspecialchars($temas['nombre']); ?></h3>
 </div>
-
-
-
         <div class="preguntas"> 
             <h3>Preguntas Recientes</h3>
             <?php if (!empty($preguntas)): ?>
@@ -39,8 +36,21 @@ $claseTema = empty($imagenTema) && empty($colorTema) ? 'tema-sin-imagen-color' :
                     <p>Respuestas: <?php echo htmlspecialchars($pregunta['total_respuestas'] ?? '0'); ?></p>
                 </div>
                 <div class="postInfo">
-                    <p>Últ. mensaje: juanPerez</p>
-                    <p>Hace 24 minutos</p>
+                <div>
+                    <p>Últ. mensaje: <?php echo htmlspecialchars($pregunta['autor_ultimo_mensaje'] ?? 'N/D'); ?></p>
+                    <p>
+                        <?php 
+                            $minutos = $pregunta['minutos_transcurridos'] ?? 0;
+                            if ($minutos < 60) {
+                                echo "Hace {$minutos} minutos";
+                            } elseif ($minutos < 1440) {
+                                echo "Hace " . floor($minutos / 60) . " horas";
+                            } else {
+                                echo "Hace " . floor($minutos / 1440) . " días";
+                            }
+                        ?>
+                    </p>
+                </div>
                 </div>
                 <img src="/reto-1-equipo-3/php/assets/images/nosave.png" alt="Guardar" class="save-icon" onclick="guardar(this)" />
             </div>

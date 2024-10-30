@@ -157,6 +157,7 @@ body{
 }
 
 
+
 #mastemas {
     padding: .6em 1.5em;
     text-align: center;
@@ -177,21 +178,88 @@ body{
 }
 
 
-
+.tresElementos{
+    display: grid;
+    grid-template-rows: auto;
+    margin: 0 auto;
+    min-height: 100vh;
+}
 
 
 
 .preguntas {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px; 
-    width: 100%;
+    width: 50%;
     max-width: 90%; 
     margin: 0 auto; 
 }
-.preguntas h2{
+
+.guardado {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; 
+    width: 30%;
+    max-width: 90%; 
+    margin: 0 auto; 
+}
+
+.orden-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1em;
+    padding: 0.5em;
+    justify-content: space-between;
+    background-color: #363636; 
+    border-radius: 8px;
+}
+
+.orden-control h2 {
     margin-left:.5em;
+    font-size: 1.2em;
+    color: #ccc;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+
+}
+
+.orden-control span {
+    font-size: 1em;
+    color: #ccc;
     font-weight: 300;
+}
+
+.orden-control a {
+    font-size: 1.2em;
+    color: #ccc;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.orden-control a:hover,
+.orden-control a.active  {
+    background-color: #5f5f5f; 
+    color: #ffffff;
+}
+
+
+.preguntaGuardada {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px dashed #808080;
 }
 
 .pregunta {

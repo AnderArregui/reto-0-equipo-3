@@ -2,8 +2,15 @@
 class Guardado {
     private $db;
     
-    public function __construct($db) {
-        $this->db = $db;
+    public function __construct()
+    {
+        $this->getConection();
+    }
+
+    public function getConection()
+    {
+        $db = new db();
+        $this->connection = $db->connection;
     }
     
     public function guardar() {
@@ -26,7 +33,7 @@ class Guardado {
             echo json_encode(['success' => $success]);
         }
     }
-}
+
     
     public function eliminar($id_post, $id_usuario) {
         $query = "DELETE FROM Guardado WHERE id_post = ? AND id_usuario = ?";
@@ -34,12 +41,25 @@ class Guardado {
         return $stmt->execute([$id_post, $id_usuario]);
     }
     
-    public function obtenerGuardadosPorUsuario($id_usuario) {
-        $query = "SELECT p.* FROM Posts p 
-                  JOIN Guardado g ON p.id_post = g.id_post 
-                  WHERE g.id_usuario = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$id_usuario]);
+    public function obtenerGuardadosPorUsuario($usuario) {
+        $query = "
+            SELECT 
+                p.id_post AS id_post,
+                p.contenido AS contenido,
+                t.caracteristica AS caracteristica
+            FROM 
+                posts p
+            JOIN 
+                guardado g ON p.id_post = g.id_post 
+            JOIN 
+                temas t ON p.id_tema = t.id_tema
+            WHERE 
+                g.id_usuario = ?
+        ";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$usuario]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 }

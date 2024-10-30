@@ -24,6 +24,25 @@ class Respuesta {
         ]);
     }
 
+
+    public function obtenerLikesPorUsuario($usuarioId) {
+        $query = "SELECT r.* FROM respuestas r 
+                  INNER JOIN likeUsuario lu ON r.id_respuesta = lu.id_respuesta
+                  WHERE lu.id_usuario = :usuarioId";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':usuarioId', $usuarioId, PDO::PARAM_INT);
+        
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error en la ejecución de la consulta: " . $e->getMessage();
+            return [];
+        }
+    }
+    
+
+
     
     
 
