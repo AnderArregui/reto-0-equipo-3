@@ -36,11 +36,7 @@ if (isset($_SESSION['usuario'])) {
 
 
 if (method_exists($controller, $_GET["action"])) {
-    $actionResult = $controller->{$_GET["action"]}();
-    if (is_array($actionResult)) {
-        
-        $controllerData = array_merge($dataToView["data"], $actionResult);
-    }
+    $dataToView["data"] = $controller->{$_GET["action"]}();
 }
 
 
@@ -62,8 +58,5 @@ require_once "view/" . strtolower($_GET["controller"]) . "/" . $controller->view
 if ($controller->showLayout) {
     require_once "view/layout/footer.html.php";
 }
-
-
-$dataToView["data"] = array_merge($dataToView["data"], $controllerData);
 
 ?>

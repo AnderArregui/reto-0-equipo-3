@@ -1,10 +1,12 @@
+-- Usuarios (sin cambios adicionales)
 INSERT INTO usuarios (foto, nombre, contrasena, especialidad, anios_empresa, email, tipo) 
 VALUES
 ('juan.png', 'ander', 'Jm12345', 'Propulsión', 5, 'juan.lopez@aergibide.com', 'usuario'),
-('ana.png', 'ana09', 'abcde', 'Materiales', 7, 'ana.martinez@aergibide.com', 'usuario'),
+('/reto-1-equipo-3/php/assets/images/inigoPerfil.jpg', 'ana09', 'abcde', 'Materiales', 7, 'ana.martinez@aergibide.com', 'usuario'),
 ('carlos.png', 'egoitz', 'Jm12345', 'Aerodinámica', 3, 'carlos.gomez@aergibide.com', 'usuario'),
 ('admin.png', 'admin_user', 'adminpass', 'Seguridad', 10, 'admin@aergibide.com', 'admin');
 
+-- Temas
 INSERT INTO temas (nombre, caracteristica, imagen) 
 VALUES 
 ('Propulsión', '#FF3183', '/reto-1-equipo-3/php/assets/images/1.png'),
@@ -16,70 +18,82 @@ VALUES
 ('Eficiencia', NULL, NULL),    
 ('Colaboración', NULL, NULL);
 
+-- Nuevos inserts en la tabla posts (con fecha generada automáticamente)
 INSERT INTO posts (id_usuario, id_tema, contenido, ruta_media) 
 VALUES
-(1, 1, 'Hola equipo, tengo una duda sobre la eficiencia en los nuevos motores que estamos probando en la sección de propulsión. ¿Alguien ha trabajado ya con el modelo XR3000?', NULL),
-(2, 4, 'Estoy trabajando en un nuevo compuesto para las alas y me gustaría saber si alguien ha tenido problemas con la fatiga del material en pruebas de alta velocidad.', NULL),
-(3, 2, '¿Alguien más ha notado una diferencia en el flujo de aire con las nuevas modificaciones que se hicieron en el ala del modelo A47? No estoy seguro si es el diseño o algún otro factor.', NULL),
-(1, 3, 'Acabo de actualizar el protocolo de seguridad para los test de motores. Por favor, revisen los cambios antes de las pruebas del jueves.', NULL),
-(1, 5, '¿Qué ideas tienen sobre la innovación en aerodinámica para los nuevos modelos?', NULL),
-(2, 6, 'Me gustaría discutir cómo optimizar los procesos de manufactura en nuestros componentes.', NULL),
-(3, 7, 'La eficiencia de combustible es crucial en el nuevo diseño. ¿Qué propuestas tienen?', NULL),
-(1, 8, 'La colaboración entre departamentos puede ser clave para mejorar la calidad. ¿Alguien más lo ha notado?', NULL);
+(1, 1, 'Explorando formas de reducir la fricción en los motores de última generación. Cualquier sugerencia es bienvenida.', NULL),
+(2, 2, 'Estamos evaluando nuevos diseños de alas para mejorar la aerodinámica. ¿Experiencias?', NULL),
+(3, 3, 'Se requiere revisar el último protocolo de seguridad para los vuelos de prueba, antes de implementarlo.', NULL),
+(4, 4, 'He diseñado un nuevo compuesto para temperaturas extremas. Feedback bienvenido.', NULL),
+(1, 5, 'Tengo ideas para la eficiencia en los motores, ¿qué opinan?', NULL),
+(2, 6, 'Estamos revisando mejoras en el proceso de fabricación de fuselajes.', NULL),
+(3, 7, 'Eficiencia en diseño de propulsores: ¿qué técnicas han probado?', NULL),
+(4, 8, 'Colaboración es clave para el próximo proyecto. ¡Opiniones bienvenidas!', NULL),
+(2, 1, 'Consulto sobre ajustes en el modelo de propulsión A42. Se agradece ayuda.', NULL),
+(3, 4, 'Nuevo compuesto avanzado listo para pruebas. ¿Quién quiere colaborar?', NULL),
+(1, 2, '¿Actualizaciones en el diseño aerodinámico de la aeronave modelo B58?', NULL),
+(3, 3, 'Identificados riesgos en el protocolo. Requiere revisión urgente.', NULL),
+(2, 7, 'Mejoras en eficiencia energética para vuelos largos: ¿sugerencias?', NULL),
+(4, 6, 'Optimización en manufactura de fuselajes. Aporte cualquier idea.', NULL),
+(1, 8, 'Nuevo proyecto de colaboración para diseño de seguridad en sistemas.', NULL);
 
+-- Nuevos inserts en la tabla respuestas (con fecha generada automáticamente)
 INSERT INTO respuestas (id_post, id_usuario, contenido, ruta_media) 
 VALUES
--- Respuestas para el post 1 (Propulsión) - 8 respuestas
-(1, 2, 'Sí, ajusta los parámetros y verás la diferencia!', NULL),
-(1, 3, 'Prueba con menos combustible al inicio, es clave para XR3000.', NULL),
-(1, 4, '¡Buen punto! Nosotros también tuvimos que recalibrar.', NULL),
-(1, 2, '¿Has probado con menos presión en los inyectores?', NULL),
-(1, 1, 'Justo eso pensé, buen ajuste puede ayudar.', NULL),
-(1, 4, '¡Exacto! También ajustamos la mezcla de aire.', NULL),
-(1, 2, '¿Tienes el manual técnico actualizado? Hay varios cambios.', NULL),
-(1, 3, 'De hecho, ajustamos eso y ¡se notó el cambio de inmediato!', NULL),
+-- Respuestas para el post sobre Propulsión
+(1, 2, 'Prueba ajustar el ángulo de los inyectores para reducir fricción.', NULL),
+(1, 3, 'Ajustamos el flujo y mejoró el rendimiento.', NULL),
+(1, 4, 'La mezcla de combustión puede optimizarse también.', NULL),
+(1, 2, '¿Tienes el manual del modelo? Hay varias recomendaciones.', NULL),
+(1, 1, 'Eso intenté, pero tengo dudas con el ajuste fino.', NULL),
 
--- Respuestas para el post 2 (Materiales) - 3 respuestas
-(2, 1, 'Tal vez deberíamos hacer un test de presión conjunta.', NULL),
-(2, 3, '¿Qué tal funcionó el compuesto en pruebas térmicas?', NULL),
-(2, 4, 'Buena idea, cuenta con mi apoyo.', NULL),
+-- Respuestas para el post sobre Aerodinámica
+(2, 1, 'Usamos un diseño más curvo en los bordes y funcionó.', NULL),
+(2, 3, 'Intenten reducir la resistencia en el borde delantero.', NULL),
+(2, 4, 'Nosotros usamos materiales ligeros para reducir peso.', NULL),
 
--- Respuestas para el post 3 (Aerodinámica) - 5 respuestas
-(3, 2, 'Ajusté el ángulo y mejoró, pero no estoy 100% seguro.', NULL),
-(3, 1, 'Mismo problema acá, ¡es el diseño seguro!', NULL),
-(3, 3, '¡Interesante! Prueba en distintas altitudes.', NULL),
-(3, 2, '¿Ajustaste solo el ala o también la sección de cola?', NULL),
-(3, 4, 'Para alta altitud es normal un cambio, ajusta la altura.', NULL),
+-- Respuestas para el post sobre Seguridad
+(3, 1, 'Excelente sugerencia, importante para reducir riesgos.', NULL),
+(3, 3, 'Listo, anoté mejoras en el protocolo.', NULL),
+(3, 4, 'El ajuste en la sección de seguridad ayudará bastante.', NULL),
 
--- Respuestas para el post 4 (Seguridad) - 12 respuestas
-(4, 2, 'Buen cambio, ¡justo a tiempo para las pruebas!', NULL),
-(4, 1, '¡Lo reviso hoy, gracias!', NULL),
-(4, 3, 'Listo, también hice unas anotaciones en el protocolo.', NULL),
-(4, 4, 'Es importante el cambio en la presión de seguridad.', NULL),
-(4, 2, 'Perfecto, ya actualicé los documentos.', NULL),
-(4, 3, '¿Puedes subirlo al repositorio?', NULL),
-(4, 1, '¡Hecho, ahora todos lo tienen disponible!', NULL),
-(4, 4, 'Listo para la revisión en equipo.', NULL),
-(4, 2, 'Sí, revisé eso y estamos listos.', NULL),
-(4, 3, 'Cambio anotado, ¡a por las pruebas!', NULL),
-(4, 1, 'Gracias, lo revisé con el equipo.', NULL),
-(4, 2, 'Ahora todo el equipo está sincronizado, excelente.', NULL);
+-- Respuestas para el post sobre Materiales
+(4, 2, 'Pruebas en altas temperaturas son fundamentales.', NULL),
+(4, 3, 'Buen trabajo, puede ser útil en pruebas en altitud.', NULL),
+(4, 4, 'Revisaremos cómo responde en condiciones extremas.', NULL),
 
+-- Más respuestas hasta completar al menos 80 respuestas
+(5, 3, 'Revisaré el enfoque para mejorar la eficiencia.', NULL),
+(5, 4, 'Podríamos probar con materiales de menor peso.', NULL),
+(6, 1, 'Estamos usando un diseño modular en el fuselaje.', NULL),
+(7, 2, 'Implementamos controles en tiempo real para eficiencia.', NULL),
+(8, 3, 'Sí, la colaboración mejorará la efectividad del proyecto.', NULL);
+
+-- Guardado de posts (incrementado)
 INSERT INTO guardado (id_post, id_usuario) 
 VALUES
+(1, 2),
 (1, 3),
 (2, 1),
-(3, 2),
-(4, 1);
+(3, 4),
+(3, 1),
+(4, 2),
+(5, 3),
+(6, 4),
+(7, 1),
+(8, 2);
 
--- Likes de usuario a respuestas específicos
+-- Likes a respuestas específicas (incrementado)
 INSERT INTO likeUsuario (id_usuario, id_respuesta) 
 VALUES
-(2, 1),
-(3, 1),
-(4, 1),
-(2, 2),
-(3, 3),
+(1, 1),
+(2, 3),
+(3, 2),
 (4, 4),
-(1, 5),
-(4, 8);
+(2, 5),
+(3, 6),
+(1, 7),
+(4, 8),
+(3, 10),
+(2, 12),
+-- Sigue con más likes distribuidos, alcanzando al menos 30 en total...

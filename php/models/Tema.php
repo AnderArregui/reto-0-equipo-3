@@ -13,7 +13,7 @@ class Tema {
     public function getConection()
     {
         $db = new db();
-        $this->connection = $db->connection; // Accede a la conexión
+        $this->connection = $db->connection;
     }
 
     public function crear($nombre) {
@@ -44,6 +44,7 @@ class Tema {
         $stmt->execute();
         return $stmt->fetchColumn();
     }
+
     public function obtenerTemas() {
         try {
             $sql = "SELECT  id_tema, nombre  FROM " . $this->table;

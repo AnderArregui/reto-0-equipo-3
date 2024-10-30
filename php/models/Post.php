@@ -32,8 +32,7 @@ class Post {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function obtenerTodos($order = 'reciente') {
-
+    public function obtenerTodos($orderBy = 'p.fecha DESC', $limit = 10, $offset = 0) {
         $query = "
             SELECT 
                 p.*, 
@@ -61,33 +60,26 @@ class Post {
                 temas t ON p.id_tema = t.id_tema
             JOIN 
                 usuarios u ON p.id_usuario = u.id_usuario
+            ORDER BY $orderBy
+            LIMIT :limit OFFSET :offset
         ";
-
-        switch ($order) {
-            case 'popular':
-                $query .= " ORDER BY total_respuestas DESC"; 
-                break;
-            case 'reciente':
-                $query .= " ORDER BY p.fecha DESC"; 
-                break;
-            case 'tema':
-                $query .= " ORDER BY t.nombre ASC";
-                break;
-            case 'aleatorio':
-                $query .= " ORDER BY RAND()"; 
-                break;
-            default:
-                $query .= " ORDER BY fecha_ultimo_mensaje DESC"; 
-        }
     
         $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    
-    
-    
+
+    public function contarTodos() {
+        $query = "SELECT COUNT(*) as total FROM posts";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $resultado['total'];
+    }
+
     public function obtenerPorTema($id_tema) {
         $query = "
             SELECT 
@@ -122,8 +114,6 @@ class Post {
         $stmt->execute([$id_tema]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    
     
     public function incrementarLikes($id_post) {
         $query = "UPDATE posts SET likes = likes + 1 WHERE id_post = ?";

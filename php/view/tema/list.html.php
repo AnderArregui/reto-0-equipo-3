@@ -9,8 +9,7 @@
 
                 $imagenTema = $contador < 4 && !empty($tema['imagen']) ? htmlspecialchars($tema['imagen']) : ''; 
                 $colorTema = $contador < 4 && !empty($tema['caracteristica']) ? htmlspecialchars($tema['caracteristica']) : '';
-
-
+                
                 $claseTema = empty($imagenTema) && empty($colorTema) ? 'tema-sin-imagen-color' : '';
 
         ?>

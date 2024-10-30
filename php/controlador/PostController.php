@@ -80,7 +80,7 @@ class PostController {
 
             return [
                 'usuario' => $usuario,
-            'temas' => $temas
+                'temas' => $temas
         ];
     }
     

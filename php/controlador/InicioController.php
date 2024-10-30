@@ -32,11 +32,6 @@ class InicioController {
         return $this->temaModel->obtenerTodos();
     }
 
-    public function getAllPosts($order = 'reciente') {
-        // Llama al modelo Post con el parámetro de orden
-        return $this->postModel->obtenerTodos($order); 
-    }
-
     public function getUsuario() {
         if (!isset($_SESSION['usuario'])) {
             header("Location: index.php?controller=usuario&action=login");
@@ -45,6 +40,27 @@ class InicioController {
         $nombre_usuario = $_SESSION['usuario'];
         return $this->usuarioModel->obtenerPorNombre($nombre_usuario);
     }
+    public function getAllPosts($orderType, $limit, $offset) {
+        $orderBy = $this->determineOrderType($orderType);
+        
+        return $this->postModel->obtenerTodos($orderBy, $limit, $offset);
+    }
+    
+    private function determineOrderType($orderType) {
+        switch ($orderType) {
+            case 'popular':
+                return 'total_respuestas DESC'; // Popularidad
+            case 'reciente':
+                return 'p.fecha DESC'; // Fecha reciente
+            case 'tema':
+                return 't.nombre ASC'; // Orden por tema
+            case 'aleatorio':
+                return 'RAND()'; // Orden aleatorio
+            default:
+                return 'fecha_ultimo_mensaje DESC'; // Orden por último mensaje
+        }
+    }
+    
 
 
 
@@ -55,25 +71,38 @@ class InicioController {
     public function init() {
         $usuario = $this->getUsuario();
         $temas = $this->getThemes();
-    
+        
         $orderType = $_GET['tipo'] ?? 'reciente';
-        $preguntas = $this->getAllPosts($orderType);
-
+        
+        $postsPorPagina = PAGINATION;
+        $paginaActual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $offset = ($paginaActual - 1) * $postsPorPagina;
+        
+        $preguntas = $this->getAllPosts($orderType, $postsPorPagina, $offset);
+        
         $idUsuario = $usuario['id_usuario'];
-
         $guardados = $this->guardadoModel->obtenerGuardadosPorUsuario($idUsuario);
         $likesUsuario = $this->respuestaModel->obtenerLikesPorUsuario($idUsuario);
     
-        $this->view = "inicio"; 
-    
+        $totalPreguntas = $this->postModel->contarTodos();
+        $totalPaginas = ceil($totalPreguntas / $postsPorPagina);
+        
+        $this->view = "inicio";
+        
         return [
             'temas' => $temas, 
             'preguntas' => $preguntas,
             'usuario' => $usuario,
             'guardados' => $guardados,
-            'likesUsuario' => $likesUsuario
+            'likesUsuario' => $likesUsuario,
+            'paginaActual' => $paginaActual,
+            'totalPaginas' => $totalPaginas,
+            'preguntasPorPagina' => $postsPorPagina,
+            'totalPreguntas' => $totalPreguntas
         ];
     }
+    
+    
     
 }
 ?>

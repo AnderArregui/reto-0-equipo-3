@@ -48,13 +48,12 @@ class TemaController {
         // Obtén las publicaciones del tema
         $preguntas = $this->postModel->obtenerPorTema($id_tema);
 
-        // Prepara los datos para la vista
-        $dataToView = [
+        return [
             "tema" => $temaData,
             "preguntas" => $preguntas
         ];
 
-        require_once("view/tema/view.html.php");
+
     }
 
 

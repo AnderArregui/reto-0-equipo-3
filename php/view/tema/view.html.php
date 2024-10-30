@@ -1,7 +1,7 @@
 <?php
 
-$temas = $dataToView['tema'];
-$preguntas = $dataToView['preguntas'];
+$temas = $dataToView['data']['tema'];
+$preguntas = $dataToView['data']['preguntas'];
 $imagenTema = !empty($temas['imagen']) ? htmlspecialchars($temas['imagen']) : '';
 $colorTema = !empty($temas['caracteristica']) ? htmlspecialchars($temas['caracteristica']) : '';
 $claseTema = empty($imagenTema) && empty($colorTema) ? 'tema-sin-imagen-color' : '';

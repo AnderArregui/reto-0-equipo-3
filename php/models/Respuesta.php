@@ -26,9 +26,13 @@ class Respuesta {
 
 
     public function obtenerLikesPorUsuario($usuarioId) {
-        $query = "SELECT r.* FROM respuestas r 
+        $query = "SELECT r.*, t.caracteristica 
+                  FROM respuestas r 
                   INNER JOIN likeUsuario lu ON r.id_respuesta = lu.id_respuesta
+                  LEFT JOIN posts p ON r.id_post = p.id_post
+                  LEFT JOIN temas t ON p.id_tema = t.id_tema
                   WHERE lu.id_usuario = :usuarioId";
+                  
         $stmt = $this->connection->prepare($query);
         $stmt->bindParam(':usuarioId', $usuarioId, PDO::PARAM_INT);
         
@@ -41,13 +45,18 @@ class Respuesta {
         }
     }
     
+    
+    
 
 
     
     
 
     public function obtenerPorPost($id_post) {
-        $query = "SELECT r.*, u.nombre as nombre_usuario, u.especialidad as especialidad_usuario 
+        $query = "SELECT r.*, 
+                         u.nombre AS nombre_usuario, 
+                         u.especialidad AS especialidad_usuario,
+                         (SELECT COUNT(*) FROM likeUsuario lu WHERE lu.id_respuesta = r.id_respuesta) AS likes
                   FROM respuestas r 
                   JOIN usuarios u ON r.id_usuario = u.id_usuario 
                   WHERE r.id_post = ? 
@@ -56,6 +65,7 @@ class Respuesta {
         $stmt->execute([$id_post]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
     
 
     public function incrementarLikes($id_respuesta) {
