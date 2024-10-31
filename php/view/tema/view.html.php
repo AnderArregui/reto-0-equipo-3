@@ -2,6 +2,8 @@
 
 $temas = $dataToView['data']['tema'];
 $preguntas = $dataToView['data']['preguntas'];
+
+$guardados = $dataToView['data']['guardados'];
 $imagenTema = !empty($temas['imagen']) ? htmlspecialchars($temas['imagen']) : '';
 $colorTema = !empty($temas['caracteristica']) ? htmlspecialchars($temas['caracteristica']) : '';
 $claseTema = empty($imagenTema) && empty($colorTema) ? 'tema-sin-imagen-color' : '';
@@ -52,7 +54,7 @@ $claseTema = empty($imagenTema) && empty($colorTema) ? 'tema-sin-imagen-color' :
                     </p>
                 </div>
                 </div>
-                <img src="/reto-1-equipo-3/php/assets/images/nosave.png" alt="Guardar" class="save-icon" onclick="guardar(this)" />
+                <img src="<?php echo $guardados[$pregunta['id_post']] ? '/reto-1-equipo-3/php/assets/images/save.png' : '/reto-1-equipo-3/php/assets/images/nosave.png'; ?>" alt="Guardar" class="save-icon" data-id-post="<?php echo $pregunta['id_post']; ?>" data-id-usuario="<?php echo $_SESSION['usuario']['id_usuario']; ?>" onclick="guardar(this)" />
             </div>
                 <?php endforeach; ?>
             <?php else: ?>

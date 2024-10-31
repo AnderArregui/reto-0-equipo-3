@@ -5,7 +5,7 @@
  define('DB_PASS', '');
  define('DB_NAME', 'aeronautica');
 
-define("PAGINATION", 6);
+define("PAGINATION", 15);
 
 
 

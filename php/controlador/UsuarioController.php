@@ -4,11 +4,9 @@ require_once "models/Usuario.php";
 
 class UsuarioController {
     public $view;
-    public $showLayout = true; // Controla si se debe mostrar header y footer
+    public $showLayout = true;
 
     private $usuario;
-    public $datos;
-
 
     public function __construct() {
         $this->view = "login";
@@ -17,15 +15,24 @@ class UsuarioController {
     public function login() {
         $this->showLayout = false;
 
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
 
             $this->usuario = new Usuario();
-            if ($this->usuario->validateLogin($username, $password)) {
+            $usuarioModel = $this->usuario->validateLogin($username, $password);
 
-                $_SESSION['usuario'] = $username;
+            if ($usuarioModel) {
+                $_SESSION['usuario'] = [
+                    'id_usuario' => $usuarioModel['id_usuario'],
+                    'nombre' => $usuarioModel['nombre'],
+                    'foto' => $usuarioModel['foto'],
+                    'especialidad' => $usuarioModel['especialidad'],
+                    'anios_empresa' => $usuarioModel['anios_empresa'],
+                    'email' => $usuarioModel['email'],
+                    'tipo' => $usuarioModel['tipo']
+                ];
+
                 header("Location: index.php?controller=Inicio&action=inicio");
                 exit();
             } else {
@@ -37,7 +44,6 @@ class UsuarioController {
     }
 
     public function inicio() {
-
         if (!isset($_SESSION['usuario'])) {
             header("Location: index.php?controller=usuario&action=login");
             exit();
@@ -46,50 +52,24 @@ class UsuarioController {
         $this->view = "inicio";
     }
 
-   public function perfil()
-{
-
-    if (!isset($_SESSION['usuario'])) {
-        header("Location: index.php?controller=usuario&action=login");
-        exit();
-    }
-
-    $nombre_usuario = $_SESSION['usuario'];
-
-    $this->usuario = new Usuario();
-    $usuarioData = $this->usuario->obtenerPorNombre($nombre_usuario);
-
-
-    $this->view = "perfil";
-    
-    return $usuarioData;
-}
-
-
-    public function obtenerIdPorNombre() {
-        $data = json_decode(file_get_contents("php://input"), true);
-        $nombre_usuario = $data['nombre_usuario'];
-
-        $usuario = $this->usuarioModel->obtenerIdPorNombre($nombre_usuario);
-
-        if ($usuario) {
-            echo json_encode(['success' => true, 'id_usuario' => $usuario['id_usuario']]);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Usuario no encontrado.']);
+    public function perfil() {
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: index.php?controller=usuario&action=login");
+            exit();
         }
-    }
 
-    public function init() {
-        $usuario = $this->perfil();
-    
+        $this->view = "perfil";
+
+        $idUsuario = $_SESSION['usuario']['id_usuario'];
+        $this->usuario = new Usuario();
+        $usuario = $this->usuario->obtenerPorId($idUsuario);
+        
         return [
-            'usuario' => $usuario,
+            'usuario' => $usuario
         ];
     }
-    
 
     public function logout() {
-        // Cierra la sesión
         session_destroy();
         header("Location: index.php?controller=usuario&action=login");
         exit();

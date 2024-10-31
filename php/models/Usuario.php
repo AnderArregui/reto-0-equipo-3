@@ -14,47 +14,30 @@ class Usuario {
         $this->connection = $db->connection;
     }
 
-
-
     public function validateLogin($username, $password) {
-        $stmt = $this->connection->prepare("SELECT * FROM usuarios WHERE nombre = :username AND contrasena = :password");
+        $stmt = $this->connection->prepare("SELECT * FROM usuarios WHERE nombre = :username");
         $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
+        $stmt->execute();
+    
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($usuario && $usuario['contrasena'] === $password) {
+            unset($usuario['contrasena']);
+            return $usuario;
+        }
+    
+        return false;
+    }
+
+    public function obtenerPorId($id_usuario) {
+
+        $query = "SELECT id_usuario, nombre, contrasena, foto, especialidad, anios_empresa, email, tipo 
+                  FROM usuarios WHERE id_usuario = :id_usuario";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
         $stmt->execute();
 
-
-        return $stmt->rowCount() > 0;
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
-    public function obtenerIdPorNombre($nombre_usuario) {
-        $query = "SELECT id_usuario FROM usuarios WHERE nombre = :nombre_usuario";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bindParam(':nombre_usuario', $nombre_usuario);
-        $stmt->execute();
-        return $stmt->fetchColumn();
-    }
-    
-
-    public function obtenerPorNombre($nombre) {
-        $query = "SELECT id_usuario, nombre, foto AS foto_perfil FROM usuarios WHERE nombre = ?";
-        $stmt = $this->connection->prepare($query);
-        $stmt->execute([$nombre]);
-        return $stmt->fetch(PDO::FETCH_ASSOC); 
-    }
-    
-    
-
-    public function obtenerUsuarioPorId($id_post) {
-        $query = "
-            SELECT u.nombre  AS nombre_usuario, u.foto AS foto_perfil
-            FROM posts p
-            JOIN usuarios u ON p.id_usuario = u.id_usuario
-            WHERE p.id_post = ?";
-        
-        $stmt = $this->connection->prepare($query);
-        $stmt->execute([$id_post]); 
-        return $stmt->fetch(PDO::FETCH_ASSOC); 
-    }
-    
 }
 ?>
+

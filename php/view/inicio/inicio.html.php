@@ -1,4 +1,8 @@
 <?php 
+require_once 'models/Guardado.php';
+
+$guardadoModel = new Guardado();
+
 
 $temas = $dataToView["data"]['temas'];
 
@@ -82,31 +86,36 @@ if (!empty($preguntas)): ?>
                     ?>
                 </a>
             </h3>
-            
-            <div class="postInfo">
-                <p>Por: <?php echo htmlspecialchars($pregunta['nombre_usuario'] ?? 'Usuario desconocido'); ?></p>
-                <p>Fecha: <?php echo htmlspecialchars($pregunta['fecha']); ?></p>  
-            </div>
-            <div class="postInfo">
+
+                <div class="postInfo">
+                    <p>Por: <?php echo htmlspecialchars($pregunta['nombre_usuario'] ?? 'Usuario desconocido'); ?></p>
+                    <p>Fecha: <?php echo htmlspecialchars($pregunta['fecha']); ?></p>  
+                </div>
+                <div class="postInfo">
                 <p>Tema: <?php echo htmlspecialchars($pregunta['nombre_tema'] ?? 'Tema no especificado'); ?></p>
-                <p>Respuestas: <?php echo htmlspecialchars($pregunta['total_respuestas'] ?? '0'); ?></p>
-            </div>
-            <div>
-                <p>Últ. mensaje: <?php echo htmlspecialchars($pregunta['autor_ultimo_mensaje'] ?? 'N/D'); ?></p>
-                <p>
-                    <?php
-                        $minutos = $pregunta['minutos_transcurridos'] ?? 0;
-                        if ($minutos < 60) {
-                            echo "Hace {$minutos} minutos";
-                        } elseif ($minutos < 1440) {
-                            echo "Hace " . floor($minutos / 60) . " horas";
-                        } else {
-                            echo "Hace " . floor($minutos / 1440) . " días";
-                        }
-                    ?>
-                </p>
-            </div>
-            <img src="/reto-1-equipo-3/php/assets/images/nosave.png" alt="Guardar" class="save-icon" data-id-post="<?php echo $pregunta['id_post']; ?>" onclick="guardar(this)" />
+                    <p>Respuestas: <?php echo htmlspecialchars($pregunta['total_respuestas'] ?? '0'); ?></p>
+                </div>
+                <div>
+                    <p>Últ. mensaje: <?php echo htmlspecialchars($pregunta['autor_ultimo_mensaje'] ?? 'N/D'); ?></p>
+                    <p>
+                        <?php 
+                            $minutos = $pregunta['minutos_transcurridos'] ?? 0;
+                            if ($minutos < 60) {
+                                echo "Hace {$minutos} minutos";
+                            } elseif ($minutos < 1440) {
+                                echo "Hace " . floor($minutos / 60) . " horas";
+                            } else {
+                                echo "Hace " . floor($minutos / 1440) . " días";
+                            }
+                        ?>
+                    </p>
+                </div>
+                <?php 
+                    $isSaved = $guardadoModel->verificarGuardado($pregunta['id_post'], $_SESSION['usuario']['id_usuario']);
+                ?>
+
+                <img src="<?php echo $isSaved ? '/reto-1-equipo-3/php/assets/images/save.png' : '/reto-1-equipo-3/php/assets/images/nosave.png'; ?>" alt="Guardar" class="save-icon" data-id-post="<?php echo $pregunta['id_post']; ?>" data-id-usuario="<?php echo $_SESSION['usuario']['id_usuario']; ?>" onclick="guardar(this)" />
+                <script src="/reto-1-equipo-3/php/assets/js/guardar.js"></script>
         </div>
         <?php $contador++;?>
     <?php endwhile; ?>
@@ -114,12 +123,14 @@ if (!empty($preguntas)): ?>
         <p>No hay preguntas disponibles.</p>
     <?php endif; ?>
     <div class="paginacion">
+    <div class="orden-control">
         <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
             <a href="index.php?controller=Inicio&action=init&page=<?php echo $i; ?>&tipo=<?php echo $orderType; ?>"
             class="<?php echo ($i == $paginaActual) ? 'active' : ''; ?>">
                 <?php echo $i; ?>
             </a>
         <?php endfor; ?>
+        </div>
 </div>
 
 
@@ -181,7 +192,7 @@ if (!empty($preguntas)): ?>
 </div>
 </aside>
 
-<script src="/reto-1-equipo-3/php/assets/js/guardar.js"></script>
+
 <div class="botonMas">
   <a href="/reto-1-equipo-3/php/index.php?controller=Post&action=crearPregunta">
     <img src="/reto-1-equipo-3/php/assets/images/crear.svg" alt="Añadir pregunta">

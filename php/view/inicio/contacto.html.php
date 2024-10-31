@@ -1,7 +1,7 @@
     <div class="containerContacto">
             <div id="textoContacto">
                 <h2 class="contactanos">Contáctanos</h2>
-                <h3 class="infoContacto">Comunícate con tu superior para consultas específicas. También puedes enviar un correo electrónico aquí.</h2>
+                <h3 class="infoContacto">Comunícate con tu superior para consultas específicas. También puedes enviar un correo electrónico aquí.</h3>
             </div>
 
             <!-- Estamos usando un servidor para enviar formularios, cuando enviamos un formulario manda un correo a el asociado "En este caso en el de egoitz" para saber quien quiere contactar con nosotros. -->

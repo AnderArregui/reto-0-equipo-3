@@ -12,7 +12,6 @@ class InicioController {
     private $temaModel;
     private $postModel;
     private $respuestaModel;
-    private $usuarioModel;
     private $guardadoModel;
 
     public function __construct() {
@@ -24,7 +23,6 @@ class InicioController {
         $this->temaModel = new Tema();
         $this->postModel = new Post();
         $this->respuestaModel = new Respuesta();
-        $this->usuarioModel = new Usuario();
         $this->guardadoModel = new Guardado();
     }
 
@@ -32,20 +30,11 @@ class InicioController {
         return $this->temaModel->obtenerTodos();
     }
 
-    public function getUsuario() {
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php?controller=usuario&action=login");
-            exit();
-        }
-        $nombre_usuario = $_SESSION['usuario'];
-        return $this->usuarioModel->obtenerPorNombre($nombre_usuario);
-    }
     public function getAllPosts($orderType, $limit, $offset) {
         $orderBy = $this->determineOrderType($orderType);
-        
         return $this->postModel->obtenerTodos($orderBy, $limit, $offset);
     }
-    
+
     private function determineOrderType($orderType) {
         switch ($orderType) {
             case 'popular':
@@ -60,16 +49,13 @@ class InicioController {
                 return 'fecha_ultimo_mensaje DESC'; // Orden por último mensaje
         }
     }
-    
-
-
 
     public function contacto() {
         $this->view = "contacto";
     }
 
     public function init() {
-        $usuario = $this->getUsuario();
+        $usuario = $_SESSION['usuario'];
         $temas = $this->getThemes();
         
         $orderType = $_GET['tipo'] ?? 'reciente';
@@ -87,22 +73,17 @@ class InicioController {
         $totalPreguntas = $this->postModel->contarTodos();
         $totalPaginas = ceil($totalPreguntas / $postsPorPagina);
         
-        $this->view = "inicio";
-        
         return [
             'temas' => $temas, 
             'preguntas' => $preguntas,
             'usuario' => $usuario,
-            'guardados' => $guardados,
             'likesUsuario' => $likesUsuario,
             'paginaActual' => $paginaActual,
             'totalPaginas' => $totalPaginas,
             'preguntasPorPagina' => $postsPorPagina,
-            'totalPreguntas' => $totalPreguntas
+            'totalPreguntas' => $totalPreguntas,
+            'guardados' => $guardados
         ];
     }
-    
-    
-    
 }
 ?>

@@ -1,8 +1,14 @@
 <?php
 
 require_once "models/Usuario.php";
+require_once "models/Guardado.php";
 
 class GuardadoController {
+
+    public $view = "guardar";
+    public $showLayout = true;
+
+
     private $guardadoModel;
     public $usuarioModel;
 
@@ -25,8 +31,7 @@ class GuardadoController {
             exit();
         }
 
-        $nombre_usuario = $_SESSION['usuario'];
-        $usuario = $this->usuarioModel->obtenerPorNombre($nombre_usuario);
+        $usuario = $_SESSION['usuario'];
 
         return [
             'usuario' => $usuario

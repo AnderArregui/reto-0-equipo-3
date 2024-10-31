@@ -24,8 +24,8 @@ class PostController {
         $nombre_usuario = $_SESSION['usuario']['nombre'] ?? null;
 
         if ($nombre_usuario) {
-            $this->id_usuario = $this->usuarioModel->obtenerIdPorNombre($nombre_usuario);
-            if (!$this->id_usuario) {
+            $id_usuario = $_SESSION['usuario']['id_usuario'];
+            if (!$id_usuario) {
                 $_SESSION['mensaje'] = "Usuario no encontrado en la base de datos.";
                 header("Location: /reto-1-equipo-3/php/index.php");
                 exit();
@@ -36,7 +36,6 @@ class PostController {
     public function publicarRespuesta() {
         $contenido = $_POST['contenido'] ?? '';
         $id_post = $_POST['id_post'] ?? null;
-        $usuarioModel = new Usuario();
         $ruta = null;
     
         if (isset($_FILES['media']) && $_FILES['media']['error'] === UPLOAD_ERR_OK) {
@@ -53,8 +52,7 @@ class PostController {
         }
 
         if ($contenido && $id_post && isset($_SESSION['usuario'])) {
-            $nombre_usuario = $_SESSION['usuario'];
-            $id_usuario = $usuarioModel->obtenerIdPorNombre($nombre_usuario);
+            $id_usuario = $_SESSION['usuario']['id_usuario'];
     
             if ($id_usuario) {
                 $respuestaModel = new Respuesta();
@@ -74,9 +72,8 @@ class PostController {
         $temas = $this->temaModel->obtenerTodos();
         $this->view = "crearPregunta";
 
-            $usuarioModel = new Usuario();
-            $nombre_usuario = $_SESSION['usuario'];
-            $usuario = $usuarioModel->obtenerPorNombre($nombre_usuario);    
+            $usuario = new Usuario();
+            $usuario = $_SESSION['usuario'];  
 
             return [
                 'usuario' => $usuario,
@@ -101,7 +98,7 @@ class PostController {
                 $id_tema = $_POST['temaSelect'];
             }
     
-            $nombre_usuario = $_SESSION['usuario'] ?? null;
+            $nombre_usuario = $_SESSION['usuario']['nombre'] ?? null;
             if (!$nombre_usuario) {
                 $_SESSION['mensaje'] = "Usuario no encontrado en la sesión.";
                 header("Location: index.php");
@@ -109,7 +106,7 @@ class PostController {
             }
     
             
-            $id_usuario = $this->usuarioModel->obtenerIdPorNombre($nombre_usuario);
+            $id_usuario = $_SESSION['usuario']['id_usuario'];
             var_dump($id_usuario, $id_tema, $_POST['pregunta']);
     
             if (!empty($_POST['pregunta']) && $id_tema && $id_usuario) {
@@ -146,13 +143,12 @@ class PostController {
             $postModel = new Post();
             $usuarioModel = new Usuario();
 
-            $usuarioPost = $usuarioModel->obtenerUsuarioPorId($id_post);
+            $usuarioPost = $_SESSION['usuario'];
             $tema = $postModel->obtenerPorId($id_post);
             $post = $respuestaModel->obtenerPost($id_post);
             $respuestas = $respuestaModel->obtenerPorPost($id_post);
 
-            $nombre_usuario = $_SESSION['usuario'];
-            $usuario = $usuarioModel->obtenerPorNombre($nombre_usuario); 
+            $usuario = $_SESSION['usuario'];
 
         
             return [

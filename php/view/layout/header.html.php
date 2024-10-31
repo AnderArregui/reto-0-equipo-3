@@ -6,11 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/headerFooter.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/inicio.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/perfil.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/temas.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/contacto.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/CrearPregunta.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/resultado.css">
     <title>Página de Inicio</title>
+    <script>
+        function toggleTemaCreation() {
+            var checkbox = document.getElementById('crear');
+            var label = document.querySelector('label[for="crear"]');
+            var input = document.getElementById('nuevo_tema');
+            var button = document.getElementById('crear_tema_btn');
+
+            if (checkbox.checked) {
+                label.style.display = 'none';
+                input.style.display = 'inline-block';
+                button.style.display = 'inline-block';
+            } else {
+                label.style.display = 'inline-block';
+                input.style.display = 'none';
+                button.style.display = 'none';
+            }
+        }
+    </script>
 </head>
 <body>
     <nav>
@@ -33,16 +52,12 @@
 
         <div class="profile-icon">
             <a href="index.php?controller=Usuario&action=perfil">
-                <?php 
-                $elUsuario = $dataToView['data']['usuario'];
-                $fotoPerfil = isset($elUsuario['foto_perfil']) && !empty($elUsuario['foto_perfil']) 
-                    ? htmlspecialchars($elUsuario['foto_perfil']) 
-                    : '';
+                <?php
+                $fotoPerfil = $_SESSION['usuario']['foto'];
                 ?>
                 <img src="<?php echo $fotoPerfil; ?>" alt="Perfil">
             </a>
         </div>
-
     </nav>
 
         
