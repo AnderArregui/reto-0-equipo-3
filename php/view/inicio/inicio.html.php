@@ -37,9 +37,10 @@ $orderType = $_GET['tipo'] ?? 'reciente';
             </div>
         </a>
         <?php
-                $contador++;
+            $contador++;
             endwhile;
-        else: ?>
+        else:
+        ?>
             <p>No hay temas disponibles.</p>
         <?php endif; ?>
         </div>
@@ -156,6 +157,7 @@ if (!empty($preguntas)): ?>
         <h2>Mis Likes</h2>
         <?php 
         $likesUsuario = $dataToView["data"]['likesUsuario'] ?? []; 
+
         if (!empty($likesUsuario)): ?>
             <?php foreach ($likesUsuario as $respuestaLike): ?>
                 <div class="divUsuario" style="border: 2px dashed <?php echo htmlspecialchars($respuestaLike['caracteristica']); ?>">
