@@ -55,6 +55,7 @@ $orderType = $_GET['tipo'] ?? 'reciente';
 
 <div class="tresElementos">
 <div class="preguntas"> 
+    <div class="paginacionDiv">
     <div class="orden-control">
         <h2>Preguntas Recientes</h2>
         <div>
@@ -65,13 +66,24 @@ $orderType = $_GET['tipo'] ?? 'reciente';
             <a href="index.php?controller=Inicio&action=ordenar&tipo=aleatorio">Aleatorio</a>
         </div>
     </div>
-    
+        </div>
+        <div class="paginacionDerecha">
+    <div class="orden-control">
+        <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+            <a href="index.php?controller=Inicio&action=init&page=<?php echo $i; ?>&tipo=<?php echo $orderType; ?>"
+            class="<?php echo ($i == $paginaActual) ? 'active' : ''; ?>">
+                <?php echo $i; ?>
+            </a>
+        <?php endfor; ?>
+        </div>
+        </div>
+
     <?php
 $contador = 0;
 if (!empty($preguntas)): ?>
     <?php while ($contador < $preguntasPorPagina && $contador < count($preguntas)): ?>
         <?php 
-        // Extraer la pregunta actual utilizando el índice $contador
+        
         $pregunta = $preguntas[$contador];
         ?>
         <div class="pregunta" style="border: 2px dashed <?php echo htmlspecialchars($pregunta['caracteristica']); ?>">
@@ -122,7 +134,7 @@ if (!empty($preguntas)): ?>
     <?php else: ?>
         <p>No hay preguntas disponibles.</p>
     <?php endif; ?>
-    <div class="paginacion">
+    <div class="paginacionDerecha">
     <div class="orden-control">
         <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
             <a href="index.php?controller=Inicio&action=init&page=<?php echo $i; ?>&tipo=<?php echo $orderType; ?>"
@@ -131,7 +143,8 @@ if (!empty($preguntas)): ?>
             </a>
         <?php endfor; ?>
         </div>
-</div>
+    </div>
+
 
 
 
@@ -139,8 +152,9 @@ if (!empty($preguntas)): ?>
 </div>
 
 <aside>
-    <div class="divAside">
-        <h2>Mis Guardados</h2>
+<div class="divAside">
+    <h2>Mis Guardados</h2>
+    <div id="guardados-container">
         <?php if (!empty($guardados)): ?>
             <?php foreach ($guardados as $postGuardado): ?>
                 <div class="divUsuario" style="border: 2px dashed <?php echo htmlspecialchars($postGuardado['caracteristica']); ?>">
@@ -161,11 +175,14 @@ if (!empty($preguntas)): ?>
             <p>No tienes posts guardados.</p>
         <?php endif; ?>
     </div>
+</div>
+
 
 
 
     <div class="divAside">
         <h2>Mis Likes</h2>
+        <div id="guardados-container">
         <?php 
         $likesUsuario = $dataToView["data"]['likesUsuario'] ?? []; 
 
@@ -188,6 +205,7 @@ if (!empty($preguntas)): ?>
         <?php else: ?>
             <p>No has dado like a ninguna respuesta.</p>
         <?php endif; ?>
+        </div>
     </div>
 </div>
 </aside>

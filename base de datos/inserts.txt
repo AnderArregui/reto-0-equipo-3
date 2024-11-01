@@ -1,11 +1,3 @@
--- Usuarios (sin cambios adicionales)
-INSERT INTO usuarios (foto, nombre, contrasena, especialidad, anios_empresa, email, tipo) 
-VALUES
-('juan.png', 'ander', 'Jm12345', 'Propulsión', 5, 'juan.lopez@aergibide.com', 'usuario'),
-('/reto-1-equipo-3/php/assets/images/inigoPerfil.jpg', 'ana09', 'abcde', 'Materiales', 7, 'ana.martinez@aergibide.com', 'usuario'),
-('carlos.png', 'egoitz', 'Jm12345', 'Aerodinámica', 3, 'carlos.gomez@aergibide.com', 'usuario'),
-('admin.png', 'admin_user', 'adminpass', 'Seguridad', 10, 'admin@aergibide.com', 'admin');
-
 -- Temas
 INSERT INTO temas (nombre, caracteristica, imagen) 
 VALUES 
@@ -17,57 +9,6 @@ VALUES
 ('Optimización', NULL, NULL),  
 ('Eficiencia', NULL, NULL),    
 ('Colaboración', NULL, NULL);
-
--- Nuevos inserts en la tabla posts (con fecha generada automáticamente)
-INSERT INTO posts (id_usuario, id_tema, contenido, ruta_media) 
-VALUES
-(1, 1, 'Explorando formas de reducir la fricción en los motores de última generación. Cualquier sugerencia es bienvenida.', NULL),
-(2, 2, 'Estamos evaluando nuevos diseños de alas para mejorar la aerodinámica. ¿Experiencias?', NULL),
-(3, 3, 'Se requiere revisar el último protocolo de seguridad para los vuelos de prueba, antes de implementarlo.', NULL),
-(4, 4, 'He diseñado un nuevo compuesto para temperaturas extremas. Feedback bienvenido.', NULL),
-(1, 5, 'Tengo ideas para la eficiencia en los motores, ¿qué opinan?', NULL),
-(2, 6, 'Estamos revisando mejoras en el proceso de fabricación de fuselajes.', NULL),
-(3, 7, 'Eficiencia en diseño de propulsores: ¿qué técnicas han probado?', NULL),
-(4, 8, 'Colaboración es clave para el próximo proyecto. ¡Opiniones bienvenidas!', NULL),
-(2, 1, 'Consulto sobre ajustes en el modelo de propulsión A42. Se agradece ayuda.', NULL),
-(3, 4, 'Nuevo compuesto avanzado listo para pruebas. ¿Quién quiere colaborar?', NULL),
-(1, 2, '¿Actualizaciones en el diseño aerodinámico de la aeronave modelo B58?', NULL),
-(3, 3, 'Identificados riesgos en el protocolo. Requiere revisión urgente.', NULL),
-(2, 7, 'Mejoras en eficiencia energética para vuelos largos: ¿sugerencias?', NULL),
-(4, 6, 'Optimización en manufactura de fuselajes. Aporte cualquier idea.', NULL),
-(1, 8, 'Nuevo proyecto de colaboración para diseño de seguridad en sistemas.', NULL);
-
--- Nuevos inserts en la tabla respuestas (con fecha generada automáticamente)
-INSERT INTO respuestas (id_post, id_usuario, contenido, ruta_media) 
-VALUES
--- Respuestas para el post sobre Propulsión
-(1, 2, 'Prueba ajustar el ángulo de los inyectores para reducir fricción.', NULL),
-(1, 3, 'Ajustamos el flujo y mejoró el rendimiento.', NULL),
-(1, 4, 'La mezcla de combustión puede optimizarse también.', NULL),
-(1, 2, '¿Tienes el manual del modelo? Hay varias recomendaciones.', NULL),
-(1, 1, 'Eso intenté, pero tengo dudas con el ajuste fino.', NULL),
-
--- Respuestas para el post sobre Aerodinámica
-(2, 1, 'Usamos un diseño más curvo en los bordes y funcionó.', NULL),
-(2, 3, 'Intenten reducir la resistencia en el borde delantero.', NULL),
-(2, 4, 'Nosotros usamos materiales ligeros para reducir peso.', NULL),
-
--- Respuestas para el post sobre Seguridad
-(3, 1, 'Excelente sugerencia, importante para reducir riesgos.', NULL),
-(3, 3, 'Listo, anoté mejoras en el protocolo.', NULL),
-(3, 4, 'El ajuste en la sección de seguridad ayudará bastante.', NULL),
-
--- Respuestas para el post sobre Materiales
-(4, 2, 'Pruebas en altas temperaturas son fundamentales.', NULL),
-(4, 3, 'Buen trabajo, puede ser útil en pruebas en altitud.', NULL),
-(4, 4, 'Revisaremos cómo responde en condiciones extremas.', NULL),
-
--- Más respuestas hasta completar al menos 80 respuestas
-(5, 3, 'Revisaré el enfoque para mejorar la eficiencia.', NULL),
-(5, 4, 'Podríamos probar con materiales de menor peso.', NULL),
-(6, 1, 'Estamos usando un diseño modular en el fuselaje.', NULL),
-(7, 2, 'Implementamos controles en tiempo real para eficiencia.', NULL),
-(8, 3, 'Sí, la colaboración mejorará la efectividad del proyecto.', NULL);
 
 -- Guardado de posts (incrementado)
 INSERT INTO guardado (id_post, id_usuario) 

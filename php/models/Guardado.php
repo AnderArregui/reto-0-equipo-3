@@ -29,7 +29,7 @@ class Guardado {
     
         try {
             if ($guardar) {
-
+                
                 $queryCheck = "SELECT COUNT(*) FROM guardado WHERE id_post = :id_post AND id_usuario = :id_usuario";
                 $stmtCheck = $this->connection->prepare($queryCheck);
                 $stmtCheck->execute(['id_post' => $id_post, 'id_usuario' => $id_usuario]);
@@ -40,23 +40,52 @@ class Guardado {
                     return;
                 }
     
-
+                
                 $queryInsert = "INSERT INTO guardado (id_post, id_usuario) VALUES (:id_post, :id_usuario)";
                 $stmtInsert = $this->connection->prepare($queryInsert);
                 $success = $stmtInsert->execute(['id_post' => $id_post, 'id_usuario' => $id_usuario]);
-                echo json_encode(['success' => $success]);
+    
+                if ($success) {
+                    
+                    $queryPostInfo = "
+                        SELECT 
+                            p.id_post AS id_post, 
+                            p.contenido AS contenido, 
+                            t.caracteristica AS caracteristica
+                        FROM 
+                            posts p
+                        JOIN 
+                            temas t ON p.id_tema = t.id_tema
+                        WHERE 
+                            p.id_post = :id_post
+                    ";
+                    $stmtPostInfo = $this->connection->prepare($queryPostInfo);
+                    $stmtPostInfo->execute(['id_post' => $id_post]);
+                    $postInfo = $stmtPostInfo->fetch(PDO::FETCH_ASSOC);
+    
+                    echo json_encode(['success' => true, 'postGuardado' => $postInfo]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Error al guardar el post.']);
+                }
             } else {
-
+                
                 $queryDelete = "DELETE FROM guardado WHERE id_post = :id_post AND id_usuario = :id_usuario";
                 $stmtDelete = $this->connection->prepare($queryDelete);
                 $success = $stmtDelete->execute(['id_post' => $id_post, 'id_usuario' => $id_usuario]);
-                echo json_encode(['success' => $success]);
+    
+                if ($success) {
+                    echo json_encode(['success' => true, 'message' => 'Guardado eliminado correctamente.']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Error al eliminar el guardado.']);
+                }
             }
         } catch (Exception $e) {
             echo json_encode(['success' => false, 'message' => 'Error al procesar la solicitud: ' . $e->getMessage()]);
         }
         exit();
     }
+    
+    
     
     
     public function eliminar($id_post, $id_usuario) {
