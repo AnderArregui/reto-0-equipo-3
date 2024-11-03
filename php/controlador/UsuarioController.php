@@ -69,6 +69,33 @@ class UsuarioController {
         ];
     }
 
+    public function mostrarUsuario() {
+        $this->usuario = new Usuario();
+        $usuarios = $this->usuario->obtenerTodosLosUsuarios();
+        $this->view = "mostrarusuario";
+        return [
+            'usuarios' => $usuarios
+        ];
+    }
+    public function usuarioindividual() {
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: index.php?controller=Usuario&action=mostrarUsuario");
+            exit();
+        }
+
+        $id_usuario = $_GET['id_usuario'];
+        $this->usuario = new Usuario();
+        $infoUsuario = $this->usuario->obtenerInfoUsuario($id_usuario);
+      
+        if (!$infoUsuario) {
+            $this->view = "usuarioindividual";
+            return ["mensaje" => "Usuario no encontrado"];
+        }
+        
+        $this->view = "usuarioindividual";
+        return ['infoUsuario' => $infoUsuario];
+    }
+
     public function logout() {
         session_destroy();
         header("Location: index.php?controller=usuario&action=login");

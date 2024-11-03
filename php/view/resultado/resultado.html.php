@@ -1,5 +1,5 @@
 
-<div class="result-grid">
+<div class="result-gridBusqueda">
     <?php
     $temas = $dataToView['data']['tema'];
     if (!empty($temas)): ?>

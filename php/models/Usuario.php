@@ -38,6 +38,46 @@ class Usuario {
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function obtenerTodosLosUsuarios() {
+        try {
+            $query = "SELECT id_usuario,foto,nombre,email FROM usuarios";
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Error al obtener usuarios: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function obtenerInfoUsuario($id_usuario) {
+        try {
+            $query = "SELECT 
+    u.nombre AS nombre,
+    u.email AS email,
+    u.especialidad AS especialidad,
+    u.anios_empresa AS anios_empresa,
+    u.foto AS foto,
+    (SELECT COUNT(*) FROM posts WHERE id_usuario = u.id_usuario) AS total_preguntas, 
+    (SELECT COUNT(*) FROM respuestas WHERE id_usuario = u.id_usuario) AS total_respuestas,
+    (SELECT COUNT(*) FROM likeUsuario WHERE id_usuario = u.id_usuario) AS total_likes,
+    (SELECT TIMESTAMPDIFF(MINUTE, MAX(r.fecha), NOW()) 
+     FROM respuestas r 
+     WHERE r.id_usuario = u.id_usuario) AS minutos_desde_ultima_respuesta
+FROM 
+    usuarios u
+WHERE 
+    u.id_usuario = :id_usuario;";
+
+    $stmt = $this->connection->prepare($query);
+    $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+            echo "Error en la consulta: " . $e->getMessage();
+        }
+}
 }
 ?>
 

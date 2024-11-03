@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/contacto.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/CrearPregunta.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/resultado.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/mostrarUsuario.css">
+
     <title>Página de Inicio</title>
     <script>
         function toggleTemaCreation() {
@@ -30,6 +32,17 @@
             }
         }
     </script>
+    <script>
+        function toggleMenu() {
+            var navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            var navLinks = document.querySelector('.nav-links');
+            navLinks.classList.remove('active');
+        }
+    </script>
 </head>
 <body>
 <nav>
@@ -46,15 +59,15 @@
                     $paginaNav = 'temas';
                 } elseif ($_GET['controller'] == 'Inicio' && $_GET['action'] == 'contacto') {
                     $paginaNav = 'contacto';
-                } elseif ($_GET['controller'] == 'usuarios' && $_GET['action'] == 'list') {
-                    $paginaNav = 'usuarios';
+                } elseif ($_GET['controller'] == 'Usuario' && $_GET['action'] == 'mostrarUsuario') {
+                    $paginaNav = 'Usuarios';
                 } else {
                     $paginaNav = '';
                 }
             }
             ?>
             <li><a href="index.php?controller=Tema&action=list" class="<?php echo ($paginaNav == 'temas') ? 'active' : ''; ?>">Temas</a></li>
-            <li><a href="#" class="<?php echo ($paginaNav == 'historial') ? 'active' : ''; ?>">Historial</a></li>
+            <li><a href="index.php?controller=Usuario&action=mostrarUsuario" class="<?php echo ($paginaNav == 'historial') ? 'active' : ''; ?>">Usuarios</a></li>
             <li><a href="index.php?controller=Inicio&action=contacto" class="<?php echo ($paginaNav == 'contacto') ? 'active' : ''; ?>">Contacto</a></li>
         </div>
     </ul>
