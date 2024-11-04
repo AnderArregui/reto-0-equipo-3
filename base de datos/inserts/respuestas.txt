@@ -1,0 +1,73 @@
+INSERT INTO respuestas (id_usuario, id_post, contenido) 
+VALUES
+-- Respuestas para el post 1 (32 respuestas)
+(23, 1, 'Gran idea, ¡me encanta!'),
+(15, 1, '¿Qué opinan sobre esto?'),
+(10, 1, 'Necesitamos más detalles.'),
+(12, 1, 'Estoy de acuerdo, deberíamos avanzar.'),
+(18, 1, 'Es un buen punto de partida.'),
+(7, 1, '¿Quién se encargará de implementar esto?'),
+(22, 1, 'Me gustaría saber más sobre las expectativas.'),
+(4, 1, '¿Podemos ver un cronograma?'),
+(3, 1, 'La colaboración es clave.'),
+(29, 1, 'Esto puede abrir muchas puertas.'),
+(2, 1, '¿Alguien tiene datos adicionales?'),
+(9, 1, 'Es un buen momento para iniciar.'),
+(25, 1, 'La comunicación será crucial.'),
+(1, 1, 'Estoy emocionado por los resultados.'),
+(20, 1, 'Necesitamos un plan sólido.'),
+(6, 1, 'Esto necesita más discusión.'),
+(33, 1, 'Podría ser un gran cambio.'),
+(17, 1, 'La retroalimentación es importante.'),
+(30, 1, 'Estoy dispuesto a ayudar.'),
+(11, 1, 'Esto requiere una buena planificación.'),
+(24, 1, '¿Qué recursos necesitaremos?'),
+(5, 1, 'Esto tiene mucho potencial.'),
+(19, 1, 'Necesitamos alinear a todos.'),
+(13, 1, '¿Cuáles son los desafíos anticipados?'),
+(8, 1, 'Esto podría ser clave para nuestro éxito.'),
+(14, 1, 'Me gustaría saber más sobre los costos.'),
+(27, 1, '¿Hay algún riesgo asociado?'),
+(28, 1, 'Esto debe ser evaluado con seriedad.'),
+(31, 1, '¿Podemos hacer una lluvia de ideas?'),
+(32, 1, 'La especialización será crucial.'),
+(26, 1, '¿Cómo podemos medir el éxito?'),
+(21, 1, 'Es un buen comienzo, pero hay que trabajar más.');
+
+
+
+
+
+
+
+
+INSERT INTO respuestas (id_post, id_usuario, contenido, ruta_media) 
+VALUES
+-- Respuestas para el post sobre Propulsión
+(1, 2, 'Prueba ajustar el ángulo de los inyectores para reducir fricción.', NULL),
+(1, 3, 'Ajustamos el flujo y mejoró el rendimiento.', NULL),
+(1, 4, 'La mezcla de combustión puede optimizarse también.', NULL),
+(1, 2, '¿Tienes el manual del modelo? Hay varias recomendaciones.', NULL),
+(1, 1, 'Eso intenté, pero tengo dudas con el ajuste fino.', NULL),
+
+-- Respuestas para el post sobre Aerodinámica
+(2, 1, 'Usamos un diseño más curvo en los bordes y funcionó.', NULL),
+(2, 3, 'Intenten reducir la resistencia en el borde delantero.', NULL),
+(2, 4, 'Nosotros usamos materiales ligeros para reducir peso.', NULL),
+
+-- Respuestas para el post sobre Seguridad
+(3, 1, 'Excelente sugerencia, importante para reducir riesgos.', NULL),
+(3, 3, 'Listo, anoté mejoras en el protocolo.', NULL),
+(3, 4, 'El ajuste en la sección de seguridad ayudará bastante.', NULL),
+
+-- Respuestas para el post sobre Materiales
+(4, 2, 'Pruebas en altas temperaturas son fundamentales.', NULL),
+(4, 3, 'Buen trabajo, puede ser útil en pruebas en altitud.', NULL),
+(4, 4, 'Revisaremos cómo responde en condiciones extremas.', NULL),
+
+-- Más respuestas hasta completar al menos 80 respuestas
+(5, 3, 'Revisaré el enfoque para mejorar la eficiencia.', NULL),
+(5, 4, 'Podríamos probar con materiales de menor peso.', NULL),
+(6, 1, 'Estamos usando un diseño modular en el fuselaje.', NULL),
+(7, 2, 'Implementamos controles en tiempo real para eficiencia.', NULL),
+(8, 3, 'Sí, la colaboración mejorará la efectividad del proyecto.', NULL);

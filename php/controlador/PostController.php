@@ -4,6 +4,7 @@ require_once "models/Respuesta.php";
 require_once 'models/Tema.php';
 require_once 'models/Post.php';
 require_once 'models/Guardado.php';
+require_once "models/Usuario.php";
 
 class PostController {
     public $view;
@@ -13,7 +14,7 @@ class PostController {
     private $usuarioModel;
     private $postModel;
     private $guardadoModel;
-    
+
 
     public function __construct() {
         $this->view = "respuestas"; 
@@ -25,7 +26,7 @@ class PostController {
         $nombre_usuario = $_SESSION['usuario']['nombre'] ?? null;
 
         if ($nombre_usuario) {
-            $id_usuario = $_SESSION['id_usuario'];
+            $id_usuario = $_SESSION['usuario']['id_usuario'];
             if (!$id_usuario) {
                 $_SESSION['mensaje'] = "Usuario no encontrado en la base de datos.";
                 header("Location: /reto-1-equipo-3/php/index.php");
@@ -53,7 +54,7 @@ class PostController {
         }
 
         if ($contenido && $id_post && isset($_SESSION['usuario'])) {
-            $id_usuario = $_SESSION['id_usuario'];
+            $id_usuario = $_SESSION['usuario']['id_usuario'];
     
             if ($id_usuario) {
                 $respuestaModel = new Respuesta();
@@ -72,7 +73,14 @@ class PostController {
     public function crearPregunta() {
         $temas = $this->temaModel->obtenerTodos();
         $this->view = "crearPregunta";
-        return ['temas' => $temas];
+
+            $usuario = new Usuario();
+            $usuario = $_SESSION['usuario'];
+
+            return [
+                'usuario' => $usuario,
+                'temas' => $temas
+        ];
     }
     
 
@@ -93,7 +101,7 @@ class PostController {
                 $id_tema = $_POST['temaSelect'];
             }
     
-            $nombre_usuario = $_SESSION['usuario'] ?? null;
+            $nombre_usuario = $_SESSION['usuario']['nombre'] ?? null;
             if (!$nombre_usuario) {
                 $_SESSION['mensaje'] = "Usuario no encontrado en la sesión.";
                 header("Location: index.php");
@@ -101,7 +109,7 @@ class PostController {
             }
     
             
-            $id_usuario = $_SESSION['id_usuario'];
+            $id_usuario = $_SESSION['usuario']['id_usuario'];
             var_dump($id_usuario, $id_tema, $_POST['pregunta']);
     
             // Crear pregunta
@@ -133,7 +141,6 @@ class PostController {
    
     public function init($id_post) {
         $id_post = $_GET['id_post'] ?? null;
-        
 
         if ($id_post) {
             $respuestaModel = new Respuesta();
@@ -141,18 +148,21 @@ class PostController {
             $usuarioModel = new Usuario();
             $guardadoModel = new Guardado();
 
-            $usuario = $usuarioModel->obtenerUsuarioPorId($id_post);
+            $usuarioPost = $_SESSION['usuario'];
             $tema = $postModel->obtenerPorId($id_post);
             $post = $respuestaModel->obtenerPost($id_post);
             $respuestas = $respuestaModel->obtenerPorPost($id_post);
             $guardado = $guardadoModel->verificarGuardado($id_post, $_SESSION['id_usuario']);
-            
+
+            $usuario = $_SESSION['usuario'];
+
+
             return [
                     'post' => $post,
                     'respuestas' => $respuestas,
                     'tema' => $tema,
-                    'usuario' => $usuario,
-                    'guardado' => $guardado
+                    'guardado' => $guardado,
+                    'usuarioPost' => $usuarioPost
             ];
         }
 
@@ -161,6 +171,7 @@ class PostController {
                 'respuestas' => [],
                 'tema' => null,
                 'usuario' => null,
+                'usuarioPost' => null,
                 'guardado' => null
         ];
     }

@@ -34,10 +34,9 @@ body{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    margin-bottom: 30px;
     border-radius: 10px;
     
-    padding: 3em;
+    padding: 1.5em;
 }
 
 
@@ -157,6 +156,7 @@ body{
 }
 
 
+
 #mastemas {
     padding: .6em 1.5em;
     text-align: center;
@@ -177,29 +177,117 @@ body{
 }
 
 
-
+.tresElementos{
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    min-height: 100vh;
+}
 
 
 
 .preguntas {
     display: flex;
     flex-direction: column;
+    align-items: end;
     gap: 10px; 
-    width: 100%;
-    max-width: 90%; 
-    margin: 0 auto; 
+    width: 70%;
+    padding: 1em;
+    margin-left: 1em;
 }
-.preguntas h2{
+aside{
+    width: 25%;
+}
+.divAside {
+    display: flex;
+    flex-direction: column;
+    margin: 1em; 
+    padding: .5em; 
+    width: 100%;
+    background-color: #363636; 
+    border-radius: 10px;
+}
+.divAside h2{
     margin-left:.5em;
+    margin-bottom: .5em;
+    font-size: 1.2em;
+    color: #ccc;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+}
+
+.orden-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.5em;
+    justify-content: space-between;
+    background-color: #363636; 
+    border-radius: 10px;
+    width: 100%;
+}
+
+.orden-control h2 {
+    margin-left:.5em;
+    font-size: 1.2em;
+    color: #ccc;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+
+}
+
+.orden-control span {
+    font-size: 1em;
+    color: #ccc;
     font-weight: 300;
 }
 
-.pregunta {
+.orden-control a {
+    font-size: 1.2em;
+    color: #ccc;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.orden-control a:hover,
+.orden-control a.active  {
+    background-color: #5f5f5f; 
+    color: #ffffff;
+}
+
+
+.divUsuario {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 20px;
+    margin-bottom: .5em;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px dashed #808080;
+}
+
+.divUsuario h3 {
+    font-size: 1em;
+    font-weight: 500;
+
+    color: #ffffff;
+}
+
+.pregunta {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
     padding: 10px 20px;
     border-radius: 10px;
     width: 100%;
@@ -213,7 +301,12 @@ body{
     width: 35%;
     color: #ffffff;
 }
-
+#guardados-container p{
+    font-weight: 300;
+    font-size: 0.9em;
+    margin-left: 0.7em;
+    margin-bottom: .5em;
+}
 .pregunta p {
     font-weight: 300;
     font-size: 0.9em;
@@ -227,8 +320,8 @@ body{
 }
 
 .save-icon {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     float: right;
     cursor: pointer;
     margin-left: 10px;
@@ -307,7 +400,23 @@ body{
     color:#ccc;
     padding-bottom: 5px;
 }
-
+.paginacionDiv {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    width: 100%;
+}
+.paginacionDiv {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
 .respuestaDerecha{
     display: flex;
     justify-content: right;
@@ -386,10 +495,9 @@ body{
 
 .file-icon {
     width: 20px;
-    height: 20px;  
+    height: 20px;
     transition: 0.5ms;
 }
-
 
 
 .submit-button {
@@ -406,12 +514,6 @@ body{
 .submit-button:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
-
-
-
-
-
-
 
 
 @media screen and (max-width: 1000px) {
@@ -464,7 +566,8 @@ body{
         height: 80px;
     }
     
-}@keyframes gradientAnimation {
+}
+@keyframes gradientAnimation {
     0% {
         background-position: 0% 50%;
     }
@@ -544,7 +647,7 @@ body{
     font-weight: 600;
     letter-spacing: -0.05em;
     top: 10px;
-    content: "Formular Pregunta";
+    content: "Añadir pregunta";
     color: rgb(23, 23, 23);
     font-size: 5px;
     transition: transform 0.3s ease, font-size 0.3s ease;

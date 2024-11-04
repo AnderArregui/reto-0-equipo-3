@@ -26,6 +26,6 @@
     </div>
 </footer>
 <script src="./js/menu.js"></script>
-
+<script src="/reto-1-equipo-3/php/assets/js/controlScrolleo.js"></script>
 </head>
 </html>

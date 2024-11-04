@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/temas.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/contacto.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/CrearPregunta.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/resultado.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/mostrarUsuario.css">
+
     <title>Página de Inicio</title>
     <script>
         function toggleTemaCreation() {
@@ -29,33 +32,65 @@
             }
         }
     </script>
+    <script>
+        function toggleMenu() {
+            var navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            var navLinks = document.querySelector('.nav-links');
+            navLinks.classList.remove('active');
+        }
+    </script>
 </head>
 <body>
-    <nav>
-        <a href="index.php?controller=Inicio&action=inicio"><img src="/reto-1-equipo-3/php/assets/images/logo.png" alt="logo"></a>
-        <ul class="nav-links">
-            <li><a href="index.php?controller=Tema&action=list">Temas</a></li>
-            <li><a href="#">Historial</a></li>
-            <li><a href="index.php?controller=Inicio&action=contacto">Contacto</a></li>
-        </ul>
-        <div class="search-container">
-            <input type="text">
-            <img src="/reto-1-equipo-3/php/assets/images/search.svg" alt="Lupa" class="search-icon">
+<nav>
+    <a href="index.php?controller=Inicio&action=inicio">
+        <img src="/reto-1-equipo-3/php/assets/images/logo.png" alt="logo">
+    </a>
+    
+    <ul class="nav-links">
+        <div class="orden-control">
+            <?php
+            $paginaNav = '';
+            if (isset($_GET['controller']) && isset($_GET['action'])) {
+                if ($_GET['controller'] == 'Tema' && $_GET['action'] == 'list') {
+                    $paginaNav = 'temas';
+                } elseif ($_GET['controller'] == 'Inicio' && $_GET['action'] == 'contacto') {
+                    $paginaNav = 'contacto';
+                } elseif ($_GET['controller'] == 'Usuario' && $_GET['action'] == 'mostrarUsuario') {
+                    $paginaNav = 'Usuarios';
+                } else {
+                    $paginaNav = '';
+                }
+            }
+            ?>
+            <li><a href="index.php?controller=Tema&action=list" class="<?php echo ($paginaNav == 'temas') ? 'active' : ''; ?>">Temas</a></li>
+            <li><a href="index.php?controller=Usuario&action=mostrarUsuario" class="<?php echo ($paginaNav == 'historial') ? 'active' : ''; ?>">Usuarios</a></li>
+            <li><a href="index.php?controller=Inicio&action=contacto" class="<?php echo ($paginaNav == 'contacto') ? 'active' : ''; ?>">Contacto</a></li>
         </div>
-        <div class="burger">
-            <span class="material-symbols-outlined">menu</span>
-        </div>
+    </ul>
+    
+    <div class="search-container">
+        <form action="index.php" method="GET">
+            <input type="hidden" name="controller" value="Resultado">
+            <input type="hidden" name="action" value="buscar">
+            <input type="text" name="termino" placeholder="Buscar..." required>
+            <button type="submit">
+                <img src="/reto-1-equipo-3/php/assets/images/search.svg" alt="Lupa" class="search-icon">
+            </button>
+        </form>
+    </div>
+    <span class="modo"></span>
+    <div class="profile-icon">
+        <a href="index.php?controller=Usuario&action=perfil">
+            <?php $fotoPerfil = $_SESSION['usuario']['foto']; ?>
+            <img src="<?php echo $fotoPerfil; ?>" alt="Perfil">
+        </a>
+    </div>
 
-        <div class="profile-icon">
-            <a href="index.php?controller=Usuario&action=perfil">
-                <?php
-                $elUsuario = $dataToView['data']['usuario'];
+</nav>
 
-                $fotoPerfil = isset($elUsuario['foto_perfil']) && !empty($elUsuario['foto_perfil'])
-                    ? htmlspecialchars($elUsuario['foto_perfil'])
-                    : '/ruta/a/imagen/placeholder.png';
-                ?>
-                <img src="<?php echo $fotoPerfil; ?>" alt="Perfil">
-            </a>
-        </div>
-    </nav>
+
+        
