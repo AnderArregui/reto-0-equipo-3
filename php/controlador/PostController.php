@@ -3,6 +3,7 @@
 require_once "models/Respuesta.php";
 require_once 'models/Tema.php';
 require_once 'models/Post.php';
+require_once 'models/Guardado.php';
 
 class PostController {
     public $view;
@@ -11,6 +12,7 @@ class PostController {
     private $temaModel;
     private $usuarioModel;
     private $postModel;
+    private $guardadoModel;
     
 
     public function __construct() {
@@ -19,7 +21,7 @@ class PostController {
         $this->temaModel = new Tema();
         $this->postModel = new Post();
         $this->usuarioModel = new Usuario();
-
+        $this->guardadoModel = new Guardado();
         $nombre_usuario = $_SESSION['usuario']['nombre'] ?? null;
 
         if ($nombre_usuario) {
@@ -131,23 +133,26 @@ class PostController {
    
     public function init($id_post) {
         $id_post = $_GET['id_post'] ?? null;
+        
 
         if ($id_post) {
             $respuestaModel = new Respuesta();
             $postModel = new Post();
             $usuarioModel = new Usuario();
+            $guardadoModel = new Guardado();
 
             $usuario = $usuarioModel->obtenerUsuarioPorId($id_post);
             $tema = $postModel->obtenerPorId($id_post);
             $post = $respuestaModel->obtenerPost($id_post);
             $respuestas = $respuestaModel->obtenerPorPost($id_post);
-
-        
+            $guardado = $guardadoModel->verificarGuardado($id_post, $_SESSION['id_usuario']);
+            
             return [
                     'post' => $post,
                     'respuestas' => $respuestas,
                     'tema' => $tema,
                     'usuario' => $usuario,
+                    'guardado' => $guardado
             ];
         }
 
@@ -156,6 +161,7 @@ class PostController {
                 'respuestas' => [],
                 'tema' => null,
                 'usuario' => null,
+                'guardado' => null
         ];
     }
     
