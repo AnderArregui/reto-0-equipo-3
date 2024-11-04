@@ -2,7 +2,6 @@
 
     <div class="result-grid">
        
-
         <?php 
         $usuarios = $dataToView['data']['usuarios'];
         if (!empty($usuarios)): ?>
