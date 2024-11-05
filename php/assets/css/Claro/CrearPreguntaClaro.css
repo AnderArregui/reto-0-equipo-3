@@ -1,0 +1,121 @@
+.theme-toggle:checked ~ form .generalPregutar .divDiseno .tituloTema h1 {
+    color: #363636;
+}
+
+.theme-toggle:checked ~ form .generalPregutar .divDiseno .CrearPregunta h1{
+    color: #363636;
+}
+
+.theme-toggle:checked ~ form .generalPregutar .divDiseno .temasSelect select {
+    width: 100%; 
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #999999; 
+    color: #000000; 
+    border: 1px solid #444; 
+    border-radius: 5px; 
+    transition: background-color 0.3s; 
+}
+
+.temasSelect select:hover {
+    background-color: rgb(40, 40, 40); 
+}
+#temaSelect option{
+    font-weight: 300;
+    letter-spacing: -0.03em;
+}
+
+.crearTema {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.crearTema label {
+    font-size: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    padding: 15px 20px;    text-align: center; 
+    transition: background-color 0.3s; 
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    cursor:pointer;
+}
+
+.crearTema label:hover {
+    background-color: #555; 
+}
+
+.crearTema input[type="text"] {
+    width: 40%; 
+    height: 40px;
+    font-size: 18px;
+    padding-left: 4px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    transition: border-color 0.3s;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color:#363636;
+}
+
+.crearTema input[type="text"]:focus {
+
+    outline: none;
+    
+}
+
+.crearTema input[type="checkbox"] {
+    display: none; 
+}
+
+.crearTema input[type="checkbox"]:checked + input[type="text"],
+.crearTema input[type="checkbox"]:checked + input[type="text"] + input[type="submit"] {
+    display: block;
+    visibility: visible;
+}
+
+.crearTema input[type="submit"], .subir {
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #FF3183;
+    color: #fff; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+.crearTema input[type="submit"]:hover, .subir:hover {
+    background-color: #e62674;
+}
+
+.subir {
+    border-radius: 10px;
+    background-image: linear-gradient(270deg, #FF3183, #7EC5FF, #FFA3A5, #00F382);
+    background-color: transparent;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    color:rgb(23, 23, 23);
+    transition-duration: 0.3s;
+    background-size: 400% 400%; 
+    animation: gradientAnimation 15s ease infinite; 
+    transition: 0.5s;
+}
+.subir:Hover {
+    transform: scale(1.05);
+    color:white;
+}
+
+
+

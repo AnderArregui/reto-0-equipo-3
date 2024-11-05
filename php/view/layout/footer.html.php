@@ -1,3 +1,4 @@
+
 <footer>
     <div class="footer-container">
         <div class="footer-section">
@@ -25,7 +26,9 @@
         <p>&copy; 2024 Aergibide. Todos los derechos reservados.</p>
     </div>
 </footer>
+<script src="/reto-1-equipo-3/php/assets/js/modoTema.js"></script>
 <script src="./js/menu.js"></script>
 <script src="/reto-1-equipo-3/php/assets/js/controlScrolleo.js"></script>
+</body>
 </head>
 </html>

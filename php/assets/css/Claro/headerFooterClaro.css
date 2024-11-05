@@ -1,0 +1,67 @@
+/*header Claro*/
+#toggle-theme{
+    visibility: hidden;
+}
+
+
+body:has(.theme-toggle:checked) {
+    background-color: #ffffff;
+    
+}
+
+
+.theme-toggle:checked ~ nav {
+    background-color: #ccc;
+}
+.theme-toggle:checked ~ nav #logo {
+    filter: invert(100%);
+
+}
+
+.theme-toggle:checked ~ nav .orden-control {
+    background-color: #ffffff;
+}
+.theme-toggle:checked ~ nav .orden-control li a {
+    color: #b1b1b1;
+}
+
+
+.theme-toggle:checked ~ nav .orden-control a:hover,
+.theme-toggle:checked ~ nav .orden-control a.active  {
+    background-color: #ccc; 
+    color: #ffffff;
+}
+
+.theme-toggle:checked ~ .modo {
+    color: #ffffff; 
+}
+
+
+
+/*footer Claro*/
+
+.theme-toggle:checked ~ footer {
+    color: rgba(54, 54, 54, 0.9);
+    background-color:  #ccc;;
+}
+.theme-toggle:checked ~ footer h3 {
+    color: #363636;
+}
+.theme-toggle:checked ~ footer p {
+    color: #363636;
+}
+.theme-toggle:checked ~ footer ul li {
+    color: #363636;
+}
+.theme-toggle:checked ~ footer ul strong {
+    color: #363636;
+}
+
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 10px;
+    font-weight: 300;
+}

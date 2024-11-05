@@ -108,6 +108,7 @@ body{
 .tema:hover h3{
     color:#363636;
 }
+
 .tema:hover #palabraTema{
     color:#363636;
 }
@@ -168,7 +169,7 @@ body{
 }
 #mastemas a {
     font-family: 'Helvetica';
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none; 
 }
 #mastemas:hover {
@@ -270,7 +271,6 @@ aside{
     margin-bottom: .5em;
     border-radius: 10px;
     width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border: 2px dashed #808080;
 }
 
@@ -287,12 +287,14 @@ aside{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
+    transition: 0.3s;
     padding: 10px 20px;
     border-radius: 10px;
     width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border: 2px dashed #808080;
+}
+.pregunta:hover{
+    transform: scale(1.02);
 }
 
 .pregunta h3 {
@@ -361,6 +363,7 @@ aside{
 .preguntaBlanca:last-child {
     margin-bottom: 0;
 }
+
 .respuesta {
     margin-bottom: .3em;
     display: flex;
@@ -373,7 +376,6 @@ aside{
 
     border-radius: 10px;
     width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .respuesta h3 {
@@ -509,10 +511,6 @@ aside{
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 
@@ -658,7 +656,3 @@ aside{
     font-size: 20px;
     opacity: 1; 
 }
-
-
-
-

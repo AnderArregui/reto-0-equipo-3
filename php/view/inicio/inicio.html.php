@@ -19,7 +19,6 @@ $likesUsuario = $dataToView['data']['likesUsuario'];
 $orderType = $_GET['tipo'] ?? 'reciente';
 ?> 
 
-
 <div class="general">
     <div class="container">
         <h2 class="titulo">Temas</h2>
@@ -54,10 +53,10 @@ $orderType = $_GET['tipo'] ?? 'reciente';
 </div>
 
 <div class="tresElementos">
-<div class="preguntas"> 
+    <div class="preguntas"> 
     <div class="paginacionDiv">
     <div class="orden-control">
-        <h2>Preguntas Recientes</h2>
+        <h2>Preguntas</h2>
         <div>
             <span>Ordenar por:</span>
             <a href="index.php?controller=Inicio&action=ordenar&tipo=popular">Destacado</a>
@@ -79,8 +78,8 @@ $orderType = $_GET['tipo'] ?? 'reciente';
         </div>
 
     <?php
-$contador = 0;
-if (!empty($preguntas)): ?>
+    $contador = 0;
+    if (!empty($preguntas)): ?>
     <?php while ($contador < $preguntasPorPagina && $contador < count($preguntas)): ?>
         <?php 
         
@@ -146,75 +145,69 @@ if (!empty($preguntas)): ?>
     </div>
 
 
-
-
-
-</div>
-
-<aside>
-<div class="divAside">
-    <h2>Mis Guardados</h2>
-    <div id="guardados-container">
-        <?php if (!empty($guardados)): ?>
-            <?php foreach ($guardados as $postGuardado): ?>
-                <div class="divUsuario" style="border: 2px dashed <?php echo htmlspecialchars($postGuardado['caracteristica']); ?>">
-                    <h3>
-                        <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo htmlspecialchars($postGuardado['id_post']); ?>" class="tema-link">
-                            <?php 
-                                $maxCaracteres = 80;
-                                $contenido = htmlspecialchars($postGuardado['contenido']);
-                                echo (mb_strlen($contenido) > $maxCaracteres) 
-                                    ? mb_substr($contenido, 0, $maxCaracteres) . "..." 
-                                    : $contenido; 
-                            ?>
-                        </a>
-                    </h3>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>No tienes posts guardados.</p>
-        <?php endif; ?>
     </div>
-</div>
 
-
-
-
-    <div class="divAside">
-        <h2>Mis Likes</h2>
+    <aside>
+        <div class="divAside">
+        <h2>Mis Guardados</h2>
         <div id="guardados-container">
-        <?php 
-        $likesUsuario = $dataToView["data"]['likesUsuario'] ?? []; 
-
-        if (!empty($likesUsuario)): ?>
-            <?php foreach ($likesUsuario as $respuestaLike): ?>
-                <div class="divUsuario" style="border: 2px dashed <?php echo htmlspecialchars($respuestaLike['caracteristica']); ?>">
-                    <h3>
-                        <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo htmlspecialchars($respuestaLike['id_respuesta']); ?>" class="tema-link">
-                            <?php 
-                                $maxCaracteres = 180;
-                                $contenido = htmlspecialchars($respuestaLike['contenido']);
-                                echo (mb_strlen($contenido) > $maxCaracteres) 
-                                    ? mb_substr($contenido, 0, $maxCaracteres) . "..." 
-                                    : $contenido; 
-                            ?>
-                        </a>
-                    </h3>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>No has dado like a ninguna respuesta.</p>
-        <?php endif; ?>
+            <?php if (!empty($guardados)): ?>
+                <?php foreach ($guardados as $postGuardado): ?>
+                    <div class="divUsuario" style="border: 2px dashed <?php echo htmlspecialchars($postGuardado['caracteristica']); ?>">
+                        <h3>
+                            <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo htmlspecialchars($postGuardado['id_post']); ?>" class="tema-link">
+                                <?php 
+                                    $maxCaracteres = 80;
+                                    $contenido = htmlspecialchars($postGuardado['contenido']);
+                                    echo (mb_strlen($contenido) > $maxCaracteres) 
+                                        ? mb_substr($contenido, 0, $maxCaracteres) . "..." 
+                                        : $contenido; 
+                                ?>
+                            </a>
+                        </h3>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No tienes posts guardados.</p>
+            <?php endif; ?>
         </div>
+        </div>
+
+        <div class="divAside">
+            <h2>Mis Likes</h2>
+            <div id="guardados-container">
+            <?php 
+            $likesUsuario = $dataToView["data"]['likesUsuario'] ?? []; 
+
+            if (!empty($likesUsuario)): ?>
+                <?php foreach ($likesUsuario as $respuestaLike): ?>
+                    <div class="divUsuario" style="border: 2px dashed <?php echo htmlspecialchars($respuestaLike['caracteristica']); ?>">
+                        <h3>
+                            <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo htmlspecialchars($respuestaLike['id_respuesta']); ?>" class="tema-link">
+                                <?php 
+                                    $maxCaracteres = 180;
+                                    $contenido = htmlspecialchars($respuestaLike['contenido']);
+                                    echo (mb_strlen($contenido) > $maxCaracteres) 
+                                        ? mb_substr($contenido, 0, $maxCaracteres) . "..." 
+                                        : $contenido; 
+                                ?>
+                            </a>
+                        </h3>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No has dado like a ninguna respuesta.</p>
+            <?php endif; ?>
+            </div>
+        </div>
+        </div>
+    </aside>
+
+
+    <div class="botonMas">
+    <a href="/reto-1-equipo-3/php/index.php?controller=Post&action=crearPregunta">
+        <img src="/reto-1-equipo-3/php/assets/images/crear.svg" alt="Añadir pregunta">
+    </a>
     </div>
-</div>
-</aside>
-
-
-<div class="botonMas">
-  <a href="/reto-1-equipo-3/php/index.php?controller=Post&action=crearPregunta">
-    <img src="/reto-1-equipo-3/php/assets/images/crear.svg" alt="Añadir pregunta">
-  </a>
-</div>
     </div>
 </div>

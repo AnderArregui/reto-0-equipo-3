@@ -1,0 +1,26 @@
+.theme-toggle:checked ~ .containerContacto #formContacto label {
+    color: #363636;
+}
+
+.theme-toggle:checked ~ .containerContacto #textoContacto .contactanos {
+    color: #363636;
+}
+
+.theme-toggle:checked ~ .containerContacto #formContacto input[type="text"],
+.theme-toggle:checked ~ .containerContacto #formContacto input[type="email"],
+.theme-toggle:checked ~ .containerContacto #formContacto textarea
+{
+    background-color: #ccc;
+    border: 1px solid #9f9f9f;
+    color: #363636;
+
+}
+
+.theme-toggle:checked ~ .containerContacto #formContacto button {
+    background-color: #2b2b2b;
+    color: #f1f1f1;
+}
+
+.theme-toggle:checked ~ .containerContacto #formContacto button:hover {
+    background-color: #000000;
+}

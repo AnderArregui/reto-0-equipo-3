@@ -112,6 +112,9 @@ button {
 }
 
 .modo {
+    position: fixed;
+    top:4.8%;
+    left:77%;
     display: inline-block;
     width: 2em;
     height: 2em;
@@ -123,6 +126,9 @@ button {
     mask-repeat: no-repeat;
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
+    z-index: 2000;
+    cursor: pointer;
+    user-select: none;
   }
 
 .burger {
@@ -139,6 +145,7 @@ button {
     align-items: center; 
     justify-content: center;
     margin-right: -.7em;
+    margin-left: 2em;
 }
 
 
@@ -204,10 +211,6 @@ footer {
     color: rgb(255, 255, 255);
     text-decoration: none;
     transition: color 0.3s ease;
-}
-
-.footer-section a:hover {
-    color: #FFA500;
 }
 
 .footer-bottom {

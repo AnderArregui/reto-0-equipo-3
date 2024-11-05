@@ -15,3 +15,51 @@
     border-radius: 10px;
     padding: 3em;
 }
+.theme-toggle:checked ~ .general .container .temasTemas .tema-sin-imagen-color{
+    background-color: #E8E8E8;
+}
+.theme-toggle:checked ~ .general .container .temasTemas .tema-sin-imagen-color:hover {
+    background-color: #adadad;
+}
+.theme-toggle:checked ~ .general .container .temasTemas .tema-sin-imagen-color h3{
+    color: #363636;
+}
+.theme-toggle:checked ~ .general .container .temasTemas .tema-link .tema{
+    background-color: #E8E8E8;
+}
+.theme-toggle:checked ~ .general .container .temasTemas .tema-link .tema:hover{
+    transform: scale(1.05);
+    background-color: var(--color-base);
+    cursor: pointer;
+}
+.theme-toggle:checked ~ .general .container .temasTemas .tema-link .tema h3{
+    color: #363636;
+}
+
+
+
+
+.theme-toggle:checked ~ .general .container .tema{
+    background-color: #E8E8E8;
+}
+.theme-toggle:checked ~ .general .container .tema:hover{
+    transform: scale(1.05);
+    background-color: var(--color-base);
+    cursor: pointer;
+}
+.theme-toggle:checked ~ .general .container .tema h3{
+    color: #363636;
+}
+
+
+.theme-toggle:checked ~ .result-gridBusqueda .tema-sin-imagen-color {
+    background-color: #E8E8E8;
+}
+.theme-toggle:checked ~ .result-gridBusqueda .tema-link:hover{
+
+    background-color: var(--color-base);
+    cursor: pointer;
+}
+.theme-toggle:checked ~ .result-gridBusqueda .tema-link h3{
+    color: #363636;
+}

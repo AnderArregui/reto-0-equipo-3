@@ -1,4 +1,4 @@
-    <div class="containerContacto">
+<div class="containerContacto">
             <div id="textoContacto">
                 <h2 class="contactanos">Contáctanos</h2>
                 <h3 class="infoContacto">Comunícate con tu superior para consultas específicas. También puedes enviar un correo electrónico aquí.</h3>
@@ -30,4 +30,4 @@
                 <img src="/reto-1-equipo-3/php/assets/images/inigo.png" class="imgJefes imgInigo">
             </div>
             <script src="/reto-1-equipo-3/php/assets/js/imgContacto.js"></script>
-    </div>
+</div>

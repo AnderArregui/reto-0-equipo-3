@@ -30,7 +30,7 @@ function guardar(icon) {
                 const divUsuario = document.createElement('div');
                 divUsuario.className = 'divUsuario';
                 divUsuario.style.border = `2px dashed ${jsonData.postGuardado.caracteristica}`;
-                divUsuario.id = `guardado-${jsonData.postGuardado.id_post}`;  // Asigna un ID único
+                divUsuario.id = `guardado-${jsonData.postGuardado.id_post}`; 
 
                 const h3 = document.createElement('h3');
                 const link = document.createElement('a');
@@ -47,7 +47,7 @@ function guardar(icon) {
                 divUsuario.appendChild(h3);
                 guardadosContainer.appendChild(divUsuario);
             } 
-            // Eliminar el post guardado de "Mis Guardados" si se quita el guardado
+            
             else if (!isSaving) {
                 const guardadoElement = document.getElementById(`guardado-${idPost}`);
                 if (guardadoElement) {

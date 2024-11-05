@@ -1,15 +1,24 @@
-<!-- header.html.php -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/headerFooter.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/Claro/headerFooterClaro.css">
+
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/inicio.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/Claro/inicioClaro.css">
+
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/perfil.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/temas.css">
+
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/contacto.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/Claro/contactoClaro.css">
+
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/CrearPregunta.css">
+    <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/Claro/CrearPreguntaClaro.css">
+
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/resultado.css">
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/mostrarUsuario.css">
 
@@ -45,11 +54,13 @@
     </script>
 </head>
 <body>
+
+<input type="checkbox" id="toggle-theme" class="theme-toggle">
+<label for="toggle-theme" class="modo">Cambiar Tema</label>
 <nav>
     <a href="index.php?controller=Inicio&action=inicio">
-        <img src="/reto-1-equipo-3/php/assets/images/logo.png" alt="logo">
+        <img src="/reto-1-equipo-3/php/assets/images/logo.png" alt="logo" id="logo">
     </a>
-    
     <ul class="nav-links">
         <div class="orden-control">
             <?php
@@ -82,7 +93,7 @@
             </button>
         </form>
     </div>
-    <span class="modo"></span>
+
     <div class="profile-icon">
         <a href="index.php?controller=Usuario&action=perfil">
             <?php $fotoPerfil = $_SESSION['usuario']['foto']; ?>
