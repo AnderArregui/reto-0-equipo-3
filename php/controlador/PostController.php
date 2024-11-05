@@ -3,6 +3,7 @@
 require_once "models/Respuesta.php";
 require_once 'models/Tema.php';
 require_once 'models/Post.php';
+require_once 'models/Guardado.php';
 require_once "models/Usuario.php";
 
 class PostController {
@@ -12,7 +13,8 @@ class PostController {
     private $temaModel;
     private $usuarioModel;
     private $postModel;
-    
+    private $guardadoModel;
+
 
     public function __construct() {
         $this->view = "respuestas"; 
@@ -20,7 +22,7 @@ class PostController {
         $this->temaModel = new Tema();
         $this->postModel = new Post();
         $this->usuarioModel = new Usuario();
-
+        $this->guardadoModel = new Guardado();
         $nombre_usuario = $_SESSION['usuario']['nombre'] ?? null;
 
         if ($nombre_usuario) {
@@ -73,7 +75,7 @@ class PostController {
         $this->view = "crearPregunta";
 
             $usuario = new Usuario();
-            $usuario = $_SESSION['usuario'];  
+            $usuario = $_SESSION['usuario'];
 
             return [
                 'usuario' => $usuario,
@@ -81,6 +83,7 @@ class PostController {
         ];
     }
     
+
     public function crearPreguntas() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_tema = null;
@@ -109,6 +112,7 @@ class PostController {
             $id_usuario = $_SESSION['usuario']['id_usuario'];
             var_dump($id_usuario, $id_tema, $_POST['pregunta']);
     
+            // Crear pregunta
             if (!empty($_POST['pregunta']) && $id_tema && $id_usuario) {
                 if ($this->postModel->crear($id_usuario, $id_tema, $_POST['pregunta'])) {
                     $_SESSION['mensaje'] = "";
@@ -141,21 +145,23 @@ class PostController {
         if ($id_post) {
             $respuestaModel = new Respuesta();
             $postModel = new Post();
-            $usuarioModel = new Usuario();
+            $guardadoModel = new Guardado();
 
             $usuarioPost = $_SESSION['usuario'];
             $tema = $postModel->obtenerPorId($id_post);
             $post = $respuestaModel->obtenerPost($id_post);
             $respuestas = $respuestaModel->obtenerPorPost($id_post);
+            $guardado = $guardadoModel->verificarGuardado($id_post, $_SESSION['usuario']['id_usuario']);
 
             $usuario = $_SESSION['usuario'];
 
-        
+
             return [
                     'post' => $post,
                     'respuestas' => $respuestas,
                     'tema' => $tema,
                     'usuario' => $usuario,
+                    'guardado' => $guardado,
                     'usuarioPost' => $usuarioPost
             ];
         }
@@ -166,6 +172,11 @@ class PostController {
                 'tema' => null,
                 'usuario' => null,
                 'usuarioPost' => null,
+                'guardado' => null
         ];
     }
+    
+
+
+    
 }

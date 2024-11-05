@@ -6,8 +6,8 @@ class ResultadoController {
     public $showLayout = true;
     private $resultado;
 
-    public function __construct($db) {
-        $this->resultado = new Resultado($db);
+    public function __construct() {
+        $this->resultado = new Resultado();
     }
 
 public function buscar() {

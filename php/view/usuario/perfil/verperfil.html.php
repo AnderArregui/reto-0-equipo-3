@@ -4,8 +4,6 @@ $data = json_decode(file_get_contents("php://input"), true);
 
 if ($data): ?>
     <form id="formularioUsuario">
-        <h2>Perfil de Usuario</h2>
-        
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($data['nombre']); ?>" readonly>
 

@@ -78,6 +78,18 @@ WHERE
             echo "Error en la consulta: " . $e->getMessage();
         }
 }
+
+public function actualizarImagenPerfil($id_usuario, $newImageUrl) {
+    try {
+        $stmt = $this->connection->prepare("UPDATE usuarios SET foto = ? WHERE id_usuario = ?");
+        $stmt->bindParam("si", $newImageUrl, $id_usuario);
+        $stmt->execute();
+        $stmt->close();
+    } catch (PDOException $e) {
+        echo "Error al actualizar la imagen de perfil: " . $e->getMessage();
+    }
+    exit();
+}
 }
 ?>
 

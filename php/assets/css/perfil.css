@@ -13,8 +13,14 @@
     height: 200px;
     border-radius: 200px;
     border: 1px solid white;
+    transition: 400ms;
 }
 
+.perfil img:hover{
+    opacity: 0.5;
+    transition: 400ms;
+    cursor: pointer;
+}
 .perfil h2{
     padding-top: 10px;
     font-weight: 300;
@@ -62,6 +68,12 @@
     transition: 400ms;
 }
 
+#formularioUsuario {
+    display: flex;
+    flex-direction: column;
+    max-width: 50em;
+}
+
 #visualizacion label
 {
     display: flex;
@@ -85,8 +97,4 @@
     border-radius: 5px;
     color: #f1f1f1;
     font-size: 1.1em;
-}
-
-.opcion {
-    display: none;
 }
