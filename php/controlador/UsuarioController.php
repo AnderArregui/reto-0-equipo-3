@@ -4,24 +4,35 @@ require_once "models/Usuario.php";
 
 class UsuarioController {
     public $view;
-    public $showLayout = true; // Controla si se debe mostrar header y footer
+    public $showLayout = true;
+
+    private $usuario;
 
     public function __construct() {
-        $this->view = "login"; // Vista por defecto
+        $this->view = "login";
     }
 
     public function login() {
-        $this->showLayout = false; // No mostrar el header/footer en la página de login
+        $this->showLayout = false;
 
-        // Verifica si el formulario fue enviado por POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $usuario = new Usuario();
-            if ($usuario->validateLogin($username, $password)) {
-                // Iniciar sesión y redirigir
-                $_SESSION['usuario'] = $username;
+            $this->usuario = new Usuario();
+            $usuarioModel = $this->usuario->validateLogin($username, $password);
+
+            if ($usuarioModel) {
+                $_SESSION['usuario'] = [
+                    'id_usuario' => $usuarioModel['id_usuario'],
+                    'nombre' => $usuarioModel['nombre'],
+                    'foto' => $usuarioModel['foto'],
+                    'especialidad' => $usuarioModel['especialidad'],
+                    'anios_empresa' => $usuarioModel['anios_empresa'],
+                    'email' => $usuarioModel['email'],
+                    'tipo' => $usuarioModel['tipo']
+                ];
+
                 header("Location: index.php?controller=Inicio&action=inicio");
                 exit();
             } else {
@@ -29,21 +40,89 @@ class UsuarioController {
             }
         }
 
-        $this->view = "login"; // Mantiene la vista de login
+        $this->view = "login"; 
     }
 
     public function inicio() {
-        // Verifica que el usuario haya iniciado sesión
         if (!isset($_SESSION['usuario'])) {
             header("Location: index.php?controller=usuario&action=login");
             exit();
         }
 
-        $this->view = "inicio"; // Vista de bienvenida
+        $this->view = "inicio";
+    }
+
+    public function perfil() {
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: index.php?controller=usuario&action=login");
+            exit();
+        }
+
+        $this->view = "perfil";
+
+        $idUsuario = $_SESSION['usuario']['id_usuario'];
+        $this->usuario = new Usuario();
+        $usuario = $this->usuario->obtenerPorId($idUsuario);
+        
+        return [
+            'usuario' => $usuario
+        ];
+    }
+
+    public function mostrarUsuario() {
+        $this->usuario = new Usuario();
+        $usuarios = $this->usuario->obtenerTodosLosUsuarios();
+        $this->view = "mostrarusuario";
+        return [
+            'usuarios' => $usuarios
+        ];
+    }
+    public function usuarioindividual() {
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: index.php?controller=Usuario&action=mostrarUsuario");
+            exit();
+        }
+
+        $id_usuario = $_GET['id_usuario'];
+        $this->usuario = new Usuario();
+        $infoUsuario = $this->usuario->obtenerInfoUsuario($id_usuario);
+      
+        if (!$infoUsuario) {
+            $this->view = "usuarioindividual";
+            return ["mensaje" => "Usuario no encontrado"];
+        }
+        
+        $this->view = "usuarioindividual";
+        return ['infoUsuario' => $infoUsuario];
+    }
+
+    public function actualizarImagenPerfil() {
+        if(!isset($_SESSION['usuario'])){
+            echo json_encode(['success' => false, 'message' => 'Usuario no autenticado']);
+            return;
+        }
+
+        if(isset($_FILES['fotoPerfil']) && $_FILES['fotoPerfil']['error'] == 0){
+            $targetDir = "reto-1-equipo-3/php/assets/img/perfil/";
+            $fileName = uniqid() . "_" . basename($_FILES['fotoPerfil']['name']);
+            $targetFilePath = $targetDir . $fileName;
+
+            if(move_uploaded_file($_FILES['fotoPerfil']['tmp_name'], $targetFilePath)){
+                $usuarioModel = new Usuario();
+                $usuarioModel->actualizarImagenPerfil($_SESSION['usuario']['id_usuario'], $targetFilePath);
+
+                $_SESSION['usuario']['foto'] = $targetFilePath;
+
+                echo json_encode(['success' => true, 'newImageUrl' => $targetFilePath]);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Error al subir la imagen']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'No se ha seleccionado ninguna imagen']);
+        }
     }
 
     public function logout() {
-        // Cierra la sesión
         session_destroy();
         header("Location: index.php?controller=usuario&action=login");
         exit();

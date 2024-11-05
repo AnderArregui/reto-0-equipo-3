@@ -1,0 +1,123 @@
+
+/*Diseño de la pagina de contacto*/
+.containerContacto{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 4em;
+    height: 100vh;
+    
+    margin-bottom: 22em;
+}
+#textoContacto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 45%;
+    padding-left: 6em;
+}
+
+.contactanos{
+    font-weight: 600;
+    font-size: 4.5em;
+    letter-spacing: -0.05em;
+}
+.infoContacto{
+    font-weight: 200;
+    font-size: 1.5em;
+    width: 65%;
+    padding-left: .2em;
+}
+
+#formContacto{
+    padding: 20px;
+    width: 50%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.nombreContacto{
+    width: 30%;
+    margin-right: 1em;
+}
+.emailContacto{
+    width: 50%;
+    margin-right: 3em;
+}
+.asuntoContacto{
+    width: 40%;
+    margin-right: 1em;
+}
+.mensajeContacto{
+    width: 40%;
+    margin-right: 5em;
+}
+
+#formContacto label
+{
+    display: flex;
+    justify-content: left;
+    font-size: 1.3em;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    margin-bottom: 5px;
+    color: #cacaca;
+}
+
+#formContacto input[type="text"],
+#formContacto input[type="email"],
+#formContacto textarea
+{
+    width: 100%;
+    height: 40%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #3b3b3b;
+    border: 1px solid #5f5f5f;
+    border-radius: 5px;
+    color: #f1f1f1;
+    font-size: 1.1em;
+}
+
+#formContacto button {
+    background-color: #f1f1f1;
+    color: #2b2b2b;
+    display: flex;
+    justify-content: right;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: -.8em;
+
+    font-weight: 500;
+}
+
+#formContacto button:hover {
+    background-color: #cccccc;
+}
+#imgContacto {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 3px;
+    width: 100%;
+}
+
+.imgJefes {
+    opacity: 0.6;
+    width: 32%; 
+    border-radius: 10px; 
+    transition: opacity 0.3s ease; 
+}
+
+.imgJefes:hover {
+    opacity: 1;
+}
+
