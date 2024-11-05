@@ -1,9 +1,14 @@
 <?php
 class Resultado {
-    private $db;
+    private $connection;
 
-    public function __construct($db) {
-        $this->db = $db;
+    public function __construct() {
+        $this->getConection();
+    }
+
+    public function getConection() {
+        $db = new db();
+        $this->connection = $db->connection;
     }
 
     public function buscarTemas($termino) {
@@ -15,7 +20,7 @@ class Resultado {
     
         try {
             $query = "SELECT * FROM temas WHERE nombre LIKE :termino OR caracteristica LIKE :termino";
-            $stmt = $this->db->prepare($query);
+            $stmt = $this->connection->prepare($query);
             $stmt->bindValue(':termino', '%' . $termino . '%', PDO::PARAM_STR);
             $stmt->execute();
             
@@ -66,7 +71,7 @@ class Resultado {
                 p.contenido LIKE :termino OR t.nombre LIKE :termino 
         ";
         
-            $stmt = $this->db->prepare($query);
+            $stmt = $this->connection->prepare($query);
             $stmt->bindValue(':termino', '%' . $termino . '%', PDO::PARAM_STR);
             $stmt->execute();
             

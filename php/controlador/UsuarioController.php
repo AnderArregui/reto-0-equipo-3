@@ -96,6 +96,32 @@ class UsuarioController {
         return ['infoUsuario' => $infoUsuario];
     }
 
+    public function actualizarImagenPerfil() {
+        if(!isset($_SESSION['usuario'])){
+            echo json_encode(['success' => false, 'message' => 'Usuario no autenticado']);
+            return;
+        }
+
+        if(isset($_FILES['fotoPerfil']) && $_FILES['fotoPerfil']['error'] == 0){
+            $targetDir = "reto-1-equipo-3/php/assets/img/perfil/";
+            $fileName = uniqid() . "_" . basename($_FILES['fotoPerfil']['name']);
+            $targetFilePath = $targetDir . $fileName;
+
+            if(move_uploaded_file($_FILES['fotoPerfil']['tmp_name'], $targetFilePath)){
+                $usuarioModel = new Usuario();
+                $usuarioModel->actualizarImagenPerfil($_SESSION['usuario']['id_usuario'], $targetFilePath);
+
+                $_SESSION['usuario']['foto'] = $targetFilePath;
+
+                echo json_encode(['success' => true, 'newImageUrl' => $targetFilePath]);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Error al subir la imagen']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'No se ha seleccionado ninguna imagen']);
+        }
+    }
+
     public function logout() {
         session_destroy();
         header("Location: index.php?controller=usuario&action=login");

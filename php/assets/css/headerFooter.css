@@ -131,27 +131,75 @@ button {
 }
 
 .profile-icon {
-    width: 50px; 
+    position: relative;
+    width: 200px; 
+    height: 75px;
+    display: flex; 
+    align-items: center;
+    justify-content: right;
+}
+
+/* Ajusta el contenedor de la imagen */
+.profile-icon a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
     height: 50px;
     overflow: hidden;
-    border-radius: 8px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    margin-right: -.7em;
 }
 
-
+/* Imagen de perfil a 50x50 píxeles */
 .profile-icon img {
-    width: 50px; 
+    width: 50px;
     height: 50px;
-    object-fit: cover; 
+    object-fit: cover;
 }
 
+.dropdown-menu {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    right: 0;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 200px;
+    overflow: hidden;
+}
 
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
+.dropdown-menu li {
+    padding: 10px 20px;
+}
 
+.dropdown-menu li a{
+    color: #333;
+    width: 100px;
+    height: 25px;
+    text-decoration: none;
+    display: block;
+}
 
+.dropdown-menu li:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+}
+    
 /*footer*/
 
 footer {

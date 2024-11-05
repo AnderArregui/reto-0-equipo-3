@@ -145,14 +145,13 @@ class PostController {
         if ($id_post) {
             $respuestaModel = new Respuesta();
             $postModel = new Post();
-            $usuarioModel = new Usuario();
             $guardadoModel = new Guardado();
 
             $usuarioPost = $_SESSION['usuario'];
             $tema = $postModel->obtenerPorId($id_post);
             $post = $respuestaModel->obtenerPost($id_post);
             $respuestas = $respuestaModel->obtenerPorPost($id_post);
-            $guardado = $guardadoModel->verificarGuardado($id_post, $_SESSION['id_usuario']);
+            $guardado = $guardadoModel->verificarGuardado($id_post, $_SESSION['usuario']['id_usuario']);
 
             $usuario = $_SESSION['usuario'];
 
@@ -161,6 +160,7 @@ class PostController {
                     'post' => $post,
                     'respuestas' => $respuestas,
                     'tema' => $tema,
+                    'usuario' => $usuario,
                     'guardado' => $guardado,
                     'usuarioPost' => $usuarioPost
             ];

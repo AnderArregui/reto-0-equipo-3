@@ -43,6 +43,20 @@
             navLinks.classList.remove('active');
         }
     </script>
+    <script>
+        document.addEventListener('click', function (event) {
+            const dropdown = document.querySelector('.dropdown-menu');
+            const profileIcon = document.querySelector('.profile-icon img');
+
+            if (profileIcon.contains(event.target)) {
+                // Si se hace clic en la imagen, activa o desactiva el menú desplegable
+                dropdown.classList.toggle('show');
+            } else if (!dropdown.contains(event.target)) {
+                // Si se hace clic fuera del menú, ciérralo
+                dropdown.classList.remove('show');
+            }
+        });
+    </script>
 </head>
 <body>
 <nav>
@@ -83,11 +97,19 @@
         </form>
     </div>
     <span class="modo"></span>
+
     <div class="profile-icon">
-        <a href="index.php?controller=Usuario&action=perfil">
+        <a href="javascript:void(0);" onclick="toggleDropdown(event)">
             <?php $fotoPerfil = $_SESSION['usuario']['foto']; ?>
             <img src="<?php echo $fotoPerfil; ?>" alt="Perfil">
         </a>
+        <div class="dropdown-menu">
+            <ul>
+                <li><a href="index.php?controller=Usuario&action=perfil">Ver perfil</a></li>
+                <li><a href="index.php?controller=Usuario&action=editarPerfil">Editar perfil</a></li>
+                <li><a href="index.php?controller=Usuario&action=logout">Cerrar sesión</a></li>
+            </ul>
+        </div>
     </div>
 
 </nav>

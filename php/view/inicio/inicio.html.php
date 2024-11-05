@@ -180,8 +180,8 @@ if (!empty($preguntas)): ?>
 
 
 
-    <div class="divAside">
-        <h2>Mis Likes</h2>
+<div class="divAside">
+    <h2>Mis Likes</h2>
         <div id="guardados-container">
         <?php 
         $likesUsuario = $dataToView["data"]['likesUsuario'] ?? []; 

@@ -2,6 +2,8 @@
 class Respuesta {
     private $db;
 
+    private $connection;
+
     public function __construct() {
         $this->getConection();
     }
@@ -45,13 +47,6 @@ class Respuesta {
         }
     }
     
-    
-    
-
-
-    
-    
-
     public function obtenerPorPost($id_post) {
         $query = "SELECT r.*, 
                          u.nombre AS nombre_usuario, 
