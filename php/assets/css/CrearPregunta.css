@@ -186,4 +186,12 @@
 }
 
 
+/* Menú responsive para móviles */
+@media (max-width: 1200px) {
+    .divDiseno{
+        width: 100%;
+    }
+
+  
+}
 

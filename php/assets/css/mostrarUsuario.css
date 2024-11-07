@@ -96,6 +96,12 @@
     gap: 40px; 
 }
 
+.admin-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .stat-item {
     flex: 1;

@@ -11,7 +11,7 @@ nav {
     margin: 0px auto; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
     position: fixed; 
-    top: 20px; 
+    top: 10px; 
     left: 50%; 
     transform: translateX(-50%); 
     z-index: 1000; 
@@ -73,9 +73,13 @@ form{
     border-radius: 5px;
     font-size: 1em;
     font-weight: 500;
-    width: 50%;
+    width: 90%;
+    
     padding: 6px;
     transition: width 0.4s ease, background-color 0.3s ease;
+}
+form{
+    width: 100%;
 }
 
 .search-container input::placeholder {
@@ -98,6 +102,7 @@ button {
 }
 
 .search-icon {
+    margin-right: -4em;
     position: relative;
     height: 20px;
     cursor: pointer;
@@ -111,7 +116,7 @@ button {
 
 .modo {
     position: fixed;
-    top:4.8%;
+    top:3.2%;
     left:77%;
     display: inline-block;
     width: 2em;
@@ -171,8 +176,8 @@ button {
     transform: translateY(10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
     position: absolute;
-    top: 100%;
-    left: 50%;
+    top: -1000%;
+    left: 0%;
     right: 0;
     background-color: white;
     border-radius: 5px;
@@ -180,6 +185,7 @@ button {
     z-index: 10;
     width: 200px;
     overflow: hidden;
+    
 }
 
 .dropdown-menu ul {
@@ -190,6 +196,7 @@ button {
 
 .dropdown-menu li {
     padding: 10px 20px;
+    
 }
 
 .dropdown-menu li a{
@@ -202,13 +209,53 @@ button {
 
 .dropdown-menu li:hover {
     background-color: #f0f0f0;
+    
 }
 
 .dropdown-menu.show {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translate(0, 605%);
     pointer-events: auto;
 }
+
+
+.user-calendar {
+    font-weight: 300;
+    width: 70%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1% 0 3%;
+    border-radius: 10px; 
+    margin: 4em auto 0; 
+    position: fixed; 
+    top: -8px; 
+    left: 49%; 
+    transform: translateX(-50%); 
+    z-index: 600; 
+    display: flex;
+    flex-direction: column;
+}
+
+.note-textarea {
+    width: 70%;
+    height: 50px;
+    padding: 20px 10px 10px 10px;
+    margin-bottom: 10px;
+    background-color: #3b3b3b;
+    border: none;
+    border-radius: 10px;
+    color: #f1f1f1;
+    font-size: 1em;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+}
+
+
+
+
+
     
 /*footer*/
 
@@ -356,14 +403,17 @@ footer {
 
 
 
-/* Menú responsive para móviles */
-@media (max-width: 780px) {
+@media (max-width: 1200px) {
+    
+.user-calendar {
+    visibility: hidden;
+}
     
     .profile-icon {
         position:fixed;
-        left:30%;
+        left:10%;
     }
-    /* Mostrar el icono de hamburguesa */
+    
     .hamburger {
         position:fixed;
         display: block;
@@ -373,9 +423,9 @@ footer {
         width: 90%;
         flex-wrap: wrap;
     }
-    /* Ocultar el menú por defecto */
+    
     .nav-links {
-        display: none; /* Oculto inicialmente */
+        display: none; 
         flex-direction: column;
         background-color: #6c6c6c;
         width: 100%;
@@ -421,7 +471,7 @@ footer {
     }
     .search-container {
         position: absolute;
-        top:55%;
+        top:45%;
         left: 27%;
         width: 50% !important;
         border-radius: 0 0 10px 10px;

@@ -29,6 +29,8 @@
 <script src="/reto-1-equipo-3/php/assets/js/modoTema.js"></script>
 <script src="./js/menu.js"></script>
 <script src="/reto-1-equipo-3/php/assets/js/controlScrolleo.js"></script>
+<script src="/reto-1-equipo-3/php/assets/js/recargar.js"></script>
+<script src="/reto-1-equipo-3/php/assets/js/nota.js"></script>
 </body>
 </head>
 </html>

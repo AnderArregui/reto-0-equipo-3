@@ -33,6 +33,10 @@ class UsuarioController {
                     'tipo' => $usuarioModel['tipo']
                 ];
 
+                
+                setcookie("{$username}_note", "", time() - 3600, "/");
+                setcookie("note", "", time() - 3600, "/"); 
+
                 header("Location: index.php?controller=Inicio&action=inicio");
                 exit();
             } else {
@@ -82,19 +86,37 @@ class UsuarioController {
             header("Location: index.php?controller=Usuario&action=mostrarUsuario");
             exit();
         }
-
-        $id_usuario = $_GET['id_usuario'];
+    
+        // Obtener el ID del usuario a mostrar desde la URL
+        $id_usuario = $_GET['id_usuario'] ?? null;
         $this->usuario = new Usuario();
         $infoUsuario = $this->usuario->obtenerInfoUsuario($id_usuario);
-      
+    
         if (!$infoUsuario) {
             $this->view = "usuarioindividual";
             return ["mensaje" => "Usuario no encontrado"];
         }
+    
+        // Inicializar variables para preguntas y respuestas
+        $preguntas = [];
+        $respuestas = [];
         
+        // Si el usuario logueado es administrador, obtener también preguntas y respuestas
+        if ($_SESSION['usuario']['tipo'] === 'admin') {
+            $preguntas = $this->usuario->obtenerPreguntasPorUsuario($id_usuario);
+            $respuestas = $this->usuario->obtenerRespuestasPorUsuario($id_usuario);
+            
+        }
+    
+        // Pasar todos los datos a la vista
         $this->view = "usuarioindividual";
-        return ['infoUsuario' => $infoUsuario];
+        return [
+            'infoUsuario' => $infoUsuario,
+            'preguntas' => $preguntas,
+            'respuestas' => $respuestas
+        ];
     }
+    
 
     public function actualizarImagenPerfil() {
         if(!isset($_SESSION['usuario'])){
@@ -127,5 +149,56 @@ class UsuarioController {
         header("Location: index.php?controller=usuario&action=login");
         exit();
     }
+
+    public function eliminarPregunta() {
+        if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'admin') {
+            header("Location: index.php?controller=Usuario&action=login");
+            exit();
+        }
+
+        $id_post = $_POST['id_post'] ?? null;
+        if (!$id_post) {
+            $_SESSION['error'] = "ID de pregunta no proporcionado";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
+        }
+
+        $this->usuario = new Usuario();
+        if ($this->usuario->eliminarPregunta($id_post)) {
+            $_SESSION['success'] = "Pregunta eliminada correctamente";
+        } else {
+            $_SESSION['error'] = "Error al eliminar la pregunta";
+        }
+
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
+    }
+
+    public function eliminarRespuesta() {
+        if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'admin') {
+            header("Location: index.php?controller=Usuario&action=login");
+            exit();
+        }
+
+        $id_respuesta = $_POST['id_respuesta'] ?? null;
+        if (!$id_respuesta) {
+            $_SESSION['error'] = "ID de respuesta no proporcionado";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
+        }
+
+        $this->usuario = new Usuario();
+        if ($this->usuario->eliminarRespuesta($id_respuesta)) {
+            $_SESSION['success'] = "Respuesta eliminada correctamente";
+        } else {
+            $_SESSION['error'] = "Error al eliminar la respuesta";
+        }
+
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
+    }
+
 }
-?>
+
+
+

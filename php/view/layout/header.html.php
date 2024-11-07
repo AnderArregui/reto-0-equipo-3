@@ -66,7 +66,6 @@
             }
         });
     </script>
-   
 </head>
 <body>
 
@@ -135,3 +134,9 @@
     }
 </script>
 </nav>
+<div class="user-calendar">
+    <textarea class="note-textarea" oninput="nota()" placeholder="Añadir nota..."></textarea>
+</div>
+
+
+

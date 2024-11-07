@@ -49,3 +49,51 @@
         </div>
     </div>
 </div>
+
+
+
+<?php if ($_SESSION['usuario']['tipo'] === 'admin'): ?>
+    <div class="admin-section">
+        <h3>Preguntas del Usuario</h3>
+        <?php $preguntas = $dataToView['data']['preguntas']; ?>
+        <?php if (!empty($preguntas)): ?>
+            <?php foreach ($preguntas as $pregunta): ?>
+                <div class="preguntas">
+                <div class="pregunta">
+                    <a href="index.php?controller=Post&action=pregunta&id_post=<?php echo $pregunta['id_post']; ?>">
+                        <p class="contenidoPregunta"><?php echo htmlspecialchars($pregunta['contenido']); ?></p>
+                    </a>
+                    <p><strong>Fecha:</strong> <?php echo htmlspecialchars($pregunta['fecha']); ?></p>
+                    <form action="index.php?controller=Usuario&action=eliminarPregunta" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta pregunta y todas sus respuestas?');">
+                        <input type="hidden" name="id_post" value="<?php echo $pregunta['id_post']; ?>">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Este usuario no tiene preguntas.</p>
+        <?php endif; ?>
+
+        <h3>Respuestas del Usuario</h3>
+        <?php $respuestas = $dataToView['data']['respuestas']; ?>
+        <?php if (!empty($respuestas)): ?>
+            <?php foreach ($respuestas as $respuesta): ?>
+                <div class="respuestas">
+                <div class="respuesta" style="width:90%">
+                    <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo $respuesta['id_post']; ?>">
+                        <p class="contenidoRespuesta"><?php echo htmlspecialchars($respuesta['contenido']); ?></p>
+                    </a>
+                    <p><strong>Fecha:</strong> <?php echo htmlspecialchars($respuesta['fecha']); ?></p>
+                    <form action="index.php?controller=Usuario&action=eliminarRespuesta" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta respuesta?');">
+                        <input type="hidden" name="id_respuesta" value="<?php echo $respuesta['id_respuesta']; ?>">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Este usuario no tiene respuestas.</p>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>

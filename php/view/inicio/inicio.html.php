@@ -97,7 +97,6 @@ $orderType = $_GET['tipo'] ?? 'reciente';
                     ?>
                 </a>
             </h3>
-
                 <div class="postInfo">
                     <p>Por: <?php echo htmlspecialchars($pregunta['nombre_usuario'] ?? 'Usuario desconocido'); ?></p>
                     <p>Fecha: <?php echo htmlspecialchars($pregunta['fecha']); ?></p>  
@@ -143,9 +142,7 @@ $orderType = $_GET['tipo'] ?? 'reciente';
         <?php endfor; ?>
         </div>
     </div>
-
-
-    </div>
+</div>
 
     <aside>
         <div class="divAside">

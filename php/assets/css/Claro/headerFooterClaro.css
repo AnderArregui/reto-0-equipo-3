@@ -9,6 +9,10 @@ body:has(.theme-toggle:checked) {
     
 }
 
+.theme-toggle:checked ~ .user-calendar .note-textarea {
+    color: #3b3b3b;
+    background-color: #f1f1f1;
+}
 
 .theme-toggle:checked ~ nav {
     background-color: #ccc;
