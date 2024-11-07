@@ -148,9 +148,14 @@ class PostController {
             $guardadoModel = new Guardado();
 
             $usuarioPost = $_SESSION['usuario'];
+            $id_usuario = $_SESSION['usuario']['id_usuario'];
             $tema = $postModel->obtenerPorId($id_post);
             $post = $respuestaModel->obtenerPost($id_post);
             $respuestas = $respuestaModel->obtenerPorPost($id_post);
+            foreach ($respuestas as &$respuesta) {
+
+                $respuesta['liked_by_user'] = $this->respuestaModel->verificarLike($respuesta['id_respuesta'], $id_usuario);
+            }
             $guardado = $guardadoModel->verificarGuardado($id_post, $_SESSION['usuario']['id_usuario']);
 
             $usuario = $_SESSION['usuario'];

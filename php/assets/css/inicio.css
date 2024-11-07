@@ -4,6 +4,7 @@
     box-sizing: border-box;
     color: rgb(255, 255, 255);
     font-family: 'Helvetica';
+    text-decoration: none;
    
 }
 body{
@@ -402,6 +403,14 @@ aside{
     color:#ccc;
     padding-bottom: 5px;
 }
+.respuestaInfo {
+    display: flex;
+    flex-direction: row;
+    font-size: 1em;
+    font-weight: 500;
+    color:#ccc;
+    padding-bottom: 5px;
+}
 .paginacionDiv {
     display: flex;
     flex-wrap: nowrap;
@@ -484,6 +493,18 @@ aside{
     outline: none; 
     box-shadow: none; 
 }
+.like-icon{
+    cursor:pointer;
+    width: 25px;
+}
+.foto-usuario {
+    width: 40px;  
+    height: 40px; 
+    border-radius: 8px; 
+    cursor: pointer;
+    margin-right: -10px;
+}
+
 
 .file-input {
     display: none; 

@@ -66,17 +66,19 @@
             }
         });
     </script>
+   
 </head>
 <body>
 
 <input type="checkbox" id="toggle-theme" class="theme-toggle">
 <label for="toggle-theme" class="modo">Cambiar Tema</label>
 <nav>
-    <a href="index.php?controller=Inicio&action=inicio">
+
+    <a href="index.php?controller=Inicio&action=inicio" class="logo">
         <img src="/reto-1-equipo-3/php/assets/images/logo.png" alt="logo" id="logo">
     </a>
     <ul class="nav-links">
-        <div class="orden-control">
+        <div class="orden-control" id="navControl">
             <?php
             $paginaNav = '';
             if (isset($_GET['controller']) && isset($_GET['action'])) {
@@ -92,7 +94,7 @@
             }
             ?>
             <li><a href="index.php?controller=Tema&action=list" class="<?php echo ($paginaNav == 'temas') ? 'active' : ''; ?>">Temas</a></li>
-            <li><a href="index.php?controller=Usuario&action=mostrarUsuario" class="<?php echo ($paginaNav == 'historial') ? 'active' : ''; ?>">Usuarios</a></li>
+            <li><a href="index.php?controller=Usuario&action=mostrarUsuario" class="<?php echo ($paginaNav == 'Usuarios') ? 'active' : ''; ?>">Usuarios</a></li>
             <li><a href="index.php?controller=Inicio&action=contacto" class="<?php echo ($paginaNav == 'contacto') ? 'active' : ''; ?>">Contacto</a></li>
         </div>
     </ul>
@@ -106,6 +108,7 @@
                 <img src="/reto-1-equipo-3/php/assets/images/search.svg" alt="Lupa" class="search-icon">
             </button>
         </form>
+        
     </div>
 
     <div class="profile-icon">
@@ -120,9 +123,15 @@
                 <li><a href="index.php?controller=Usuario&action=logout">Cerrar sesión</a></li>
             </ul>
         </div>
+
     </div>
-
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <script>
+    function toggleMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        const hamburger = document.querySelector('.hamburger');
+        navLinks.classList.toggle('active');
+        hamburger.textContent = hamburger.textContent === '☰' ? '✕' : '☰';
+    }
+</script>
 </nav>
-
-
-        

@@ -183,7 +183,7 @@ $orderType = $_GET['tipo'] ?? 'reciente';
                 <?php foreach ($likesUsuario as $respuestaLike): ?>
                     <div class="divUsuario" style="border: 2px dashed <?php echo htmlspecialchars($respuestaLike['caracteristica']); ?>">
                         <h3>
-                            <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo htmlspecialchars($respuestaLike['id_respuesta']); ?>" class="tema-link">
+                            <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo htmlspecialchars($respuestaLike['id_post']); ?>" class="tema-link">
                                 <?php 
                                     $maxCaracteres = 180;
                                     $contenido = htmlspecialchars($respuestaLike['contenido']);
@@ -191,6 +191,19 @@ $orderType = $_GET['tipo'] ?? 'reciente';
                                         ? mb_substr($contenido, 0, $maxCaracteres) . "..." 
                                         : $contenido; 
                                 ?>
+                                
+                                <?php if ($respuestaLike['ruta_media']):  ?>
+                                <?php if (strpos($respuestaLike['ruta_media'], '.mp4') !== false || strpos($respuestaLike['ruta_media'], '.webm') !== false || strpos($respuestaLike['ruta_media'], '.ogg') !== false): ?>
+                                    <br><br>
+                                    <video controls style="max-width: 100%; max-height: 200px;">
+                                        <source src="<?php echo htmlspecialchars($respuestaLike['ruta_media']); ?>" type="video/mp4">
+                                        Tu navegador no soporta el video.
+                                    </video>
+                                <?php else: ?>
+                                    <br><br>
+                                    <img src="<?php echo htmlspecialchars($respuestaLike['ruta_media']); ?>" alt="Imagen adjunta" style="max-width: 100%; max-height: 200px; height: auto;">
+                                <?php endif; ?>
+                            <?php endif; ?>
                             </a>
                         </h3>
                     </div>

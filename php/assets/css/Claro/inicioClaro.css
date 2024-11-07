@@ -134,6 +134,12 @@
 .theme-toggle:checked ~ .container .preguntaBlanca .save-icon {
     filter: invert(100%);
 }
+.theme-toggle:checked ~ .container .respuesta .respuestaDerecha .postInfo .like-icon {
+    filter: invert(100%);
+}
+.theme-toggle:checked ~ .container .respuesta .respuestaDerecha .postInfo .like-count {
+    filter: invert(100%);
+}
 .theme-toggle:checked ~ .container .preguntaBlanca p {
     color: #363636;
 

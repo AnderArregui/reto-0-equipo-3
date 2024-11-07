@@ -21,7 +21,6 @@
                 <img src="<?php echo $guardado ? '/reto-1-equipo-3/php/assets/images/save.png' : '/reto-1-equipo-3/php/assets/images/nosave.png'; ?>" alt="Guardar" class="save-icon" data-id-post="<?php echo $post['id_post']; ?>" data-id-usuario="<?php echo $_SESSION['usuario']['id_usuario']; ?>" onclick="guardar(this)" />
 
             </div>
-
             <form action="/reto-1-equipo-3/php/index.php?controller=Post&action=publicarRespuesta" method="POST" enctype="multipart/form-data" class="respuestaForm">
                 <input type="hidden" name="id_post" value="<?php echo htmlspecialchars($id_post); ?>">
                 <input type="text" name="contenido" placeholder="Postea tu respuesta" required></input>
@@ -37,9 +36,15 @@
             <?php if (!empty($respuestas)): ?>
     <?php foreach ($respuestas as $respuesta): ?>
         <div class="respuesta">
-            <div class="postInfo">
-                <p><strong><?php echo htmlspecialchars($respuesta['nombre_usuario']); ?></strong> <?php echo htmlspecialchars($respuesta['especialidad_usuario']); ?></p>
-                <p id="contenido"><?php echo htmlspecialchars($respuesta['contenido']); ?></p>
+            
+            <div class="respuestaInfo">
+                <a href="index.php?controller=Usuario&action=usuarioindividual&id_usuario=<?php echo $respuesta['id_usuario']; ?>">
+                <img src="<?php echo htmlspecialchars($respuesta['foto_usuario']) ?>"  alt="Foto de <?php echo htmlspecialchars($respuesta['nombre_usuario']); ?>" class="foto-usuario">
+                
+                <div class="postInfo">
+                    <p><strong><?php echo htmlspecialchars($respuesta['nombre_usuario']); ?></strong></a> <?php echo htmlspecialchars($respuesta['especialidad_usuario']); ?></p>
+                    <p id="contenido"><?php echo htmlspecialchars($respuesta['contenido']); ?></p>
+                </div>
             </div>  
             <?php if ($respuesta['ruta_media']): ?>
                 <p><strong>Adjunto:</strong></p>
@@ -53,16 +58,23 @@
                 <?php endif; ?>
             <?php endif; ?>
             <div class="respuestaDerecha">
-                <div class="postInfo">
-                    <p>Fecha: <?php echo htmlspecialchars($respuesta['fecha']); ?></p>
-                    <p>Likes: <?php echo htmlspecialchars($respuesta['likes']); ?></p>
-                </div>
-                <div class="postInfo">
-                <img src="/reto-1-equipo-3/php/assets/images/nolike.png" alt="Like" class="save-icon" onclick="like(this)" />
-                </div>
+            <div class="postInfo">
+            <p>Fecha: <?php echo htmlspecialchars($respuesta['fecha']); ?></p>
+            <p>Likes: <span class="like-count"><?php echo htmlspecialchars($respuesta['likes']); ?></span></p>
             </div>
-           
+
+            <div class="postInfo">
+    <img src="<?php echo $respuesta['liked_by_user'] ? '/reto-1-equipo-3/php/assets/images/like.png' : '/reto-1-equipo-3/php/assets/images/nolike.png'; ?>" alt="Like" 
+        class="like-icon" 
+        data-id-respuesta="<?php echo $respuesta['id_respuesta']; ?>" 
+        data-id-usuario="<?php echo $_SESSION['usuario']['id_usuario']; ?>" 
+        data-liked="<?php echo $respuesta['liked_by_user'] ? 'true' : 'false'; ?>" 
+        onclick="like(this)" />
+</div>
+
         </div>
+                </div>
+        <script src="/reto-1-equipo-3/php/assets/js/like.js"></script>
     <?php endforeach; ?>
 <?php else: ?>
     <p id="sinRespuestas">No hay respuestas para este post.</p>

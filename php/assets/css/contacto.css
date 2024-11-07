@@ -1,64 +1,52 @@
 
-/*Diseño de la pagina de contacto*/
-.containerContacto{
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 4em;
-    height: 100vh;
-    
-    margin-bottom: 22em;
-}
-#textoContacto{
+#textoContacto {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
-    width: 45%;
-    padding-left: 6em;
+    align-items: center;
+    width: 100%;
 }
 
-.contactanos{
+.contactanos {
     font-weight: 600;
     font-size: 4.5em;
     letter-spacing: -0.05em;
+    text-align: center;
+    margin-top: 2em;
 }
-.infoContacto{
+
+.infoContacto {
     font-weight: 200;
     font-size: 1.5em;
-    width: 65%;
-    padding-left: .2em;
+    text-align: center;
+    margin-top: 0.5em;
+    width: 90%;
 }
 
-#formContacto{
+#formContacto {
     padding: 20px;
-    width: 50%;
-    margin: 50px auto;
+    width: 80%;
+    margin: 20px auto;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-
+    flex-direction: column;
+    gap: 1em;
 }
 
-.nombreContacto{
-    width: 30%;
-    margin-right: 1em;
-}
-.emailContacto{
-    width: 50%;
-    margin-right: 3em;
-}
-.asuntoContacto{
-    width: 40%;
-    margin-right: 1em;
-}
-.mensajeContacto{
-    width: 40%;
-    margin-right: 5em;
+.nombreContacto,
+.emailContacto,
+.asuntoContacto,
+.mensajeContacto {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-#formContacto label
-{
+.nombreContacto,
+.emailContacto {
+    width: 100%;
+}
+
+#formContacto label {
     display: flex;
     justify-content: left;
     font-size: 1.3em;
@@ -70,10 +58,9 @@
 
 #formContacto input[type="text"],
 #formContacto input[type="email"],
-#formContacto textarea
-{
+#formContacto textarea {
     width: 100%;
-    height: 40%;
+    height: 40px;
     padding: 10px;
     margin-bottom: 10px;
     background-color: #3b3b3b;
@@ -94,30 +81,86 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: -.8em;
-
+    margin-top: 0.8em;
     font-weight: 500;
 }
 
 #formContacto button:hover {
     background-color: #cccccc;
 }
+
 #imgContacto {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    gap: 3px;
+    gap: 1em;
     width: 100%;
+    margin-top: 2em;
 }
 
 .imgJefes {
     opacity: 0.6;
-    width: 32%; 
-    border-radius: 10px; 
-    transition: opacity 0.3s ease; 
+    width: 32%;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
 }
 
 .imgJefes:hover {
     opacity: 1;
 }
 
+/* Media Queries para Pantallas Pequeñas y Responsivas */
+
+/* Para pantallas más pequeñas (móviles) */
+@media screen and (max-width: 767px) {
+    .containerContacto {
+        padding-top: 1em;  /* Menos espaciado en la parte superior para móviles */
+        margin-top: 25%;
+    }
+
+    #formContacto {
+        width: 90%;
+        gap: 1.5em;
+    }
+
+    .nombreContacto,
+    .emailContacto,
+    .asuntoContacto,
+    .mensajeContacto {
+        width: 100%;
+    }
+
+    .imgJefes {
+        width: 60%;
+        margin-bottom: 1em;
+    }
+}
+
+/* Para pantallas medianas (tablets) */
+@media screen and (max-width: 1024px) {
+    .containerContacto {
+        padding-top: 1.5em;
+    }
+
+    #formContacto {
+        width: 80%;
+        gap: 1.5em;
+    }
+
+    .imgJefes {
+        width: 45%;
+    }
+}
+
+/* Para pantallas grandes (desktops) */
+@media screen and (min-width: 1200px) {
+    #formContacto {
+        width: 50%;
+        flex-direction: column;
+        gap: 1.5em;
+    }
+
+    .imgJefes {
+        width: 32%;
+    }
+}
