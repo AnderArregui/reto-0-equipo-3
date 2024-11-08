@@ -32,10 +32,10 @@ class UsuarioController {
                     'email' => $usuarioModel['email'],
                     'tipo' => $usuarioModel['tipo']
                 ];
-
-                
                 setcookie("{$username}_note", "", time() - 3600, "/");
                 setcookie("note", "", time() - 3600, "/"); 
+
+
 
                 header("Location: index.php?controller=Inicio&action=inicio");
                 exit();
@@ -198,7 +198,154 @@ class UsuarioController {
         exit();
     }
 
+
+    public function eliminarUsuario() {
+        if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'admin') {
+            header("Location: index.php?controller=Usuario&action=login");
+            exit();
+        }
+
+        $id_usuario = $_POST['id_usuario'] ?? null;
+        if (!$id_usuario) {
+            $_SESSION['error'] = "ID de usuario no proporcionado";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
+        }
+
+        $this->usuario = new Usuario();
+        if ($this->usuario->eliminarUsuario($id_usuario)) {
+            $_SESSION['success'] = "Usuario eliminado correctamente";
+        } else {
+            $_SESSION['error'] = "Error al eliminar el usuario";
+        }
+
+        header("Location: index.php?controller=Usuario&action=mostrarUsuario");
+        exit();
+    }
+
+
+    public function crearNuevoUsuario() {
+        if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'admin') {
+            header("Location: index.php?controller=Usuario&action=login");
+            exit();
+        }
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre = $_POST['nombre'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $contrasena = $_POST['contrasena'] ?? '';
+            $especialidad = $_POST['especialidad'] ?? '';
+            $anios_empresa = $_POST['anios_empresa'] ?? 0;
+            $foto= $_POST['foto'] ??'';
+            $tipo = $_POST['tipo'] ?? 'usuario';
+    
+            $foto = null;
+            if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
+                $targetDir = "/reto-1-equipo-3/php/assets/images/perfil/";
+                $fileName = uniqid() . "_" . basename($_FILES['foto']['name']);
+                $targetFilePath = $targetDir . $fileName;
+    
+                if (move_uploaded_file($_FILES['foto']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $targetFilePath)) {
+                    $foto = $targetFilePath;
+                } else {
+                    $_SESSION['error'] = "Error al subir la imagen.";
+                    $this->view = "crearNuevoUsuario";
+                    return;
+                }
+            }
+    
+            $this->usuario = new Usuario();
+            if ($this->usuario->crearUsuario($nombre, $email, $contrasena, $especialidad, $anios_empresa, $tipo, $foto)) {
+                $_SESSION['success'] = "Usuario creado correctamente";
+                header("Location: index.php?controller=Usuario&action=mostrarUsuario");
+                exit();
+            } else {
+                $_SESSION['error'] = "Error al crear el usuario";
+            }
+        }
+    
+        $this->view = "crearNuevoUsuario";
+    }
+
+
+
+
+
+
+    public function modificarUsuario() {
+        if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'admin') {
+            header("Location: index.php?controller=Usuario&action=login");
+            exit();
+        }
+    
+        $id_usuario = $_GET['id_usuario'] ?? null;
+        if (!$id_usuario) {
+            $_SESSION['error'] = "ID de usuario no proporcionado";
+            header("Location: index.php?controller=Usuario&action=mostrarUsuario");
+            exit();
+        }
+    
+        $this->usuario = new Usuario();
+        $usuario = $this->usuario->obtenerPorId($id_usuario);
+    
+        if (!$usuario) {
+            $_SESSION['error'] = "Usuario no encontrado";
+            header("Location: index.php?controller=Usuario&action=mostrarUsuario");
+            exit();
+        }
+    
+        $this->view = "modificarUsuario";
+        return ['usuario' => $usuario];
+    }
+    
+    public function actualizarUsuario() {
+        if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'admin') {
+            header("Location: index.php?controller=Usuario&action=login");
+            exit();
+        }
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_usuario = $_POST['id_usuario'] ?? null;
+            $nombre = $_POST['nombre'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $especialidad = $_POST['especialidad'] ?? '';
+            $anios_empresa = $_POST['anios_empresa'] ?? 0;
+            $tipo = $_POST['tipo'] ?? 'usuario';
+            $nueva_contrasena = $_POST['nueva_contrasena'] ?? '';
+            $confirmar_contrasena = $_POST['confirmar_contrasena'] ?? '';
+    
+            if ($nueva_contrasena !== $confirmar_contrasena) {
+                $_SESSION['error'] = "Las contraseñas no coinciden";
+                header("Location: index.php?controller=Usuario&action=modificarUsuario&id_usuario=" . $id_usuario);
+                exit();
+            }
+    
+            $foto = null;
+            if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
+                $targetDir = "/reto-1-equipo-3/php/assets/images/perfil/";
+                $fileName = uniqid() . "_" . basename($_FILES['foto']['name']);
+                $targetFilePath = $targetDir . $fileName;
+    
+                if (move_uploaded_file($_FILES['foto']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $targetFilePath)) {
+                    $foto = $targetFilePath;
+                } else {
+                    $_SESSION['error'] = "Error al subir la imagen.";
+                    header("Location: index.php?controller=Usuario&action=modificarUsuario&id_usuario=" . $id_usuario);
+                    exit();
+                }
+            }
+    
+            $this->usuario = new Usuario();
+            if ($this->usuario->actualizarUsuario($id_usuario, $nombre, $email, $especialidad, $anios_empresa, $tipo, $nueva_contrasena, $foto)) {
+                $_SESSION['success'] = "Usuario actualizado correctamente";
+                header("Location: index.php?controller=Usuario&action=usuarioindividual&id_usuario=" . $id_usuario);
+                exit();
+            } else {
+                $_SESSION['error'] = "Error al actualizar el usuario";
+                header("Location: index.php?controller=Usuario&action=modificarUsuario&id_usuario=" . $id_usuario);
+                exit();
+            }
+        }
+    }
+
 }
-
-
-

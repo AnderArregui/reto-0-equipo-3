@@ -67,5 +67,11 @@ class Tema {
         }
     
     }
+    public function obtenerPorNombre($nombre) {
+        $query = "SELECT * FROM " . $this->table . " WHERE nombre = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$nombre]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     
 }

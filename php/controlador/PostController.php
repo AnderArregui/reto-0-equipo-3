@@ -89,13 +89,20 @@ class PostController {
             $id_tema = null;
             if (!empty($_POST['nuevo_tema'])) {
                 $nuevo_tema = $_POST['nuevo_tema'];
-                $this->temaModel->crear($nuevo_tema);
-                $id_tema =  $this->temaModel->obtenerIdPorNombre($nuevo_tema);
-
-                if (!$id_tema) {
-                    $_SESSION['mensaje'] = "Error al crear el tema.";
-                    header("Location: index.php?controller=Post&action=crearPregunta");
-                    exit();
+                $tema_existente = $this->temaModel->obtenerPorNombre($nuevo_tema);
+                
+                if ($tema_existente) {
+                    $_SESSION['mensaje'] = "El tema ya existe. Se ha seleccionado automáticamente.";
+                    $id_tema = $tema_existente['id_tema'];
+                } else {
+                    $this->temaModel->crear($nuevo_tema);
+                    $id_tema = $this->temaModel->obtenerIdPorNombre($nuevo_tema);
+    
+                    if (!$id_tema) {
+                        $_SESSION['mensaje'] = "Error al crear el tema.";
+                        header("Location: index.php?controller=Post&action=crearPregunta");
+                        exit();
+                    }
                 }
             } elseif (!empty($_POST['temaSelect'])) {
                 $id_tema = $_POST['temaSelect'];
@@ -108,9 +115,7 @@ class PostController {
                 exit();
             }
     
-            
             $id_usuario = $_SESSION['usuario']['id_usuario'];
-            var_dump($id_usuario, $id_tema, $_POST['pregunta']);
     
             // Crear pregunta
             if (!empty($_POST['pregunta']) && $id_tema && $id_usuario) {
@@ -123,7 +128,7 @@ class PostController {
                 $_SESSION['mensaje'] = "Debe seleccionar un tema o crear uno nuevo y escribir una pregunta.";
             }
     
-            header("Location: /reto-1-equipo-3/php/index.php?controller=Inicio&action=inicio");
+            header("Location: /reto-1-equipo-3/php/index.php?controller=Post&action=crearPregunta");
             exit();
         }
     

@@ -1,6 +1,4 @@
-    
-
-    <div class="result-grid">
+<div class="result-grid">
        
         <?php 
         $usuarios = $dataToView['data']['usuarios'];
@@ -23,5 +21,10 @@
             <?php endforeach; ?>
         <?php else: ?>
             <p>No se encontraron usuarios.</p>
+        <?php endif; ?>
+        <?php if ($_SESSION['usuario']['tipo'] === 'admin' ): ?>
+        <div class="crearUsuario">
+            <a href="index.php?controller=Usuario&action=crearNuevoUsuario">Crear Usuario</a>
+        </div>
         <?php endif; ?>
     </div>

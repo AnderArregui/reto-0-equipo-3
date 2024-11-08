@@ -48,6 +48,13 @@
             <p>Likes</p>
         </div>
     </div>
+    <?php if ($_SESSION['usuario']['tipo'] === 'admin' && $infoUsuario['id_usuario'] != $_SESSION['usuario']['id_usuario']): ?>
+        <a class="link-modificar" href="index.php?controller=Usuario&action=modificarUsuario&id_usuario=<?php echo $infoUsuario['id_usuario']; ?>" class="btn btn-primary">Modificar Usuario</a>
+        <form action="index.php?controller=Usuario&action=eliminarUsuario" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este usuario? Sus preguntas y respuestas se mantendrán en el sistema.');">
+            <input type="hidden" name="id_usuario" value="<?php echo $infoUsuario['id_usuario']; ?>">
+            <button type="submit" class="btn btn-danger">Eliminar Usuario</button>
+        </form>
+    <?php endif; ?>
 </div>
 
 
@@ -79,7 +86,7 @@
         <?php $respuestas = $dataToView['data']['respuestas']; ?>
         <?php if (!empty($respuestas)): ?>
             <?php foreach ($respuestas as $respuesta): ?>
-                <div class="respuestas">
+                <div class="preguntas">
                 <div class="respuesta" style="width:90%">
                     <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo $respuesta['id_post']; ?>">
                         <p class="contenidoRespuesta"><?php echo htmlspecialchars($respuesta['contenido']); ?></p>
