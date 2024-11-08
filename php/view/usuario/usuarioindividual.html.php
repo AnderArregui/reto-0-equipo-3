@@ -66,21 +66,71 @@
         <?php if (!empty($preguntas)): ?>
             <?php foreach ($preguntas as $pregunta): ?>
                 <div class="preguntas">
-                <div class="pregunta">
-                    <a href="index.php?controller=Post&action=pregunta&id_post=<?php echo $pregunta['id_post']; ?>">
-                        <p class="contenidoPregunta"><?php echo htmlspecialchars($pregunta['contenido']); ?></p>
-                    </a>
-                    <p><strong>Fecha:</strong> <?php echo htmlspecialchars($pregunta['fecha']); ?></p>
-                    <form action="index.php?controller=Usuario&action=eliminarPregunta" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta pregunta y todas sus respuestas?');">
-                        <input type="hidden" name="id_post" value="<?php echo $pregunta['id_post']; ?>">
-                        <button type="submit">Eliminar</button>
-                    </form>
+                <div class="pregunta" id="preguntaUsuario" style="border: 2px dashed <?php echo htmlspecialchars($pregunta['caracteristica']); ?>">
+
+    <h3>
+        <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo htmlspecialchars($pregunta['id_post']); ?>" class="tema-link">
+            <?php 
+                $maxCaracteres = 120;
+                $contenido = htmlspecialchars($pregunta['contenido']);
+                echo (mb_strlen($contenido) > $maxCaracteres) 
+                    ? mb_substr($contenido, 0, $maxCaracteres) . "..." 
+                    : $contenido; 
+            ?>
+        </a>
+    </h3>
+
+    <div class="postInfo">
+        <p>Por: <?php echo htmlspecialchars($pregunta['nombre_usuario'] ?? 'Usuario desconocido'); ?></p>
+        <p>Fecha: <?php echo htmlspecialchars($pregunta['fecha']); ?></p>  
+    </div>
+
+    <div class="postInfo">
+        <p>Tema: <?php echo htmlspecialchars($pregunta['nombre_tema'] ?? 'Tema no especificado'); ?></p>
+        <p>Respuestas: <?php echo htmlspecialchars($pregunta['total_respuestas'] ?? '0'); ?></p>
+    </div>
+
+    <div>
+        <p>Últ. mensaje: <?php echo htmlspecialchars($pregunta['autor_ultimo_mensaje'] ?? 'N/D'); ?></p>
+        <p>
+            <?php 
+                $minutos = $pregunta['minutos_transcurridos'] ?? 0;
+                if ($minutos < 60) {
+                    echo "Hace {$minutos} minutos";
+                } elseif ($minutos < 1440) {
+                    echo "Hace " . floor($minutos / 60) . " horas";
+                } else {
+                    echo "Hace " . floor($minutos / 1440) . " días";
+                }
+            ?>
+        </p>
+    </div>
+    
+    <!-- Botón eliminar -->
+    <button class="eliminarBtn" onclick="confirmarEliminacion(event)">Eliminar</button>
+
+    <!-- Botones de Confirmar y Cancelar, ocultos inicialmente -->
+    <div class="confirmacion" style="display: none;">
+        <button class="confirmarBtn" onclick="eliminarPregunta(event)">Confirmar</button>
+        <button class="cancelarBtn" onclick="cancelarEliminacion(event)">Cancelar</button>
+    </div>
+
+    <!-- Formulario de eliminación de pregunta -->
+    <form action="index.php?controller=Usuario&action=eliminarPregunta" method="POST" id="formEliminarPregunta" style="display: none;">
+        <input type="hidden" name="id_post" value="<?php echo $pregunta['id_post']; ?>">
+    </form>
+
+</div>
+
+
                 </div>
-                </div>
+                
+                
             <?php endforeach; ?>
         <?php else: ?>
             <p>Este usuario no tiene preguntas.</p>
         <?php endif; ?>
+        </div>
 
         <h3>Respuestas del Usuario</h3>
         <?php $respuestas = $dataToView['data']['respuestas']; ?>

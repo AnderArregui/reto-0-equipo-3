@@ -128,7 +128,7 @@ class PostController {
                 $_SESSION['mensaje'] = "Debe seleccionar un tema o crear uno nuevo y escribir una pregunta.";
             }
     
-            header("Location: /reto-1-equipo-3/php/index.php?controller=Post&action=crearPregunta");
+            header("Location: /reto-1-equipo-3/php/index.php?controller=Inicio&action=inicio");
             exit();
         }
     
@@ -155,7 +155,7 @@ class PostController {
             $usuarioPost = $_SESSION['usuario'];
             $id_usuario = $_SESSION['usuario']['id_usuario'];
             $tema = $postModel->obtenerPorId($id_post);
-            $post = $respuestaModel->obtenerPost($id_post);
+            $post = $postModel->obtenerPorId($id_post);
             $respuestas = $respuestaModel->obtenerPorPost($id_post);
             foreach ($respuestas as &$respuesta) {
 
@@ -175,15 +175,6 @@ class PostController {
                     'usuarioPost' => $usuarioPost
             ];
         }
-
-        return [
-                'post' => null,
-                'respuestas' => [],
-                'tema' => null,
-                'usuario' => null,
-                'usuarioPost' => null,
-                'guardado' => null
-        ];
     }
     
 

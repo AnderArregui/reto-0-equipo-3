@@ -31,6 +31,7 @@
 <script src="/reto-1-equipo-3/php/assets/js/controlScrolleo.js"></script>
 <script src="/reto-1-equipo-3/php/assets/js/recargar.js"></script>
 <script src="/reto-1-equipo-3/php/assets/js/nota.js"></script>
+<script src="/reto-1-equipo-3/php/assets/js/confirmar.js"></script>
 </body>
 </head>
 </html>

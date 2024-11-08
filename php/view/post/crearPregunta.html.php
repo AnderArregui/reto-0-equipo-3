@@ -2,7 +2,7 @@
 $temas = isset($dataToView['data']['temas']) ? $dataToView['data']['temas'] : [];
 $tema_seleccionado = isset($_SESSION['tema_seleccionado']) ? $_SESSION['tema_seleccionado'] : null;
 unset($_SESSION['tema_seleccionado']);
-?>  
+?>
 
 <?php if (isset($_SESSION['mensaje'])): ?>
     <div class="mensaje"><?php echo $_SESSION['mensaje']; ?></div>

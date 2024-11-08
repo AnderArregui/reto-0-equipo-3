@@ -621,6 +621,9 @@ aside{
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    width: 100%;
+    height: 100%;
+    z-index: 3000;
 }
 
 .botonMas img {
@@ -723,31 +726,43 @@ aside{
     /* Contenedor general y de temas para que ocupen el ancho completo */
     .general, .container {
         width: 100%;
-        padding: 10px;
+        margin: 0;
+        padding: 0;
+    }
+    .general{
+        margin-bottom: -15em;
     }
 
     /* Grid de temas en una columna para pantallas pequeñas */
     .temas {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 70px;
-        width: 95%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
     }
     #palabraTema{
         opacity: 0%;
     }
-    /* Ajustes de estilo en cada tema para adaptarse al ancho móvil */
-    .tema {
-        padding: 15px;
-        height: 30vh;
-
-        margin-left:-1em;
+    .tema{
+        height: 100px;
     }
-
     .tema-img{
-        width:75%;
+        width:40%;
         z-index: 1;
-        margin-top: -2em;
+        margin-top:4em;
+        margin-left:3em;
+    }
+    .tema-link {
+        margin: 0;
+        scale: 100%;
+        width: 45%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
     }
 
     .postInfo{

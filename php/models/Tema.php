@@ -73,5 +73,35 @@ class Tema {
         $stmt->execute([$nombre]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    
+    public function actualizarTema($id_tema, $nombre, $caracteristica, $imagen = null) {
+        try {
+            $query = "UPDATE " . $this->table . " SET nombre = :nombre, caracteristica = :caracteristica";
+            $params = [
+                ':id_tema' => $id_tema,
+                ':nombre' => $nombre,
+                ':caracteristica' => $caracteristica
+            ];
+
+            if ($imagen !== null) {
+                $query .= ", imagen = :imagen";
+                $params[':imagen'] = $imagen;
+            }
+
+            $query .= " WHERE id_tema = :id_tema";
+
+            $stmt = $this->connection->prepare($query);
+            $result = $stmt->execute($params);
+
+            if ($result) {
+                error_log("Successfully updated theme with ID: $id_tema");
+            } else {
+                error_log("Failed to update theme with ID: $id_tema");
+            }
+
+            return $result;
+        } catch (PDOException $e) {
+            error_log("Database error in actualizarTema: " . $e->getMessage());
+            return false;
+        }
+    }
 }

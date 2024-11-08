@@ -103,12 +103,43 @@ class Usuario {
         }
 
         public function obtenerPreguntasPorUsuario($id_usuario) {
-            $query = "SELECT id_post, contenido, fecha FROM posts WHERE id_usuario = :id_usuario";
+            $query = "
+                SELECT 
+                    p.*, 
+                    t.nombre AS nombre_tema, 
+                    t.caracteristica AS caracteristica, 
+                    u.nombre AS nombre_usuario, 
+                    (SELECT COUNT(*) FROM respuestas r WHERE r.id_post = p.id_post) AS total_respuestas,
+                    (SELECT u2.nombre 
+                     FROM respuestas r2 
+                     JOIN usuarios u2 ON r2.id_usuario = u2.id_usuario 
+                     WHERE r2.id_post = p.id_post 
+                     ORDER BY r2.fecha DESC 
+                     LIMIT 1) AS autor_ultimo_mensaje,
+                    (SELECT TIMESTAMPDIFF(MINUTE, r2.fecha, NOW()) 
+                     FROM respuestas r2 
+                     WHERE r2.id_post = p.id_post 
+                     ORDER BY r2.fecha DESC 
+                     LIMIT 1) AS minutos_transcurridos,
+                    (SELECT MAX(r3.fecha) 
+                     FROM respuestas r3 
+                     WHERE r3.id_post = p.id_post) AS fecha_ultimo_mensaje
+                FROM 
+                    posts p
+                JOIN 
+                    temas t ON p.id_tema = t.id_tema
+                JOIN 
+                    usuarios u ON p.id_usuario = u.id_usuario
+                WHERE 
+                    p.id_usuario = :id_usuario
+            ";
+        
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+        
 
         public function obtenerRespuestasPorUsuario($id_usuario) {
             $query = "SELECT id_respuesta, id_post, contenido, fecha FROM respuestas WHERE id_usuario = :id_usuario";

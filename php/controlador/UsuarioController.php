@@ -35,8 +35,6 @@ class UsuarioController {
                 setcookie("{$username}_note", "", time() - 3600, "/");
                 setcookie("note", "", time() - 3600, "/"); 
 
-
-
                 header("Location: index.php?controller=Inicio&action=inicio");
                 exit();
             } else {

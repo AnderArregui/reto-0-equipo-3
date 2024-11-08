@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/reto-1-equipo-3/php/assets/images/icono.png"  type="image/png">
+
     <link rel="stylesheet" href="/reto-1-equipo-3/php/assets/css/style.css"> 
     <title>Iniciar Sesión</title>
 </head>

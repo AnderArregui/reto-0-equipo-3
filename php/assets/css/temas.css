@@ -30,7 +30,6 @@
 .theme-toggle:checked ~ .general .container .temasTemas .tema-link .tema:hover{
     transform: scale(1.05);
     background-color: var(--color-base);
-    cursor: pointer;
 }
 .theme-toggle:checked ~ .general .container .temasTemas .tema-link .tema h3{
     color: #363636;
@@ -62,4 +61,169 @@
 }
 .theme-toggle:checked ~ .result-gridBusqueda .tema-link h3{
     color: #363636;
+}
+
+
+
+
+ /* Estilos para el modal */
+ .modal {
+    display: none; 
+    position: fixed;
+    z-index: 10;
+    padding-top: 15%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(54, 54, 54, 0.5);
+}
+
+.modal-content {
+    background-color: #383838;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #b15050;
+}
+
+.eliminar-tema-btn{
+    width:fit-content;
+    background-color: #ffffff;
+    border: 2px solid #b22222;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: .8em;
+    font-weight: 500;
+    height: fit-content;
+}
+
+.eliminar-tema-btn:hover{
+    background-color: #80140a;
+    border: 2px dashed #b22222;
+    color:white;
+}
+
+.accion{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px 10px 10px;
+    background-color: #363636;
+    border-radius: 0 0 5px 5px;
+    width: fit-content;
+    gap: 10px;
+    margin-left:1em;
+}
+.generalPregutar{
+    margin-bottom: 10em;
+}
+.modificar-tema-btn{
+    width:fit-content;
+    background-color: transparent;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    color: #ffffff;  
+    height: fit-content;
+    font-size: .8em;
+    border: 2px solid #ffffff;
+
+}
+.modificar-tema-btn:hover{
+    background-color: #2e9785;
+    border: 2px dashed #50f7db;    
+}
+
+.tituloTema{
+    font-weight: 600;
+    font-size: 2em;
+    letter-spacing: -0.05em;
+    text-align: center;
+    margin-top: 4em;
+}
+#noImagen{
+    font-family: 'Helvetica';
+    font-weight: 300;
+    font-size: 1em;
+    color: #ffffff;
+}
+
+/* Oculta el input de color */
+input[type="color"] {
+    display: none;
+}
+
+/* Estilo del botón de color */
+.color-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.color-picker {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px dashed #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+/* Efecto hover */
+.color-picker:hover {
+    transform: scale(1.05);
+}
+
+
+.modal-content button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#deleteAllBtn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+#deleteOnlyBtn {
+    background-color: #3498db;
+    color: white;
+}
+
+#cancelBtn {
+    background-color: #7f8c8d;
+    color: white;
+}
+#nombre{
+    width: 70%;
+    height: 50px;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 10px;
+    background-color: #3b3b3b;
+    border: none;
+    border-radius: 10px;
+    color: #f1f1f1;
+    font-size: 1em;
+    font-weight: 500;
+    letter-spacing: -0.03em;
 }

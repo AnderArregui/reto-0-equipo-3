@@ -27,4 +27,5 @@
             <a href="index.php?controller=Usuario&action=crearNuevoUsuario">Crear Usuario</a>
         </div>
         <?php endif; ?>
+
     </div>

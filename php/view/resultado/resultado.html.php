@@ -1,3 +1,10 @@
+<?php
+
+require_once 'models/Guardado.php';
+
+$guardadoModel = new Guardado();
+
+?>
 
 <div class="result-gridBusqueda">
     <?php
@@ -59,8 +66,13 @@
                        ?>
                    </p>
                </div>
-               <img src="/reto-1-equipo-3/php/assets/images/nosave.png" alt="Guardar" class="save-icon" onclick="guardar(this)" />
-           </div>
+               <?php 
+                    $isSaved = $guardadoModel->verificarGuardado($post['id_post'], $_SESSION['usuario']['id_usuario']);
+                ?>
+
+                <img src="<?php echo $isSaved ? '/reto-1-equipo-3/php/assets/images/save.png' : '/reto-1-equipo-3/php/assets/images/nosave.png'; ?>" alt="Guardar" class="save-icon" data-id-post="<?php echo $post['id_post']; ?>" data-id-usuario="<?php echo $_SESSION['usuario']['id_usuario']; ?>" onclick="guardar(this)" />
+                <script src="/reto-1-equipo-3/php/assets/js/guardar.js"></script>
+            </div>
        <?php endforeach; ?>
    <?php else: ?>
        <p class="no-results">No se encontraron posts relacionados con "<?php echo htmlspecialchars($termino); ?>"</p>
