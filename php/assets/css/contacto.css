@@ -9,18 +9,33 @@
 
 .contactanos {
     font-weight: 600;
-    font-size: 4.5em;
+    font-size: 8em;
     letter-spacing: -0.05em;
     text-align: center;
-    margin-top: 2em;
+    margin-top: 1.45em;
+    margin-bottom: 3.5em;
+    z-index: 1;
+}
+.contactanos2 {
+    font-weight: 600;
+    font-size: 8em;
+    letter-spacing: -0.05em;
+    text-align: center;
+    color: transparent;
+    margin-top: -4.62em;
+    
+    margin-bottom: 1.7em;
+    z-index: 4004;
+        /* Trazado del texto */
+        -webkit-text-stroke: .5px rgb(255, 255, 255); /* 2px es el grosor de la línea del trazado, y black es el color */
 }
 
 .infoContacto {
-    font-weight: 200;
+    font-weight: 300;
     font-size: 1.5em;
     text-align: center;
     margin-top: 0.5em;
-    width: 90%;
+    width: 40%;
 }
 
 #formContacto {
@@ -30,6 +45,7 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
+    z-index: 3003;
 }
 
 .nombreContacto,
@@ -109,6 +125,37 @@
     opacity: 1;
 }
 
+
+
+.fondo-iframe {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: transparent;
+    z-index: 2;
+}
+
+.fondo-iframe iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.cobertura {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    width: 150px; /* Ajusta según el tamaño del enlace */
+    height: 40px; /* Ajusta según el tamaño del enlace */
+    background-color:rgb(23, 23, 23); /* Cambia si quieres un color diferente */
+    z-index: 5000; /* Asegúrate de que esté encima del iframe */
+    box-shadow: none;
+}
+
+
 /* Media Queries para Pantallas Pequeñas y Responsivas */
 
 /* Para pantallas más pequeñas (móviles) */
@@ -138,6 +185,15 @@
 
 /* Para pantallas medianas (tablets) */
 @media screen and (max-width: 1024px) {
+    .contactanos2, 
+    .fondo-iframe {
+        visibility: hidden;    
+    }
+    .contactanos{
+        font-size: 2em;
+        margin: 0;
+        padding-bottom: 8em;
+    }
     .containerContacto {
         padding-top: 1.5em;
     }
@@ -152,8 +208,9 @@
     }
 }
 
-/* Para pantallas grandes (desktops) */
-@media screen and (min-width: 1200px) {
+
+    
+
     #formContacto {
         width: 50%;
         flex-direction: column;
@@ -163,4 +220,3 @@
     .imgJefes {
         width: 32%;
     }
-}

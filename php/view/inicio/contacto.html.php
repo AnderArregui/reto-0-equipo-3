@@ -1,6 +1,8 @@
 <div class="containerContacto">
             <div id="textoContacto">
                 <h2 class="contactanos">Contáctanos</h2>
+                <h2 class="contactanos2">Contáctanos</h2>
+
                 <h3 class="infoContacto">Comunícate con tu superior para consultas específicas. También puedes enviar un correo electrónico aquí.</h3>
             </div>
 
@@ -29,5 +31,12 @@
                 <img src="/reto-1-equipo-3/php/assets/images/egoitz.png" class="imgJefes imgEgoitz">
                 <img src="/reto-1-equipo-3/php/assets/images/inigo.png" class="imgJefes imgInigo">
             </div>
+            <div class="fondo-iframe">
+    <iframe src="https://my.spline.design/robotfollowcursorforlandingpage-28f88d64f1a11b48f72e818c866d85af/">
+    </iframe>
+    <div class="cobertura"></div> 
+</div>
+
+</div>
             <script src="/reto-1-equipo-3/php/assets/js/imgContacto.js"></script>
 </div>

@@ -52,6 +52,9 @@ $orderType = $_GET['tipo'] ?? 'reciente';
     </div>
 </div>
 
+
+
+
 <div class="tresElementos">
     <div class="preguntas"> 
     <div class="paginacionDiv">

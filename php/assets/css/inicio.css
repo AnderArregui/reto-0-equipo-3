@@ -292,9 +292,11 @@ aside{
     border: 2px dashed #808080;
 }
 .pregunta:hover{
-    transform: scale(1.02);
+    border-radius:20px;
 }
-
+.divUsuario:hover{
+    border-radius:20px;
+}
 .pregunta h3 {
     font-size: 1em;
     font-weight: 500;

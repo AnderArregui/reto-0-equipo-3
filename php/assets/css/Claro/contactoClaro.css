@@ -5,6 +5,14 @@
 .theme-toggle:checked ~ .containerContacto #textoContacto .contactanos {
     color: #363636;
 }
+.theme-toggle:checked ~ .containerContacto #textoContacto .infoContacto {
+    color: #363636;
+    font-weight: 300;
+}
+
+.theme-toggle:checked ~ .containerContacto .fondo-iframe{
+    filter:invert(100%);
+}
 
 .theme-toggle:checked ~ .containerContacto #formContacto input[type="text"],
 .theme-toggle:checked ~ .containerContacto #formContacto input[type="email"],

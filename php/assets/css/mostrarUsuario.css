@@ -171,33 +171,77 @@
 }
 
 
+.stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    border-top: 2px dashed #d1d5db;
+    width: 50%;
+    padding-top: 1rem;
+    gap: 2rem;
+}
+
 .stat-item {
     flex: 1;
-    text-align: center; 
+    text-align: center;
+    color: #334155; /* Color azul oscuro */
 }
 
 .stat-item span {
-    display: block; 
-    font-size: 20px; 
-    font-weight: bold; 
-    color: #4b6f96; 
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 500; 
+    color: #ffffff; 
 }
 
 .stat-item p {
-    font-size: 14px; 
-    color: #777;
+    font-size: 0.875rem; 
+    color: #8c8c8c; 
+    margin-top: 0.25rem;
+    font-weight: 500;
 }
 
 
+.preguntasYrespuestas{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.preguntasUsuario {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin:0 auto 0 1em;
+}
+.respuestasUsuario {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin:0 auto 0 2em;
+}
 .admin-section{
     display: flex;
     align-items:center ;
     justify-content: center;
     flex-direction: column;
-    width: 80%;
-    margin:0 auto;
-    gap: 20px;
-    
+    width: 100%;
+    margin-left: 1em;
+    gap: 10px; 
+}
+
+.admin-respuesta{
+    display: flex;
+    align-items:flex-end ;
+    justify-content: flex-end;
+    flex-direction: column;
+    width: 100%;
+    margin:2em auto 0 1em;
+    gap:10px;
 }
 
 #preguntaUsuario{

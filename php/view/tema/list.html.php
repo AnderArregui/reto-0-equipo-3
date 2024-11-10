@@ -13,8 +13,8 @@
                     }
                     
                     $imagenTema = $contador < 4 && !empty($tema['imagen']) ? htmlspecialchars($tema['imagen']) : ''; 
-                    $colorTema = $contador < 4 && !empty($tema['caracteristica']) ? htmlspecialchars($tema['caracteristica']) : '';
-                    $claseTema = empty($imagenTema) && empty($colorTema) ? 'tema-sin-imagen-color' : '';
+                    $colorTema = !empty($tema['caracteristica']) ? htmlspecialchars($tema['caracteristica']) : '';
+                    $claseTema = empty($imagenTema) ? 'tema-sin-imagen-color' : '';
             ?>
             <div class="tema-container">
                 <a href="index.php?controller=Tema&action=view&id_tema=<?php echo htmlspecialchars($tema['id_tema']); ?>" class="tema-link">

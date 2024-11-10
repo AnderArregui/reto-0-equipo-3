@@ -1,6 +1,9 @@
 <?php
     $infoUsuario = $dataToView['data']['infoUsuario'];
+    $respuestas = $dataToView['data']['respuestas'];
+    $preguntas = $dataToView['data']['preguntas'];
 
+    
     // Función para formatear el tiempo transcurrido
     function formatearTiempo($minutos) {
         if ($minutos < 60) {
@@ -14,71 +17,74 @@
         }
     }
 ?>
+<div class="containerContacto">
+    <div class="usuario-info">
+        <img class="usuario-img" src="<?php echo isset($infoUsuario['foto']) ? htmlspecialchars($infoUsuario['foto']) : 'https://via.placeholder.com/150'; ?>" alt="Imagen de <?php echo isset($infoUsuario['nombre']) ? htmlspecialchars($infoUsuario['nombre']) : 'Usuario desconocido'; ?>">
+        
+        <h2 class="contactanos"><?php echo isset($infoUsuario['nombre']) ? htmlspecialchars($infoUsuario['nombre']) : 'Nombre no disponible'; ?></h2>
+        
+        <p class="infoContacto">Email: <?php echo isset($infoUsuario['email']) ? htmlspecialchars($infoUsuario['email']) : 'No disponible'; ?></p>
+        <p class="infoContacto">Especialidad: <?php echo isset($infoUsuario['especialidad']) ? htmlspecialchars($infoUsuario['especialidad']) : 'No disponible'; ?></p>
+        <p class="infoContacto">Años en la empresa: <?php echo isset($infoUsuario['anios_empresa']) ? htmlspecialchars($infoUsuario['anios_empresa']) : 'No disponible'; ?></p>
 
-<div class="usuario-info">
-    <img class="imagenUsuario" src="<?php echo isset($infoUsuario['foto']) ? htmlspecialchars($infoUsuario['foto']) : 'https://via.placeholder.com/150'; ?>" alt="Imagen de <?php echo isset($infoUsuario['nombre']) ? htmlspecialchars($infoUsuario['nombre']) : 'Usuario desconocido'; ?>">
-    <h2><?php echo isset($infoUsuario['nombre']) ? htmlspecialchars($infoUsuario['nombre']) : 'Nombre no disponible'; ?></h2>
-    <p>Email: <?php echo isset($infoUsuario['email']) ? htmlspecialchars($infoUsuario['email']) : 'No disponible'; ?></p>
-    <p>Especialidad: <?php echo isset($infoUsuario['especialidad']) ? htmlspecialchars($infoUsuario['especialidad']) : 'No disponible'; ?></p>
-    <p>Años en la empresa: <?php echo isset($infoUsuario['anios_empresa']) ? htmlspecialchars($infoUsuario['anios_empresa']) : 'No disponible'; ?></p>
-    
-    <p>Tiempo desde la última interaccion: 
-        <?php 
-            $totalRespuestas = isset($infoUsuario['total_respuestas']) ? $infoUsuario['total_respuestas'] : 0;
-            if ($totalRespuestas === 0) {
-                echo "No ha posteado ninguna respuesta.";
-            } else {
-                $minutosDesdeUltimaRespuesta = isset($infoUsuario['minutos_desde_ultima_respuesta']) ? $infoUsuario['minutos_desde_ultima_respuesta'] : 0;
-                echo formatearTiempo($minutosDesdeUltimaRespuesta);
-            }
-        ?>
-    </p>
+        <p class="infoContacto">Tiempo desde la última interacción:
+            <?php 
+                $totalRespuestas = isset($infoUsuario['total_respuestas']) ? $infoUsuario['total_respuestas'] : 0;
+                if ($totalRespuestas === 0) {
+                    echo "No ha posteado ninguna respuesta.";
+                } else {
+                    $minutosDesdeUltimaRespuesta = isset($infoUsuario['minutos_desde_ultima_respuesta']) ? $infoUsuario['minutos_desde_ultima_respuesta'] : 0;
+                    echo formatearTiempo($minutosDesdeUltimaRespuesta);
+                }
+            ?>
+        </p>
 
-    <div class="stats">
-        <div class="stat-item">
-            <span><?php echo isset($infoUsuario['total_preguntas']) ? htmlspecialchars($infoUsuario['total_preguntas']) : '0'; ?></span>
-            <p>Preguntas</p>
+        <div class="stats">
+            <div class="stat-item">
+                <span><?php echo isset($infoUsuario['total_preguntas']) ? htmlspecialchars($infoUsuario['total_preguntas']) : '0'; ?></span>
+                <p>Preguntas</p>
+            </div>
+            <div class="stat-item">
+                <span><?php echo isset($infoUsuario['total_respuestas']) ? htmlspecialchars($infoUsuario['total_respuestas']) : '0'; ?></span>
+                <p>Respuestas</p>
+            </div>
+            <div class="stat-item">
+                <span><?php echo isset($infoUsuario['total_likes']) ? htmlspecialchars($infoUsuario['total_likes']) : '0'; ?></span>
+                <p>Likes</p>
+            </div>
         </div>
-        <div class="stat-item">
-            <span><?php echo isset($infoUsuario['total_respuestas']) ? htmlspecialchars($infoUsuario['total_respuestas']) : '0'; ?></span>
-            <p>Respuestas</p>
-        </div>
-        <div class="stat-item">
-            <span><?php echo isset($infoUsuario['total_likes']) ? htmlspecialchars($infoUsuario['total_likes']) : '0'; ?></span>
-            <p>Likes</p>
-        </div>
+
+        <?php if ($_SESSION['usuario']['tipo'] === 'admin' && $infoUsuario['id_usuario'] != $_SESSION['usuario']['id_usuario']): ?>
+            <a class="link-modificar" href="index.php?controller=Usuario&action=modificarUsuario&id_usuario=<?php echo $infoUsuario['id_usuario']; ?>">Modificar Usuario</a>
+            <form action="index.php?controller=Usuario&action=eliminarUsuario" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este usuario? Sus preguntas y respuestas se mantendrán en el sistema.');">
+                <input type="hidden" name="id_usuario" value="<?php echo $infoUsuario['id_usuario']; ?>">
+                <button type="submit" class="btn btn-danger">Eliminar Usuario</button>
+            </form>
+        <?php endif; ?>
     </div>
-    <?php if ($_SESSION['usuario']['tipo'] === 'admin' && $infoUsuario['id_usuario'] != $_SESSION['usuario']['id_usuario']): ?>
-        <a class="link-modificar" href="index.php?controller=Usuario&action=modificarUsuario&id_usuario=<?php echo $infoUsuario['id_usuario']; ?>" class="btn btn-primary">Modificar Usuario</a>
-        <form action="index.php?controller=Usuario&action=eliminarUsuario" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este usuario? Sus preguntas y respuestas se mantendrán en el sistema.');">
-            <input type="hidden" name="id_usuario" value="<?php echo $infoUsuario['id_usuario']; ?>">
-            <button type="submit" class="btn btn-danger">Eliminar Usuario</button>
-        </form>
-    <?php endif; ?>
 </div>
 
 
 
+<div class="preguntasYrespuestas">
 <?php if ($_SESSION['usuario']['tipo'] === 'admin'): ?>
     <div class="admin-section">
-        <h3>Preguntas del Usuario</h3>
-        <?php $preguntas = $dataToView['data']['preguntas']; ?>
+        <h3 class="titulo">Preguntas de <?php echo htmlspecialchars($infoUsuario['nombre']) ?></h3>
         <?php if (!empty($preguntas)): ?>
             <?php foreach ($preguntas as $pregunta): ?>
-                <div class="preguntas">
+                <div class="preguntasUsuario">
                 <div class="pregunta" id="preguntaUsuario" style="border: 2px dashed <?php echo htmlspecialchars($pregunta['caracteristica']); ?>">
-
-    <h3>
-        <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo htmlspecialchars($pregunta['id_post']); ?>" class="tema-link">
-            <?php 
-                $maxCaracteres = 120;
-                $contenido = htmlspecialchars($pregunta['contenido']);
-                echo (mb_strlen($contenido) > $maxCaracteres) 
-                    ? mb_substr($contenido, 0, $maxCaracteres) . "..." 
-                    : $contenido; 
-            ?>
-        </a>
-    </h3>
+        <h3>
+            <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo htmlspecialchars($pregunta['id_post']); ?>" class="tema-link">
+                <?php 
+                    $maxCaracteres = 120;
+                    $contenido = htmlspecialchars($pregunta['contenido']);
+                    echo (mb_strlen($contenido) > $maxCaracteres) 
+                        ? mb_substr($contenido, 0, $maxCaracteres) . "..." 
+                        : $contenido; 
+                ?>
+            </a>
+        </h3>
 
     <div class="postInfo">
         <p>Por: <?php echo htmlspecialchars($pregunta['nombre_usuario'] ?? 'Usuario desconocido'); ?></p>
@@ -119,11 +125,8 @@
     <form action="index.php?controller=Usuario&action=eliminarPregunta" method="POST" id="formEliminarPregunta" style="display: none;">
         <input type="hidden" name="id_post" value="<?php echo $pregunta['id_post']; ?>">
     </form>
-
 </div>
-
-
-                </div>
+</div>
                 
                 
             <?php endforeach; ?>
@@ -131,12 +134,12 @@
             <p>Este usuario no tiene preguntas.</p>
         <?php endif; ?>
         </div>
-
-        <h3>Respuestas del Usuario</h3>
-        <?php $respuestas = $dataToView['data']['respuestas']; ?>
+    <div class="admin-respuesta">
+    <h3 class="titulo">Respuestas de <?php echo htmlspecialchars($infoUsuario['nombre']) ?></h3>
+       
         <?php if (!empty($respuestas)): ?>
             <?php foreach ($respuestas as $respuesta): ?>
-                <div class="preguntas">
+                <div class="respuestasUsuario">
                 <div class="respuesta" style="width:90%">
                     <a href="index.php?controller=Post&action=respuestas&id_post=<?php echo $respuesta['id_post']; ?>">
                         <p class="contenidoRespuesta"><?php echo htmlspecialchars($respuesta['contenido']); ?></p>
@@ -153,4 +156,6 @@
             <p>Este usuario no tiene respuestas.</p>
         <?php endif; ?>
     </div>
+        </div>
 <?php endif; ?>
+</div>
