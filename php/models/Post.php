@@ -16,13 +16,14 @@ class Post {
     }
     
     public function crear($id_usuario, $id_tema, $contenido) {
-        $query = "INSERT INTO posts (id_usuario, id_tema, contenido) VALUES (?, ?, ?)";
+        $now = new DateTime();
+        $query = "INSERT INTO posts (id_usuario, id_tema, contenido, fecha) VALUES (?, ?, ?, ?)";
         $stmt = $this->connection->prepare($query);
-        return $stmt->execute([$id_usuario, $id_tema, $contenido]);
+        return $stmt->execute([$id_usuario, $id_tema, $contenido,$now->format('Y-m-d H:i:s')]);
     }
     
     public function obtenerPorId($id) {
-        $query = "SELECT p.*, u.nombre as nombre_usuario, t.nombre as nombre_tema, t.caracteristica as caracteristica 
+        $query = "SELECT p.*, u.nombre as nombre_usuario,t.id_Tema as id_tema, t.nombre as nombre_tema, t.caracteristica as caracteristica 
                   FROM posts p 
                   JOIN usuarios u ON p.id_usuario = u.id_usuario 
                   JOIN temas t ON p.id_tema = t.id_tema 
@@ -31,6 +32,7 @@ class Post {
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
 
     public function obtenerTodos($orderBy = 'p.fecha DESC', $limit = 10, $offset = 0) {
         $query = "
@@ -69,6 +71,18 @@ class Post {
         $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function obtenerPostsPorUsuario($id_usuario) {
+        try{
+            $stmt = $this->connection->prepare("SELECT * FROM posts WHERE id_usuario = ? ORDER BY fecha DESC");
+            $stmt->execute([$id_usuario]);
+            $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $posts;
+        } catch(PDOException $e){
+            echo "Error al obtener los posts del usuario: " . $e->getMessage();
+            return[];
+        }
     }
 
     public function contarTodos() {
@@ -120,6 +134,79 @@ class Post {
         $stmt = $this->connection->prepare($query);
         return $stmt->execute([$id_post]);
     }
+
+
+public function deletePostById($id_post) {
+    try {
+        // Iniciar la transacción
+        $this->connection->beginTransaction();
+
+        // 1. Eliminar los likes asociados a las respuestas del post
+        $sql = "DELETE FROM likeUsuario 
+                WHERE id_respuesta IN (
+                    SELECT id_respuesta FROM respuestas WHERE id_post = ?
+                )";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([$id_post]);
+
+        // 2. Eliminar las respuestas del post
+        $sql = "DELETE FROM respuestas WHERE id_post = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([$id_post]);
+
+        // 3. Eliminar los guardados del post
+        $sql = "DELETE FROM guardado WHERE id_post = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([$id_post]);
+
+        // 4. Eliminar el post en sí
+        $sql = "DELETE FROM posts WHERE id_post = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([$id_post]);
+
+        // Confirmar la transacción si todo fue exitoso
+        $this->connection->commit();
+        return true;
+
+    } catch (Exception $e) {
+        // Si algo falla, revertir todos los cambios
+        $this->connection->rollBack();
+        error_log("Error al eliminar el post: " . $e->getMessage());
+        return false;
+    }
+}
+public function update($param) {
+    $contenido = $id_tema = "";
+    $id_post = $param["id"];
+    $exists = false;
+
+    if (isset($param["id"]) && $param["id"] != '') {
+        $actualRespuesta = $this->obtenerPorId($param["id"]);
+        
+        if (isset($actualRespuesta["id_post"])) {
+            $exists = true;
+            $id_post = $param["id"];
+            $contenido = $actualRespuesta["contenido"];
+            $id_tema = $actualRespuesta["id_tema"];
+        }
+    }
+
+    if (isset($param["contenido"])) $contenido = $param["contenido"];
+    if (isset($param["temaSelect"])) $id_tema = $param["temaSelect"]; 
+
+  
+    print_r($contenido);
+    print_r($id_tema);
+
+    if ($exists) {
+    
+        $sql = "UPDATE posts SET contenido = ?, id_tema = ? WHERE id_post = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([$contenido, $id_tema, $id_post]);
+    }
+    
+    return $id_post;
 }
 
+}
 ?>

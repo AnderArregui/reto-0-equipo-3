@@ -141,9 +141,36 @@ class PostController {
     
     
     
+    public function confirmDelete()
+    {
+        $this->view= "confirm";
+    }
+
+    public function delete()
+    {
+        $this->view="delete";
+        return $this->postModel->deletePostById($_POST["id"]);
+    }
+
+    public function edit()
+    {
+        $this->view= "edit";
+        $posts = $this->postModel->obtenerPorId($_GET["id"]);
+        $temas = $this->temaModel->obtenerTemas();
+        return [
+            'posts' => $posts,
+            'temas' => $temas
+        ];
+    }
+
+    public function update()
+    {
+        $this->view= 'update';
+
+        $id = $this->postModel->update($_POST);
+
+    }
     
-    
-   
     public function init($id_post) {
         $id_post = $_GET['id_post'] ?? null;
 

@@ -83,14 +83,13 @@ class Usuario {
         public function actualizarImagenPerfil($id_usuario, $newImageUrl) {
             try {
                 $stmt = $this->connection->prepare("UPDATE usuarios SET foto = ? WHERE id_usuario = ?");
-                $stmt->bindParam("si", $newImageUrl, $id_usuario);
-                $stmt->execute();
-                $stmt->close();
+                $stmt->execute([$newImageUrl, $id_usuario]); // Pasa los valores directamente en un array
             } catch (PDOException $e) {
-                echo "Error al actualizar la imagen de perfil: " . $e->getMessage();
+                echo json_encode(["success" => false, "message" => "Error al actualizar la imagen de perfil: " . $e->getMessage()]);
             }
             exit();
         }
+        
 
 
 
@@ -222,6 +221,7 @@ class Usuario {
                 $stmtUpdateResponses->execute();
 
                 // Delete the user
+                print_r($id_usuario);
                 $stmtDeleteUser = $this->connection->prepare("DELETE FROM usuarios WHERE id_usuario = :id_usuario");
                 $stmtDeleteUser->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
                 $stmtDeleteUser->execute();
@@ -304,6 +304,31 @@ class Usuario {
                 $this->connection->rollBack();
                 error_log("Error al actualizar usuario: " . $e->getMessage());
                 return false;
+            }
+        }
+        public function obtenerUsuariosPaginados($offset, $limit) {
+            try {
+                $query = "SELECT id_usuario, foto, nombre, email FROM usuarios LIMIT :offset, :limit";
+                $stmt = $this->connection->prepare($query);
+                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+                $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                error_log("Error al obtener usuarios paginados: " . $e->getMessage());
+                return [];
+            }
+        }
+        
+        public function contarTotalUsuarios() {
+            try {
+                $query = "SELECT COUNT(*) FROM usuarios";
+                $stmt = $this->connection->prepare($query);
+                $stmt->execute();
+                return $stmt->fetchColumn();
+            } catch (PDOException $e) {
+                error_log("Error al contar total de usuarios: " . $e->getMessage());
+                return 0;
             }
         }
 }

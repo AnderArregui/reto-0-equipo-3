@@ -35,19 +35,49 @@ function perfil(usuario) {
     });     
 }
 
-function gestionarPerfil() {
-    fetch('/reto-1-equipo-3/php/view/usuario/perfil/gestionarperfil.html.php')
-    .then(response => {
-        if(!response.ok) {
-            throw new Error('Error al cargar la pagina klk ')
-        }
-        return response.text();
+function obtenerPreguntasPorUsuario(posts) {
+    fetch('/reto-1-equipo-3/php/view/usuario/preguntas/gestionarpreguntas.html.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(posts)
+
     })
-    .then(data => {
-        // Inserta el contenido HTML en el contenedor
-        document.getElementById("visualizacion").innerHTML = data;
-    })
-    .catch(error => {
-        console.error('Hubo un problema con la solicitud Fetch:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al cargar los posts: ' + response.statusText);
+            }
+            return response.text();
+        })
+        .then(data => {
+            // Inserta el contenido HTML de los posts en el contenedor
+            document.getElementById("visualizacion").innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Hubo un problema con la solicitud Fetch:', error);
+        });
 }
+
+function obtenerRespuestasPorUsuario(respuestas) {
+    fetch('/reto-1-equipo-3/php/view/usuario/respuestas/gestionarrespuestas.html.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(respuestas)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al cargar los posts: ' + response.statusText);
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById("visualizacion").innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Hubo un problema con la solitud Fetch:', error);
+        });
+}
+

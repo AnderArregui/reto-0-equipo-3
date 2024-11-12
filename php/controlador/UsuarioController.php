@@ -1,10 +1,12 @@
 <?php
 
 require_once "models/Usuario.php";
+require_once "models/Respuesta.php";
 
 class UsuarioController {
     public $view;
     public $showLayout = true;
+    public $respuesta;
 
     private $usuario;
 
@@ -63,11 +65,21 @@ class UsuarioController {
         $this->view = "perfil";
 
         $idUsuario = $_SESSION['usuario']['id_usuario'];
+        // Obtener el usuario a traves de la sesion
         $this->usuario = new Usuario();
         $usuario = $this->usuario->obtenerPorId($idUsuario);
+
+        //Obtener preguntas a traves del usuario
+        $this->post = new Post();
+        $posts = $this->post->obtenerPostsPorUsuario($idUsuario);
+
+        $this->respuesta = new Respuesta();
+        $respuestas = $this->respuesta->obtenerRespuestasPorUsuario($idUsuario);
         
         return [
-            'usuario' => $usuario
+            'usuario' => $usuario,
+            'posts' => $posts,
+            'respuestas' => $respuestas
         ];
     }
 
@@ -117,29 +129,44 @@ class UsuarioController {
     
 
     public function actualizarImagenPerfil() {
-        if(!isset($_SESSION['usuario'])){
-            echo json_encode(['success' => false, 'message' => 'Usuario no autenticado']);
-            return;
-        }
-
-        if(isset($_FILES['fotoPerfil']) && $_FILES['fotoPerfil']['error'] == 0){
-            $targetDir = "reto-1-equipo-3/php/assets/img/perfil/";
-            $fileName = uniqid() . "_" . basename($_FILES['fotoPerfil']['name']);
-            $targetFilePath = $targetDir . $fileName;
-
-            if(move_uploaded_file($_FILES['fotoPerfil']['tmp_name'], $targetFilePath)){
-                $usuarioModel = new Usuario();
-                $usuarioModel->actualizarImagenPerfil($_SESSION['usuario']['id_usuario'], $targetFilePath);
-
-                $_SESSION['usuario']['foto'] = $targetFilePath;
-
-                echo json_encode(['success' => true, 'newImageUrl' => $targetFilePath]);
-            } else {
-                echo json_encode(['success' => false, 'message' => 'Error al subir la imagen']);
+        try {
+            // Verifica si el usuario está autenticado
+            if (!isset($_SESSION['usuario']['id_usuario'])) {
+                echo json_encode(["success" => false, "message" => "Usuario no autenticado"]);
+                return;
             }
-        } else {
-            echo json_encode(['success' => false, 'message' => 'No se ha seleccionado ninguna imagen']);
+    
+            // Verifica si se ha subido un archivo
+            if (isset($_FILES['fotoPerfil']) && $_FILES['fotoPerfil']['error'] == 0) {
+                // Configura la carpeta de destino
+                $targetDir = __DIR__ . "/../assets/images/perfil/";
+                $fileName = uniqid() . "_" . basename($_FILES["fotoPerfil"]["name"]);
+                $targetFilePath = $targetDir . $fileName;
+                
+                // Mueve el archivo a la carpeta de destino
+                if (move_uploaded_file($_FILES["fotoPerfil"]["tmp_name"], $targetFilePath)) {
+
+                    $relativePath = "/reto-1-equipo-3/php/assets/images/perfil/" . $fileName;
+
+                    // Actualiza la ruta de la imagen en la base de datos
+                    $usuario = new Usuario();
+                    $usuario->actualizarImagenPerfil($_SESSION['usuario']['id_usuario'], $relativePath);
+                    $_SESSION['usuario']['foto'] = $relativePath;
+    
+                    // Devuelve la URL de la nueva imagen
+                    echo json_encode(["success" => true, "newImageUrl" => $targetFilePath]);
+                } else {
+                    echo json_encode(["success" => false, "message" => "Error al mover el archivo."]);
+                }
+            } else {
+                echo json_encode(["success" => false, "message" => "No se ha seleccionado ninguna imagen o hubo un error al subirla."]);
+            }
+        } catch (Exception $e) {
+            // Manejo de excepciones
+            echo json_encode(["success" => false, "message" => "Ocurrió un error: " . $e->getMessage()]);
         }
+        $this->view="actualizarfotoperfil";
+        exit();
     }
 
     public function logout() {
@@ -195,7 +222,7 @@ class UsuarioController {
         header("Location: " . $_SERVER['HTTP_REFERER']);
         exit();
     }
-
+    
 
     public function eliminarUsuario() {
         if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'admin') {
@@ -220,7 +247,6 @@ class UsuarioController {
         header("Location: index.php?controller=Usuario&action=mostrarUsuario");
         exit();
     }
-
 
     public function crearNuevoUsuario() {
         if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'admin') {
@@ -344,6 +370,25 @@ class UsuarioController {
                 exit();
             }
         }
+    }
+
+    public function obtenerUsuariosPaginados() {
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
+        $offset = ($page - 1) * $limit;
+    
+        $this->usuario = new Usuario();
+        $usuarios = $this->usuario->obtenerUsuariosPaginados($offset, $limit);
+        $totalUsuarios = $this->usuario->contarTotalUsuarios();
+    
+        $hasMore = ($page * $limit) < $totalUsuarios;
+    
+        header('Content-Type: application/json');
+        echo json_encode([
+            'usuarios' => $usuarios,
+            'hasMore' => $hasMore
+        ]);
+        exit;
     }
 
 }

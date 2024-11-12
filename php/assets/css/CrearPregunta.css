@@ -86,13 +86,34 @@
     border-radius: 5px; 
     transition: background-color 0.3s; 
 }
-
+/* Estilo para el hover del select */
 .temasSelect select:hover {
-    background-color: rgb(40, 40, 40); 
+    background-color: rgb(40, 40, 40); /* Fondo oscuro cuando pasa el mouse */
+    color: white; /* Cambia el color del texto a blanco para contraste */
+    border-color: rgb(60, 60, 60); /* Bordes más oscuros al pasar el mouse */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Transición suave */
 }
-#temaSelect option{
+
+/* Estilo para el focus del select */
+#temaSelect:focus {
+    border-color: rgb(0, 123, 255); /* Borde azul al hacer clic */
+    outline: none; /* Quitar el contorno predeterminado */
+    background-color: rgb(255, 255, 255); /* Fondo blanco cuando está enfocado */
+}
+
+/* Opciones dentro del select */
+#temaSelect option {
     font-weight: 300;
     letter-spacing: -0.03em;
+    padding: 10px; /* Añadir espacio interno para mejorar la legibilidad */
+    background-color: rgb(240, 240, 240); /* Fondo claro en las opciones */
+    color: rgb(0, 0, 0); /* Texto en negro por defecto */
+}
+
+/* Estilo de las opciones seleccionadas */
+#temaSelect option:checked {
+    background-color: rgb(0, 123, 255); /* Fondo azul para la opción seleccionada */
+    color: white; /* Texto blanco cuando la opción está seleccionada */
 }
 
 .crearTema {

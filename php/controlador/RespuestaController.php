@@ -78,5 +78,30 @@ class RespuestaController {
             echo json_encode(['success' => false, 'message' => 'Error en los datos enviados.']);
         }
     }
+    // Vista para confirmar la eliminación de una respuesta
+    public function confirmDelete() {
+        $this->view = "confirm";
+    }
 
+    // Método para eliminar una respuesta por ID
+    public function delete() {
+        $this->view = "delete";
+        return $this->respuestaModel->deleteRespuestaById($_POST["id"]);
+    }
+
+    // Método para editar una respuesta, obtiene datos de la respuesta y temas
+    public function edit() {
+        $this->view = "edit";
+        $respuesta = $this->respuestaModel->obtenerPorId($_GET["id"]);
+
+        return [
+            'respuesta' => $respuesta
+        ];
+    }
+
+    // Método para actualizar la información de una respuesta
+    public function update() {
+        $this->view = 'update';
+        $id = $this->respuestaModel->update($_POST);
+    }
 }

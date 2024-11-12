@@ -17,6 +17,7 @@
         }
     }
 ?>
+
 <div class="containerContacto">
     <div class="usuario-info">
         <img class="usuario-img" src="<?php echo isset($infoUsuario['foto']) ? htmlspecialchars($infoUsuario['foto']) : 'https://via.placeholder.com/150'; ?>" alt="Imagen de <?php echo isset($infoUsuario['nombre']) ? htmlspecialchars($infoUsuario['nombre']) : 'Usuario desconocido'; ?>">
@@ -63,8 +64,6 @@
         <?php endif; ?>
     </div>
 </div>
-
-
 
 <div class="preguntasYrespuestas">
 <?php if ($_SESSION['usuario']['tipo'] === 'admin'): ?>

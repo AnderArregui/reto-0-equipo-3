@@ -94,49 +94,53 @@
 
 .modal-content h3 {
     margin-top: 0;
-    color: #ff5a5a; /* Rojo más vivo para mayor contraste */
-    font-weight: 500;
+    color: #ffffff; 
+    font-weight: 300;
+    font-size: 1.5em;
+    margin-bottom: 1em;
 }
 
 .modal button {
     border: none;
-    border-radius: 8px;
-    padding: 0.8em 1.5em;
-    font-weight: 500;
+    border-radius: 10px;
+    font-weight: 300;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 /* Botón de eliminar todo */
 #deleteAllBtn {
-    background-color: #e74c3c; /* Rojo fuerte */
+    background-color: transparent; /* Rojo fuerte */
+    border:3px dashed #e74c3c;
     color: #ffffff;
     margin-right: 0.5em;
 }
 
 #deleteAllBtn:hover {
-    background-color: #d3433a;
+    background-color: #e74c3c;
 }
 
 /* Botón de eliminar solo */
 #deleteOnlyBtn {
-    background-color: #3498db; /* Azul claro */
+    background-color: transparent; /* Azul claro */
+    border:3px dashed #3498db;
     color: #ffffff;
     margin-right: 0.5em;
 }
 
 #deleteOnlyBtn:hover {
-    background-color: #2980b9;
+    background-color: #3498db;
 }
 
-/* Botón de cancelar */
 #cancelBtn {
-    background-color: #7f8c8d; /* Gris para cancelar */
+    background-color: transparent; 
+    border:3px dashed #7f8c8d;
     color: #ffffff;
+    margin-right: 0.5em;
 }
 
 #cancelBtn:hover {
-    background-color: #6c7a7a;
+    background-color: #7f8c8d;
 }
 
 

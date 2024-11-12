@@ -138,10 +138,75 @@ public function quitarLike($id_respuesta, $id_usuario) {
         ];
     }
 
+    public function obtenerRespuestasPorUsuario($id_usuario)
+    {
+        try {
+            $stmt = $this->connection->prepare("SELECT * FROM respuestas WHERE id_usuario = ?");
+            $stmt->execute([$id_usuario]);
+            $respuestas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $respuestas;
+        } catch (PDOException $e) {
+            echo "Error al obtener las respuestas del usuario: " . $e->getMessage();
+            return [];
+        }
+    }
     public function obtenerPost($id_post) {
         $query = "SELECT * FROM posts WHERE id_post = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$id_post]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function deleteRespuestaById($id_respuesta) {
+        // Primero, eliminamos los likes asociados con esta respuesta
+        $sqlLikes = "DELETE FROM likeUsuario WHERE id_respuesta = ?";
+        $stmt = $this->connection->prepare($sqlLikes);
+        $stmt->execute([$id_respuesta]);
+    
+        // Luego, eliminamos la respuesta
+        $sqlRespuesta = "DELETE FROM respuestas WHERE id_respuesta = ?";
+        $stmt = $this->connection->prepare($sqlRespuesta);
+        $stmt->execute([$id_respuesta]);
+    
+        return true;
+    }
+    
+    public function obtenerPorId($id) {
+        $sql = "SELECT * FROM respuestas WHERE id_respuesta = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function update($param) {
+        $contenido = $id_post = "";
+        $exists = false;
+    
+        // Verifica si la respuesta ya existe en la base de datos
+        if (isset($param["id"]) && $param["id"] != '') {
+            $actualRespuesta = $this->obtenerPorId($param["id"]);
+            
+            if (isset($actualRespuesta["id_respuesta"])) {
+                $exists = true;
+                $id = $param["id"];
+                $contenido = $actualRespuesta["contenido"];
+                $id_post = $actualRespuesta["id_post"];
+            }
+        }
+    
+        // Sobreescribe los campos cambiados que llegan via POST
+        if (isset($param["contenido"])) $contenido = $param["contenido"];
+        if (isset($param["postSelect"])) $id_post = $param["postSelect"];
+    
+        // Actualiza la respuesta si existe
+        if ($exists) {
+            $sql = "UPDATE respuestas SET contenido = ?, id_post = ? WHERE id_respuesta = ?";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([$contenido, $id_post, $id]);
+        }
+        
+        return $id;
+    }
+    
+
 }

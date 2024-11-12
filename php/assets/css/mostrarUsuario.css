@@ -12,77 +12,102 @@
 
 
 
+/* Estilos generales para el contenedor de usuarios */
+#usuariosContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-.usuario-item {
+#usuariosGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas en pantallas grandes */
+    gap: 20px;
+}
+
+/* Estilos de los elementos de usuario */
+.containerUsuario {
+    margin-top: 10vh;
+    height: 90%;
+    padding: 15px;
     display: flex;
-    justify-content:center;
-    align-items: center;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+
+.p-4 img {
     border-radius: 10px;
-    overflow: hidden; 
-    background-color: #333333;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s; 
+    width: 100%;
+    max-width: 20vw;
+    height:20vh;
+    object-fit: cover;
+    margin-bottom: 10px;
 }
 
-.usuario-item:hover {
-    background-color: #434343;
+/* Título y correo electrónico */
+.containerUsuario h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333333;
+    margin: 5px 0;
 }
 
+.containerUsuario p {
+    font-size: 0.9rem;
+    color: #666666;
+}
+
+/* Estilos de botones */
+#loadMoreButton, .crearUsuario a {
+    
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+}
+
+
+
+/* Para pantallas medianas: 3 columnas */
+@media (max-width: 992px) {
+    #usuariosGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Para pantallas pequeñas: 2 columnas */
+@media (max-width: 768px) {
+    #usuariosGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Para dispositivos móviles: 1 columna */
+@media (max-width: 576px) {
+    #usuariosGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .usuario-img {
+        max-width: 100px;
+        height: auto;
+    }
+
+    #usuariosContainer {
+        padding-top: 20px;
+    }
+}
 .usuario-img {
     border-radius: 10px;
     width: 260px; 
     height: 260px;
     object-fit: cover;
 }
-
-.usuario-link {
-    text-decoration: none;
-    min-height: 400px;
-    
-}
-
-.nombre h3 {
-    color: #ffffff; 
-    font-weight: 600;
-    margin: 10px 0; 
-    text-align: center;
-}
-
-.result-grid p {
-    text-align: center; 
-    color: #ccc; 
-    font-weight: 300;
-}
-
-
-
-
-
-/* Responsive */
-@media (max-width: 780px) {
-   .result-grid, .stat-item{
-    width: 100%;
-   }
-   .usuario-img{
-    min-width: 100px;
-    padding-top: 10px;
-   }
-
-   .result-grid {
-    margin-top: 30%;
-    
-   }
-   .usuario-link{
-    width: 100%;
-    min-height: 00px;
-   }
-   
-}
-
-
 
 
 /*---------individual--------*/
@@ -221,7 +246,7 @@
 .respuestasUsuario {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 95%;
     margin:0 auto 0 2em;
 }
 .admin-section{
@@ -339,6 +364,64 @@
 .link-modificar:hover {
     background-color: #2e7b2e; /* Verde aún más oscuro */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.alert {
+    background-color: #fff3cd00;
+    border:3px dashed white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.alert-title {
+    font-size: 1.4em;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.alert p {
+    font-size: 1.1em;
+    font-weight: 300;
+    color: #c2c2c2;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
 }
 
 

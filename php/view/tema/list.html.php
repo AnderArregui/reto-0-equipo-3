@@ -8,7 +8,7 @@
             if (!empty($temas)):
                 foreach ($temas as $tema): 
                     // Saltar la impresión si la característica es "Tema Eliminado"
-                    if ($tema['caracteristica'] === 'Tema Eliminado') {
+                    if ($tema['nombre'] === 'Tema Eliminado') {
                         continue;
                     }
                     

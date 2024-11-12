@@ -108,7 +108,6 @@
                 <img src="/reto-1-equipo-3/php/assets/images/search.svg" alt="Lupa" class="search-icon">
             </button>
         </form>
-        
     </div>
 
     <div class="profile-icon">
@@ -118,8 +117,15 @@
         </a>
         <div class="dropdown-menu">
             <ul>
-                <li><a href="index.php?controller=Usuario&action=perfil">Ver perfil</a></li>
-                <li><a href="index.php?controller=Usuario&action=editarPerfil">Editar perfil</a></li>
+                <li><a href="index.php?controller=Usuario&action=perfil">Mi perfil</a></li>
+                <li>
+                    <a href="/reto-1-equipo-3/php/assets/pdfs/guia_usuario.pdf" target="_blank">Ayuda</a>
+                </li>
+                    <?php if ($_SESSION['usuario']['tipo'] === 'admin'): ?>
+                <li>
+                    <a href="/reto-1-equipo-3/php/assets/pdfs/guia_admin.pdf" target="_blank">Ayuda Admin</a>
+                </li>
+            <?php endif; ?>
                 <li><a href="index.php?controller=Usuario&action=logout">Cerrar sesión</a></li>
             </ul>
         </div>
