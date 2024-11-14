@@ -1,0 +1,315 @@
+.generalPregutar {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    margin-top:4em;
+}
+
+.divDiseno {
+    width: 70%;
+    height: auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 10px; 
+    padding: 20px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.tituloTema h1 {
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    font-size: 2em;
+    text-align: center;
+    color: #fff;
+}
+
+.CrearPregunta {
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px; 
+}
+.CrearPregunta h1{
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    font-size: 2em;
+    text-align: center;
+    color: #fff;
+}
+
+.CrearPregunta textarea {
+    width: 80%;
+    height: 150px; 
+    border: none;
+    resize: none;
+    transition: border-color 0.3s; 
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    transition: border-color 0.3s;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color:#363636;
+}
+
+.CrearPregunta textarea:focus {
+    border: 2px solid #363636; 
+    outline: none; 
+}
+
+.temasSelect {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.temasSelect select {
+    width: 100%; 
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgb(30, 30, 30); 
+    color: white; 
+    border: 1px solid #444; 
+    border-radius: 5px; 
+    transition: background-color 0.3s; 
+}
+
+.temasSelect select:hover {
+    background-color: rgb(40, 40, 40); 
+    color: white; 
+    border-color: rgb(60, 60, 60); 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+
+#temaSelect:focus {
+    border-color: rgb(0, 123, 255); 
+    outline: none; 
+    background-color: rgb(255, 255, 255); 
+    color: #000000;
+}
+
+#temaSelect option {
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    padding: 10px; 
+    background-color: rgb(0, 0, 0); 
+    color: rgb(255, 255, 255); 
+}
+
+#temaSelect option:checked {
+    background-color: rgb(0, 123, 255); 
+    color: white;
+}
+
+.crearTema {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.crearTema label {
+    font-size: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    padding: 15px 20px;    text-align: center; 
+    transition: background-color 0.3s; 
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    cursor:pointer;
+}
+
+.crearTema label:hover {
+    background-color: #555; 
+}
+
+.crearTema input[type="text"] {
+    width: 40%; 
+    height: 40px;
+    font-size: 18px;
+    padding-left: 4px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    transition: border-color 0.3s;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color:#363636;
+}
+
+.crearTema input[type="text"]:focus {
+
+    outline: none;
+    
+}
+
+.crearTema input[type="checkbox"] {
+    display: none; 
+}
+
+.crearTema input[type="checkbox"]:checked + input[type="text"],
+.crearTema input[type="checkbox"]:checked + input[type="text"] + input[type="submit"] {
+    display: block;
+    visibility: visible;
+}
+
+.crearTema input[type="submit"], .subir {
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #FF3183;
+    color: #fff; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+.crearTema input[type="submit"]:hover, .subir:hover {
+    background-color: #e62674;
+}
+
+.subir {
+    border-radius: 10px;
+    background-image: linear-gradient(270deg, #FF3183, #7EC5FF, #FFA3A5, #00F382);
+    background-color: transparent;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    color:rgb(23, 23, 23);
+    transition-duration: 0.3s;
+    background-size: 400% 400%; 
+    animation: gradientAnimation 15s ease infinite; 
+    transition: 0.5s;
+}
+.subir:Hover {
+    transform: scale(1.05);
+    color:white;
+}
+
+.temasSelect select:hover {
+    background-color: rgb(40, 40, 40); 
+}
+#temaSelect option{
+    font-weight: 300;
+    letter-spacing: -0.03em;
+}
+
+.crearTema {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.crearTema label {
+    font-size: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    padding: 15px 20px;    text-align: center; 
+    transition: background-color 0.3s; 
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    cursor:pointer;
+}
+
+.crearTema label:hover {
+    background-color: #555; 
+}
+
+.crearTema input[type="text"] {
+    width: 40%; 
+    height: 40px;
+    font-size: 18px;
+    padding-left: 4px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    transition: border-color 0.3s;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color:#363636;
+}
+
+.crearTema input[type="text"]:focus {
+
+    outline: none;
+    
+}
+
+.crearTema input[type="checkbox"] {
+    display: none; 
+}
+
+.crearTema input[type="checkbox"]:checked + input[type="text"],
+.crearTema input[type="checkbox"]:checked + input[type="text"] + input[type="submit"] {
+    display: block;
+    visibility: visible;
+}
+
+.crearTema input[type="submit"], .subir {
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #FF3183;
+    color: #fff; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+.crearTema input[type="submit"]:hover, .subir:hover {
+    background-color: #e62674;
+}
+
+.subir {
+    border-radius: 10px;
+    background-image: linear-gradient(270deg, #FF3183, #7EC5FF, #FFA3A5, #00F382);
+    background-color: transparent;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    color:rgb(23, 23, 23);
+    transition-duration: 0.3s;
+    background-size: 400% 400%; 
+    animation: gradientAnimation 15s ease infinite; 
+    transition: 0.5s;
+}
+.subir:Hover {
+    transform: scale(1.05);
+    color:white;
+}
+
+
+
+@media (max-width: 1200px) {
+    .divDiseno{
+        width: 100%;
+    }
+
+  
+}
+

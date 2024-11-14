@@ -1,0 +1,111 @@
+.perfil{
+    padding-top: 7em;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.visualizacion{
+    width: 80vw;
+}
+
+.perfil img{
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    border: 1px solid white;
+    transition: 400ms;
+}
+
+.perfil img:hover{
+    opacity: 0.5;
+    transition: 400ms;
+    cursor: pointer;
+}
+.perfil h2{
+    padding-top: 10px;
+    font-weight: 300;
+
+}
+
+.perfil h3{
+    color: #AFAFAF;
+    padding-top: 10px;
+    font-weight: 300;
+}
+
+.menuperfil{ 
+    padding: 40px 0px 10px 0px;
+    text-align: center;
+    border-bottom: 2px solid #444;
+}
+
+.menuperfil ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.menuperfil ul li{
+    display: inline;
+    font-weight: 300;
+}
+
+.menuperfil ul li a{
+    color: #ccc;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 30px;
+    display: inline-block;
+}
+
+.menuperfil ul li a.active,
+.menuperfil ul li a:hover {
+    color: #9400d3;
+    text-decoration: underline;
+    transition: 400ms;
+}
+
+#formularioUsuario {
+    display: flex;
+    flex-direction: column;
+    max-width: 50em;
+}
+
+#visualizacion label
+{
+    display: flex;
+    justify-content: right;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #bfbfbf;
+}
+
+#visualizacion input[type="text"],
+#visualizacion input[type="email"],
+#visualizacion input[type="number"],
+#visualizacion input[type="password"],
+#visualizacion textarea
+{
+    width: 50em;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border: 1px solid #5f5f5f;
+    border-radius: 5px;
+    color: #f1f1f1;
+    font-size: 1.1em;
+}
+
+#visualizacion{
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+

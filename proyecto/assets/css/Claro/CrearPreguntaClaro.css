@@ -1,0 +1,54 @@
+.theme-toggle:checked ~ form .generalPregutar .divDiseno .tituloTema h1 {
+    color: #363636;
+}
+
+.theme-toggle:checked ~ form .generalPregutar .divDiseno .CrearPregunta h1{
+    color: #363636;
+}
+
+.theme-toggle:checked ~ form .generalPregutar .divDiseno .temasSelect select {
+    width: 100%; 
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #999999; 
+    color: #000000; 
+    border: 1px solid #444; 
+    border-radius: 5px; 
+    transition: background-color 0.3s; 
+}
+
+
+.theme-toggle:checked ~ .preguntasYrespuestas .admin-section .titulo,
+.theme-toggle:checked ~ .preguntasYrespuestas .admin-section .preguntasUsuario .pregunta h3 a ,
+ .theme-toggle:checked ~ .preguntasYrespuestas .admin-section .preguntasUsuario .pregunta p{
+    color: black;
+    font-weight: 500;
+}
+
+
+.theme-toggle:checked ~ .preguntasYrespuestas .admin-respuesta .titulo,
+.theme-toggle:checked ~ .preguntasYrespuestas .admin-respuesta .respuesta  p,
+.theme-toggle:checked ~ .preguntasYrespuestas .admin-respuesta .respuesta p strong {
+    color: black;
+    font-weight: 500;
+}
+
+.theme-toggle:checked ~ .general .perfil #visualizacion .admin-respuesta .respuestasUsuario .respuesta a .contenidoRespuesta,
+.theme-toggle:checked ~ .general .perfil #visualizacion .admin-respuesta .respuestasUsuario .respuesta p  strong,
+.theme-toggle:checked ~ .general .perfil #visualizacion .admin-respuesta .respuestasUsuario .respuesta p{
+    color: black;
+    font-weight: 500;
+}
+.theme-toggle:checked ~ .general .perfil .menuperfil #menuPerfil li a{
+    color: black;
+    font-weight: 300;
+
+}
+
+
+
+
+
+

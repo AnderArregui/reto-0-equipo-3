@@ -1,0 +1,223 @@
+
+#textoContacto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.contactanos {
+    font-weight: 600;
+    font-size: 8em;
+    letter-spacing: -0.05em;
+    text-align: center;
+    margin-top: 1.45em;
+    margin-bottom: 3.5em;
+    z-index: 1;
+}
+.contactanos2 {
+    font-weight: 600;
+    font-size: 8em;
+    letter-spacing: -0.05em;
+    text-align: center;
+    color: transparent;
+    margin-top: -4.62em;
+    
+    margin-bottom: 1.7em;
+    z-index: 4004;
+
+    -webkit-text-stroke: .5px rgb(255, 255, 255);
+}
+
+.infoContacto {
+    font-weight: 300;
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 0.5em;
+    width: 40%;
+    margin-top: 5%;
+}
+
+#formContacto {
+    padding: 20px;
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    z-index: 3003;
+}
+
+.nombreContacto,
+.emailContacto,
+.asuntoContacto,
+.mensajeContacto {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nombreContacto,
+.emailContacto {
+    width: 100%;
+}
+
+#formContacto label {
+    display: flex;
+    justify-content: left;
+    font-size: 1.3em;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    margin-bottom: 5px;
+    color: #cacaca;
+}
+
+#formContacto input[type="text"],
+#formContacto input[type="email"],
+#formContacto textarea {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #3b3b3b;
+    border: 1px solid #5f5f5f;
+    border-radius: 5px;
+    color: #f1f1f1;
+    font-size: 1.1em;
+}
+
+#formContacto button {
+    background-color: #f1f1f1;
+    color: #2b2b2b;
+    display: flex;
+    justify-content: right;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.8em;
+    font-weight: 500;
+}
+
+#formContacto button:hover {
+    background-color: #cccccc;
+}
+
+#imgContacto {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1em;
+    width: 100%;
+    margin-top: 2em;
+}
+
+.imgJefes {
+    opacity: 0.6;
+    width: 32%;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.imgJefes:hover {
+    opacity: 1;
+}
+
+
+
+.fondo-iframe {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: transparent;
+    z-index: 2;
+}
+
+.fondo-iframe iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.cobertura {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    width: 150px; /* Ajusta según el tamaño del enlace */
+    height: 40px; /* Ajusta según el tamaño del enlace */
+    background-color:rgb(23, 23, 23); /* Cambia si quieres un color diferente */
+    z-index: 5000; /* Asegúrate de que esté encima del iframe */
+    box-shadow: none;
+}
+
+    
+
+#formContacto {
+    width: 50%;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.imgJefes {
+    width: 32%;
+}
+
+/* Media Queries para Pantallas Pequeñas y Responsivas */
+
+/* Para pantallas más pequeñas (móviles) */
+@media screen and (max-width: 767px) {
+    .containerContacto {
+        padding-top: 1em;  /* Menos espaciado en la parte superior para móviles */
+        margin-top: 25%;
+    }
+
+    #formContacto {
+        width: 90%;
+        gap: 1.5em;
+    }
+
+    .nombreContacto,
+    .emailContacto,
+    .asuntoContacto,
+    .mensajeContacto {
+        width: 100%;
+    }
+
+    .imgJefes {
+        width: 60%;
+        margin-bottom: 1em;
+    }
+}
+
+/* Para pantallas medianas (tablets) */
+@media screen and (max-width: 1024px) {
+    .contactanos2, 
+    .fondo-iframe {
+        visibility: hidden;    
+    }
+    .contactanos{
+        font-size: 2em;
+        margin: 0;
+        padding-bottom: 8em;
+    }
+    .containerContacto {
+        padding-top: 1.5em;
+    }
+
+    #formContacto {
+        width: 80%;
+        gap: 1.5em;
+    }
+
+    .imgJefes {
+        width: 45%;
+    }
+}
+
+

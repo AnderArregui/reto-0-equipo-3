@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica';
+    font-weight: 200;
+}
+
+body {
+    background: url('../images/back.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.logo {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 15%;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+}
+
+form {
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:center;
+
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(240, 248, 255, 0.171);
+    border-radius: 10px;
+    padding: 3em 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    margin-left:4em;
+}
+.formulario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+}
+#iniSes{
+    font-weight: 100;
+    font-size: 2em;
+}
+
+.apartado{
+    margin-top: 1em;
+    margin-bottom: .4em;
+    font-weight: 200;
+    font-size: 1.3em;
+}
+
+input {
+    font-size: 1em;
+    font-weight: 500;
+    font-style: normal;
+    padding: 10px;
+    border-radius: 7px;
+    border: 0px;
+    background-color: #000000; 
+    color: white; 
+    width: 100%;
+    position: relative; 
+    z-index: 10; 
+}
+
+
+input {
+    backdrop-filter: none;
+}
+input:focus {
+    outline: none; 
+    box-shadow: none; 
+}
+
+
+@media (max-width: 600px) {
+    body {
+        background: url('../images/back.png') no-repeat 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px; 
+        min-height: 100vh; 
+    }
+
+    .logo {
+        position: absolute; 
+        width: 60%; 
+        margin: -30px auto 30px auto;
+    }
+
+    form {
+        width: 100%; 
+        max-width: 350px; 
+        margin: 4em auto 0 auto; 
+        padding: 2em 20px; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    #iniSes {
+        font-weight: 300;
+        font-size: 1.5em;
+    }
+
+    .apartado {
+        font-weight: 300;
+        font-size: 1.2em;
+    }
+
+    input {
+        font-size: 0.9em; 
+        padding: 8px; 
+    }
+
+    .botones {
+        flex-direction: column;
+        gap: 10px; 
+        margin-top: 1em;
+    }
+
+    .cssbuttons-io span {
+        font-size: 0.9em;
+    }
+
+    .logo img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+
+
+.cssbuttons-io {
+    position: relative;
+    
+    border-radius: 7px;
+    cursor: pointer;
+    border: none;
+   background-color: #000;
+    color: ghostwhite;
+    overflow: hidden;
+    transition: 0.75s;
+}
+.cssbuttons-io:hover{
+    background: linear-gradient(to right, #C1ABFF, #9068ff);
+}
+.cssbuttons-io svg {
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.5em;
+}
+
+.cssbuttons-io span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8em 1.2em 0.8em 1.2em;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.1em;
+}
+
+.cssbuttons-io span:hover {
+    color:black;
+}
+
+.cssbuttons-io::before,
+.cssbuttons-io::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.cssbuttons-io::before {
+    content: "";
+    background: #000;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.cssbuttons-io:hover::before {
+    transform: translate3d(100%, 0, 0);
+}
+
+.cssbuttons-io:active {
+    transform: scale(0.95);
+    
+}
+
+.botones {
+    margin-top: 1.5em;
+    display: flex;
+    gap: 20px;
+}
+
+
+/* helvetica */
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueHv.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueIt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueUltraLightv130.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueMedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueThin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueBlack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueHeavy.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fuentes/HelveticaNeueLight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
